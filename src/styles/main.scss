@@ -1,0 +1,30 @@
+@import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../../node_modules/font-awesome/css/font-awesome.css';
+
+@import 'colours';
+@import 'normalize';
+@import 'reset';
+@import 'typography';
+@import 'variables';
+
+html {
+    font-family: $body-font;
+    background-color: $blue-1f;
+    line-height: 1.3rem;
+    font-size: $base-font-size;
+}
+
+body {
+    color: $white;
+}
+
+.page {
+    display: flex;
+    flex-direction: row;
+    padding: $margin;
+    background-color: $blue-1f;
+}
+
+.content {
+    flex-grow: 1;
+}

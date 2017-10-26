@@ -1,0 +1,18 @@
+@import '../../../styles/colours';
+@import '../../../styles/variables';
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    padding: $margin;
+    border-radius: $border-radius;
+    background-color: $blue-39;
+
+    &__left {
+
+    }
+
+    &__right {
+
+    }
+}
