@@ -9,6 +9,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
+import { BoxComponent } from './components/box/box.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { TopNavComponent } from './components/top-nav/top-nav.component';
         PageNotFoundComponent,
         SideNavComponent,
         TopNavComponent,
+        BoxComponent,
     ],
     imports: [
         BrowserModule,

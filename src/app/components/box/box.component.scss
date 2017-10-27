@@ -1,0 +1,39 @@
+@import '../../../styles/colours';
+@import '../../../styles/typography';
+@import '../../../styles/variables';
+
+.box {
+    margin-bottom: $margin;
+    overflow: hidden;
+    border-radius: $border-radius;
+    flex-grow: 1;
+    background-color: $blue-39;
+
+    &__title {
+        padding: $margin;
+        border-bottom: 1px solid $blue-1f;
+        background-color: $blue-50;
+        font-size: $font-size-small;
+        font-family: $header-font;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+    &__list {
+
+        .list {
+            font-size: $font-size-small;
+
+            &__item {
+                padding: $margin/2;
+                border-bottom: 1px solid $blue-1f;
+                line-height: $font-size-small;
+
+                .fa {
+                    vertical-align: middle;
+                }
+            }
+        }
+
+    }
+}

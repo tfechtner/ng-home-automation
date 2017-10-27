@@ -8,20 +8,18 @@
 @import 'variables';
 
 html {
-    font-family: $body-font;
     background-color: $blue-1f;
     line-height: 1.3rem;
     font-size: $base-font-size;
 }
 
 body {
+    font-family: $body-font;
     color: $white;
 }
 
 .page {
-    display: flex;
-    flex-direction: row;
-    padding: $margin;
+    padding: $margin*2;
     background-color: $blue-1f;
 }
 

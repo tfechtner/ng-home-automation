@@ -5,6 +5,9 @@ $header-font: 'Ubuntu', sans-serif;
 
 $base-font-size: 16px;
 
+$font-size-small: $base-font-size - 4;
+
+
 h1, h2, h3, h4 {
     font-family: $header-font;
 }
