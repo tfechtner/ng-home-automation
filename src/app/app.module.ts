@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -11,6 +12,7 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { BoxComponent } from './components/box/box.component';
 
+import { SonosService } from './services/sonos.service';
 
 @NgModule({
     declarations: [
@@ -23,9 +25,10 @@ import { BoxComponent } from './components/box/box.component';
     ],
     imports: [
         BrowserModule,
+        HttpModule,
         RouterModule.forRoot(ROUTES),
     ],
-    providers: [],
+    providers: [SonosService],
     bootstrap: [AppComponent],
 })
 export class AppModule {

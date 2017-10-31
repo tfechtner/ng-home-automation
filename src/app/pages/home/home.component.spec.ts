@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpModule } from '@angular/http';
 
 import { HomeComponent } from './home.component';
 import { BoxComponent } from '../../components/box/box.component';
+
+import { SonosService } from '../../services/sonos.service';
 
 describe('HomeComponent', () => {
     let component: HomeComponent;
@@ -13,6 +16,8 @@ describe('HomeComponent', () => {
                 HomeComponent,
                 BoxComponent
             ],
+            imports: [HttpModule],
+            providers: [SonosService],
         })
             .compileComponents();
     }));
