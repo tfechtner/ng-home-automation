@@ -13,21 +13,28 @@
         padding: $margin;
         border-bottom: 1px solid $blue-1f;
         background-color: $blue-50;
-        font-size: $font-size-small;
-        font-family: $header-font;
-        text-align: center;
-        text-transform: uppercase;
+        line-height: $font-size-large;
+
+        &--text {
+            font-family: $header-font;
+            font-size: $font-size-large;
+            text-transform: uppercase;
+        }
+
+        .fa {
+            vertical-align: middle;
+        }
     }
 
     &__list {
 
         .list {
-            font-size: $font-size-small;
+            font-size: $font-size-normal;
 
             &__item {
-                padding: $margin/2;
+                padding: $margin;
                 border-bottom: 1px solid $blue-1f;
-                line-height: $font-size-small;
+                line-height: $font-size-normal;
 
                 .fa {
                     vertical-align: middle;

@@ -22,4 +22,15 @@ export class SonosService {
             });
     }
 
+    public getRoomPause(room) {
+
+        return this.http.get(CONFIG.API.sonos + room + '/pause')
+            .map((response: Response) => {
+                console.log('getRoomPause', response);
+            })
+            .catch((error: any) => {
+                return Observable.throw(error);
+            });
+    }
+
 }
