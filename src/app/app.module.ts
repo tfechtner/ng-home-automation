@@ -13,6 +13,7 @@ import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { BoxComponent } from './components/box/box.component';
 
 import { SonosService } from './services/sonos.service';
+import { RoomComponent } from './pages/room/room.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { SonosService } from './services/sonos.service';
         SideNavComponent,
         TopNavComponent,
         BoxComponent,
+        RoomComponent,
     ],
     imports: [
         BrowserModule,

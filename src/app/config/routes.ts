@@ -1,13 +1,22 @@
+import { CONFIG } from './main';
+
 import { HomeComponent } from '../pages/home/home.component';
 import { PageNotFoundComponent } from '../pages/page-not-found/page-not-found.component';
-
-import { CONFIG } from './main';
+import { RoomComponent } from '../pages/room/room.component';
 
 export const ROUTES = [
 
     {
         path: '',
         component: HomeComponent,
+        data: {},
+        resolve: {},
+    },
+
+    // Room
+    {
+        path: CONFIG.routing.room.url + '/:' + CONFIG.routing.room.paramRoomId,
+        component: RoomComponent,
         data: {},
         resolve: {},
     },

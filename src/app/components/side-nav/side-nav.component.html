@@ -1,10 +1,16 @@
 <div class="col side-nav">
     <ul class="side-nav__menu">
         <li class="side-nav__menu--item">
-            <a class="fa fa-2x fa-home" [href]=""></a>
+            <a class="fa fa-2x fa-fw fa-home" [href]=""></a>
         </li>
         <li class="side-nav__menu--item">
-            <a class="fa fa-2x fa-music" [href]=""></a>
+            <a class="fa fa-2x fa-fw fa-music" [href]=""></a>
+        </li>
+        <li class="side-nav__menu--item">
+            <a class="fa fa-2x fa-fw fa-lightbulb-o" [href]=""></a>
+        </li>
+        <li class="side-nav__menu--item" *ngFor="let room of rooms" [routerLink]="roomUrl + '/' + room.id">
+            <a class="fa fa-2x fa-fw {{room.icon}}"></a>
         </li>
     </ul>
 </div>

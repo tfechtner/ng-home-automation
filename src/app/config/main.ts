@@ -32,8 +32,29 @@ let config = {
     },
     routing : {
         base: '',
+        room: {
+            url: 'room',
+            paramRoomId: 'roomId'
+        },
         pageNotFound: '404'
-    }
+    },
+    rooms: [
+        {
+            id: 'lounge',
+            name: 'Lounge',
+            icon: 'fa-tv'
+        },
+        {
+            id: 'bedroom',
+            name: 'Bedroom',
+            icon: 'fa-bed'
+        },
+        {
+            id: 'bathroom',
+            name: 'Bathroom',
+            icon: 'fa-bath'
+        }
+    ]
 };
 
 
