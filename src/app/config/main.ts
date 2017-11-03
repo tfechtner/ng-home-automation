@@ -28,7 +28,7 @@ let config = {
     APP_BASE_ASSETS: '',
     API: {
         baseUrl: '',
-        sonos: 'http://localhost:5005/'
+        sonos: 'http://localhost:5005'
     },
     routing : {
         base: '',
