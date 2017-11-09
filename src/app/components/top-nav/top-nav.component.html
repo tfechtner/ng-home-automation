@@ -7,7 +7,7 @@
         </div>
 
         <div class="col-6 top-nav__right">
-            <a class="fa fa-2x fa-cog" [href]=""></a>
+            <i class="top-nav__connection fa fa-2x fa-signal" [ngClass]="{'top-nav__connection--connected': connectedToSonos === true, 'top-nav__connection--disconnected': connectedToSonos === false , 'top-nav__connection--unkown': connectedToSonos === null }"></i>
         </div>
 
     </div>

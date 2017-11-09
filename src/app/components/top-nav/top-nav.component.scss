@@ -15,4 +15,17 @@
     &__right {
         text-align: right;
     }
+
+    &__connection {
+
+        &--connected {
+            color: $green
+        }
+        &--disconnected {
+            color: $red-light;
+        }
+        &--unknown {
+            color: $blue-50;
+        }
+    }
 }
