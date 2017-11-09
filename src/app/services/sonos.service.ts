@@ -1,19 +1,44 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { CONFIG } from '../config/main';
 import { isNullOrUndefined } from 'util';
+import { Subscription } from 'rxjs/Subscription';
 
 @Injectable()
-export class SonosService {
+export class SonosService implements OnDestroy {
+
+    private connected: boolean = null;
+    private stateData: object = null;
+    private stateSubscription: Subscription;
 
     constructor(private http: Http) {
+
+        // TODO: SonosService - Add refresh to state
+        let stateSubscription = this.getState()
+            .subscribe((stateData: object) => {
+                    this.stateData = stateData;
+                    this.connected = true;
+                },
+                error => {
+                    this.connected = false;
+                    console.log(error);
+                });
+        this.stateSubscription = stateSubscription;
+
     }
 
-    // Global
+    ngOnDestroy() {
+        this.stateSubscription.unsubscribe();
+    }
+
+    // API
     public getZones(): Observable<any> {
         return this.httpGet(null, 'zones', null);
+    }
+    public getState(): Observable<any> {
+        return this.httpGet(null, 'state', null);
     }
     public getLockVolumes(): Observable<any> {
         return this.httpGet(null, 'lockvolumes', null);
@@ -28,7 +53,7 @@ export class SonosService {
         return this.httpGet(null, 'resumeall', null);
     }
 
-    // Room
+    // API Room
     public getRoomPlay(room: string): Observable<any> {
         return this.httpGet(room, 'play', null);
     }
@@ -45,6 +70,11 @@ export class SonosService {
     }
     public getRoomState(room: string): Observable<any> {
         return this.httpGet(room, 'state', null);
+    }
+
+    // General
+    public isConnected(): boolean {
+        return this.connected;
     }
 
     private httpGet(room: string, action: string, params: string): Observable<any> {
