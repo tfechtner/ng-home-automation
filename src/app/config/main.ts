@@ -32,6 +32,7 @@ let config = {
     },
     routing : {
         base: '',
+        audio: 'audio',
         room: {
             url: 'room',
             paramRoomId: 'roomId'
