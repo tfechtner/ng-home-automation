@@ -7,11 +7,21 @@
 
         &--item {
             margin-bottom: 1px;
-            padding: $margin;
-            background-color: $blue-39;
+
+            a {
+                display: block;
+                padding: $margin;
+                background-color: $blue-39;
+                &:hover {
+                    background-color: $blue-50;
+                    color: $white;
+                }
+            }
 
             &:first-child {
-                border-radius: $border-radius $border-radius 0 0;
+                a {
+                    border-radius: $border-radius $border-radius 0 0;
+                }
             }
         }
     }

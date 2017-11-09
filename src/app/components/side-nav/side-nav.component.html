@@ -1,16 +1,16 @@
 <div class="col side-nav">
     <ul class="side-nav__menu">
         <li class="side-nav__menu--item">
-            <a class="fa fa-2x fa-fw fa-home" [routerLink]="'/'"></a>
+            <a class="" [routerLink]="'/'"><i class="fa fa-2x fa-fw fa-home"></i></a>
         </li>
         <li class="side-nav__menu--item">
-            <a class="fa fa-2x fa-fw fa-music" [href]=""></a>
+            <a class="" [routerLink]="'/audio'"><i class="fa fa-2x fa-fw fa-music"></i></a>
         </li>
         <li class="side-nav__menu--item">
-            <a class="fa fa-2x fa-fw fa-lightbulb-o" [href]=""></a>
+            <a class="" [routerLink]="'/lighting'"><i class="fa fa-2x fa-fw fa-lightbulb-o"></i></a>
         </li>
-        <li class="side-nav__menu--item" *ngFor="let room of rooms" [routerLink]="roomUrl + '/' + room.id">
-            <a class="fa fa-2x fa-fw {{room.icon}}"></a>
+        <li class="side-nav__menu--item" *ngFor="let room of rooms">
+            <a class="" [routerLink]="roomUrl + '/' + room.id"><i class="fa fa-2x fa-fw {{room.icon}}"></i></a>
         </li>
     </ul>
 </div>
