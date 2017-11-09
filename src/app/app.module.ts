@@ -14,6 +14,7 @@ import { BoxComponent } from './components/box/box.component';
 
 import { SonosService } from './services/sonos.service';
 import { RoomComponent } from './pages/room/room.component';
+import { AudioComponent } from './pages/audio/audio.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { RoomComponent } from './pages/room/room.component';
         TopNavComponent,
         BoxComponent,
         RoomComponent,
+        AudioComponent,
     ],
     imports: [
         BrowserModule,
