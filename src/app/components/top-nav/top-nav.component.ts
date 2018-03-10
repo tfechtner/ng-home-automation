@@ -22,9 +22,7 @@ export class TopNavComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
-        console.log('TopNavComponent.ngOnInit');
         this.pageTitleSubscription = this.pageService.getPageTitle().subscribe(title => {
-            console.log('TopNavComponent.ngOnInit pageTitleSubscription', title);
             this.pageTitle = title;
         });
 
