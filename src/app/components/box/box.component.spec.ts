@@ -4,19 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { BoxComponent } from './box.component';
 import { SonosService } from '../../services/sonos/sonos.service';
-
-export class MockSonosService {
-
-    constructor() {
-        // console.log('MockSonosService.constructor');
-    }
-
-    getZones(): Observable<any> {
-        // console.log('MockSonosService.getBasket');
-        const zones = {};
-        return Observable.of(zones);
-    }
-}
+import { SonosServiceMock } from '../../services/sonos/sonos.service.mock';
 
 describe('BoxComponent', () => {
     let component: BoxComponent;
@@ -32,7 +20,7 @@ describe('BoxComponent', () => {
         })
         .overrideComponent(
             BoxComponent,
-            {set: {providers: [{provide: SonosService, useClass: MockSonosService}]}},
+            {set: {providers: [{provide: SonosService, useClass: SonosServiceMock}]}},
         )
         .compileComponents();
 
