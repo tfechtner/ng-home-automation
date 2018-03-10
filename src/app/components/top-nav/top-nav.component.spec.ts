@@ -1,25 +1,34 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { TopNavComponent } from './top-nav.component';
+import {PageService} from '../../services/page/page.service';
+import {SonosService} from '../../services/sonos/sonos.service';
+import {SonosServiceMock} from '../../services/sonos/sonos.service.mock';
+
+import {TopNavComponent} from './top-nav.component';
 
 describe('TopNavComponent', () => {
-  let component: TopNavComponent;
-  let fixture: ComponentFixture<TopNavComponent>;
+    let component: TopNavComponent;
+    let fixture: ComponentFixture<TopNavComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ TopNavComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TopNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        TestBed.configureTestingModule({
+            declarations: [TopNavComponent],
+            providers: [
+                PageService,
+                {provide: SonosService, useClass: SonosServiceMock},
+            ]
+        }).compileComponents();
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    }));
+
+    beforeEach(() => {
+        fixture = TestBed.createComponent(TopNavComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

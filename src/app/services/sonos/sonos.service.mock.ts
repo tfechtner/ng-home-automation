@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Rx';
 
 export class SonosServiceMock {
 
-    constructor(http: Http) {
+    constructor() {
     }
 
     getZones(): Observable<any> {
