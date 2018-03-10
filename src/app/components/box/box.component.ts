@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 
-import { SonosService } from '../../services/sonos.service';
+import { SonosService } from '../../services/sonos/sonos.service';
 
 const PLAYER_STATE_PLAYING = 'PLAYING';
 

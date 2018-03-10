@@ -6,10 +6,12 @@ import { CONFIG } from '../../config/main';
 import { Rooms } from '../../models/rooms';
 import { Room } from '../../models/room';
 
+import { PageService } from '../../services/page/page.service';
+
 @Component({
     selector: 'app-room',
     templateUrl: './room.component.html',
-    styleUrls: ['./room.component.scss'],
+    styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit, OnDestroy {
 
@@ -18,8 +20,10 @@ export class RoomComponent implements OnInit, OnDestroy {
     roomName: string = null;
     private subscription: Subscription;
 
-    constructor(private route: ActivatedRoute) {
-    }
+    constructor(
+        private route: ActivatedRoute,
+        private pageService: PageService
+    ) {}
 
     ngOnInit() {
 
@@ -29,6 +33,7 @@ export class RoomComponent implements OnInit, OnDestroy {
                 const room = this.rooms.getRoomById(params[paramRoomId]);
                 this.room = room;
                 this.roomName = room.getName();
+                this.pageService.setPageTitle(room.getName());
             }
         });
 

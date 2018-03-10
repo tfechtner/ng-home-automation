@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home.component';
 import { BoxComponent } from '../../components/box/box.component';
 
-import { SonosService } from '../../services/sonos.service';
+import { SonosService } from '../../services/sonos/sonos.service';
 
 describe('HomeComponent', () => {
     let component: HomeComponent;

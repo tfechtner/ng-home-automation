@@ -12,9 +12,12 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { BoxComponent } from './components/box/box.component';
 
-import { SonosService } from './services/sonos.service';
+import { PageService } from './services/page/page.service';
+import { SonosService } from './services/sonos/sonos.service';
+
 import { RoomComponent } from './pages/room/room.component';
 import { AudioComponent } from './pages/audio/audio.component';
+import { LightingComponent } from './pages/lighting/lighting.component';
 
 @NgModule({
     declarations: [
@@ -26,13 +29,17 @@ import { AudioComponent } from './pages/audio/audio.component';
         BoxComponent,
         RoomComponent,
         AudioComponent,
+        LightingComponent
     ],
     imports: [
         BrowserModule,
         HttpModule,
         RouterModule.forRoot(ROUTES),
     ],
-    providers: [SonosService],
+    providers: [
+        PageService,
+        SonosService
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {

@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { BoxComponent } from './box.component';
-import { SonosService } from '../../services/sonos.service';
+import { SonosService } from '../../services/sonos/sonos.service';
 
 export class MockSonosService {
 
