@@ -307,3 +307,571 @@ http://192.168.0.12:5005/zones
         ]
     }
 ]
+
+http://192.168.0.12:5005/bedroom/queue
+[
+{
+"title": "Square One",
+"artist": "Moss Kena",
+"album": "Square One",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3XVZslkZdphIHb3QZEwpj1%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Pitter Pat",
+"artist": "Tonia Victoria",
+"album": "Herstory",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a4W9xPksTfhuDeWWRt2Ur4w%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Dirty Laundry",
+"artist": "Malia",
+"album": "Dirty Laundry (ft. Syd)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3qsFI6UnjKRFiNRXQMEUDK%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "No Pressure",
+"artist": "Mahalia",
+"album": "No Pressure",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5Sr3ppJ2yQEHPTjKPHbKuU%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Nia",
+"artist": "Matt Blvck",
+"album": "After Party",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3hfjR97Jdn8sz9EnFe5PTW%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Ashes",
+"artist": "Grace Carter",
+"album": "Ashes",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6G8DzYZmln1pdzrLGeMSM7%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Proud of Me (feat. Little Simz)",
+"artist": "Mahalia",
+"album": "Proud of Me (feat. Little Simz)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1s6peZNxETxrrfMrveNZW8%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Lost In My Boots",
+"artist": "KWAYE",
+"album": "Lost In My Boots",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a21Fdug0H6MgbWKXagwWUhb%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Chemical Coincidence - Live from Spotify London",
+"artist": "Jordan Rakei",
+"album": "Spotify Live",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5n0ih0iWjZKkH9UmOOiYxq%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Get You (feat. Kali Uchis)",
+"artist": "Daniel Caesar",
+"album": "Freudian",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a7zFXmv6vqI4qOt4yGf3jYZ%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Soon",
+"artist": "Emeli Sandé",
+"album": "Kingdom Coming",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3YT5NW6hafgPLWY2W7nDN9%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Desire (feat. Goldchain)",
+"artist": "Sylo Nozra",
+"album": "Fervor",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1a1aDGs7aM4jDWNXXzqDWt%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Haze",
+"artist": "Fabian Secon",
+"album": "Haze",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a58L9BJJE7XzeMxxQ7vqVAp%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Citizen Kane",
+"artist": "Nightmares On Wax",
+"album": "Citizen Kane",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a2MsoA8L158h1FgvQqfamw0%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Sticky",
+"artist": "Ravyn Lenae",
+"album": "Sticky",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1rfGO3N4DPGodJLSSY9Re5%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Mercy",
+"artist": "Tokio Myers",
+"album": "Our Generation",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a07SRqeqqNVHn7xWEZeqMjA%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Know Better",
+"artist": "Kaleem Taylor",
+"album": "Know Better",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a440HhZPx47InubN85le1JO%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "The Fold",
+"artist": "Sarah Elizabeth Charles",
+"album": "Free of Form",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3c2yPEyaUkx1h9LORsqywj%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "You",
+"artist": "Dayo Bello",
+"album": "You",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3LBCD2JEscvWYsKxi7ZZNJ%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Edith Piaf - Non, je ne regrette rien",
+"artist": "Yasmin ❀",
+"albumArtUri": "/getaa?s=1&u=x-sonos-http%3atrack%253a83567438.mp3%3fsid%3d160%26flags%3d8224%26sn%3d7"
+},
+{
+"title": "Let Go",
+"artist": "Connie Constance",
+"album": "Let Go",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a4EJx8kErGaAaSCg318GVt2%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Passionfruit",
+"artist": "Mabel",
+"album": "Ivy To Roses (Mixtape)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3CkWuMGSQpQbTWuJdgjif1%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Don't Fade",
+"artist": "JGrrey",
+"album": "Don't Fade",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a66e2zfSRur0alut3MzzLJq%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "One Another",
+"artist": "Joe Hertz",
+"album": "One Another",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6iOG7o2IRIlF3sQHRRgfl3%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "High Highs to Low Lows",
+"artist": "Lolo Zouaï",
+"album": "High Highs to Low Lows",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1oNcADo4TZHpkfH8x1xRVW%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Better",
+"artist": "Kelela",
+"album": "Take Me Apart",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0ts84OMi1c1ugEv7yRBqX2%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "I Remember - Radio Edit",
+"artist": "Ady Suleiman",
+"album": "I Remember",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5nNL0mh4ts4niYIticGyiw%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "No Better",
+"artist": "Raveena",
+"album": "Shanti",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0DXlHWi8pqB5R2gfzlZx2i%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Everglade",
+"artist": "Collard",
+"album": "Everglade",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5GH4fO1jfnT00c7XyJ3DOS%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Teenage Fantasy - Recorded at Metropolis Studios, London",
+"artist": "Jorja Smith",
+"album": "Spotify Singles",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3gL9y6dT7xKRPL91gKGM9Y%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Stuck",
+"artist": "Xavier Omär",
+"album": "Pink Lightning - EP",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1U3CiPP7AdcmGSxBSAVx4r%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Curve",
+"artist": "Kara Marni",
+"album": "Curve",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1tnihjX56lOHeJRSqfVr42%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "GoodLovinn",
+"artist": "J.Robb",
+"album": "Soulection White Label - J.Robb",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0OgH5OaSmA7KOohTssZgwt%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Addict",
+"artist": "Louis Baker",
+"album": "Addict",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1PGtBHSMfnuEIR1OWlhtrF%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Bathwater - Stripped",
+"artist": "WESLEE",
+"album": "Bathwater (Stripped)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a4mDcbOIZbGdocxpxWrcpbG%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Forgotten How to Fly",
+"artist": "CLAY",
+"album": "Forgotten How to Fly",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a7MZeBa8JQRYkXJRe0KBR2r%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Simple Things",
+"artist": "Malia",
+"album": "Simple Things",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3HbAMntEzc9UdBtXiDXIHN%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Forever",
+"artist": "Tallia Storm",
+"album": "Teenage Tears",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3zQdBJ8b9XCNI7yPpQUGOq%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Are You Numb?",
+"artist": "DUVV",
+"album": "WITH YOU IN MIND",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6heRPNg8Vz0pJxWRUMmlU0%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Losing Out",
+"artist": "Ebony Frainteso",
+"album": "Losing Out",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a487OG20EVCzXJ89Ua9ebqW%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Doubt",
+"artist": "Charlotte Day Wilson",
+"album": "Doubt",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6kgLcuTv6qe1I3xAKaII8S%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Table For Two",
+"artist": "Elli Ingram",
+"album": "Love You Really",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1y1x5sJO4Cy84eaRAIdPSl%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Silhouette",
+"artist": "Grace Carter",
+"album": "Silhouette",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0WJ0pQmEdD8TVapiIAMouY%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Midnight Train",
+"artist": "Sam Smith",
+"album": "The Thrill Of It All (Special Edition)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1A85fOmviQuGgkF6Lww6Nd%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Sober",
+"artist": "Evanturetime",
+"album": "Sober",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5jRZJXdcC2R4wvhRjMb2BR%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Cotton Candy",
+"artist": "Jessie Reyez",
+"album": "Cotton Candy",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a4E0DcpwJUvzZ0ewwhVVaz3%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Angel",
+"artist": "Tokio Myers",
+"album": "Our Generation",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a2h9zodR5J5rSVdVeF42xwG%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Mountains - Stripped",
+"artist": "Amber-Simone",
+"album": "Mountains (Stripped)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0lQxPAADEcwPtJhoCcc9Xf%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "HIM",
+"artist": "Sam Smith",
+"album": "The Thrill Of It All (Special Edition)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3AFPGvRzeKeNJbIbLwcz4G%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Tepid Soul",
+"artist": "Poppy Ajudha",
+"album": "Tepid Soul",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3u6A33KtGqfk2JYm0YmiYu%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "We Have Time",
+"artist": "Sabrina Claudio",
+"album": "About Time",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a7C8VVj1kpwPwyT4aMejIXp%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Love Child",
+"artist": "Raveena",
+"album": "Shanti",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a7xlhCrF1qme2kFUmynnaQq%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Feels Like",
+"artist": "El. Train",
+"album": "Feels Like",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5tQT6d9ecAzD3Ic1uTEjAP%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "I Believe",
+"artist": "Alex Hepburn",
+"album": "I Believe",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1GL6VxWCfDq2LEjpAL1T8I%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Touch Your Soul",
+"artist": "Syler Jones",
+"album": "Raucous Soul (Side One)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a44sPrpgoFzmtJ3mgOrTgLS%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "I Better Love You",
+"artist": "Will Heard",
+"album": "Trust - EP",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a2jFd3RbfyLbGAZz822QcKN%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Tongue Tied",
+"artist": "WESLEE",
+"album": "Tongue Tied",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3MHFSTL6II589k26H9Qk1e%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Someone Else",
+"artist": "Jae Stephens",
+"album": "Someone Else",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a659s9grwaRiExnuKSWM8il%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Waters (Blue Screens)",
+"artist": "DUVV",
+"album": "WITH YOU IN MIND",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a4GckMh9IKnlFV2TPsdb3LQ%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Cryptic Love",
+"artist": "Iyamah",
+"album": "Cryptic Love",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1sBHeCJkv5MuLiaXBZsL3Z%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Livid",
+"artist": "ELIZA",
+"album": "Livid",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a599PccF9Zi8Mvc39ZLdhqr%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Language",
+"artist": "Col3trane",
+"album": "Tsarina",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1vZDGOz3ubE4wnX0ERpgE8%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Have Mercy",
+"artist": "Eryn Allen Kane",
+"album": "Aviary: Act 1",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6x5BI1UbcFoxdnl8XlmzvF%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Come Up",
+"artist": "Kallitechnis",
+"album": "Come Up",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0N6vAw0pnRiy5K0IcLJBry%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Wasn't Looking",
+"artist": "ELIZA",
+"album": "Wasn't Looking",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5SFT7iYVPd3eSVphptJ42i%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Drag Me",
+"artist": "Zach Said",
+"album": "CONTRAST - EP",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3gX3XVLGSpiOemrvgg2yN5%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Spell",
+"artist": "Raveena",
+"album": "Spell",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a57Z0jiN8guMUcCIvdbM0aQ%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Momma Bear",
+"artist": "Col3trane",
+"album": "Tsarina",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a33WEvjcnmMICCOM7AUH9te%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Try and You Try",
+"artist": "Cleo Sol",
+"album": "Try and You Try",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1rL0CJe38sZ9fQCe6n4xUq%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Location",
+"artist": "Khalid",
+"album": "American Teen",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a152lZdxL1OR0ZMW6KquMif%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Levee (Let it Break)",
+"artist": "Tiana Major9",
+"album": "Levee (Let it Break)",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6lVXUbyL1fLx1gWqdei1Yr%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Let Me Down",
+"artist": "Jorja Smith",
+"album": "Let Me Down",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a2tpYmda4mM7XFvpbhOfERH%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Livin'",
+"artist": "Alex Mali",
+"album": "Livin'",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5Fd6iikMZuMAxdpNRjuU8E%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Jenny",
+"artist": "Mae Muller",
+"album": "Jenny",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a664SzaC9wvcH9fGdZ6uwgS%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "By Your Side",
+"artist": "Sade",
+"album": "Lovers Rock",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6aXGgKVRGXlMqQYCIQqo4s%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "8 Day Weeks",
+"artist": "Jesse Boykins III",
+"album": "Bartholomew",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a4lFtgXmaiy9mpXiYlBizAx%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Sugar Don't Be Sweet",
+"artist": "Jaz Karis",
+"album": "Into The Wilderness",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5Jjuv7uNuTbgzj8dl6DeXG%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Omens",
+"artist": "James Chatburn",
+"album": "Damen",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a5AM57RQS3SCuP2ZmEqCnCd%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Wherever U Go",
+"artist": "Raveena",
+"album": "Wherever U Go",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a6XWjvZh2ZI8SnuCdagaN5u%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Talk About It",
+"artist": "Rukhsana Merrise",
+"album": "Talk About It",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a3hjFr0UZBtxJenc6tLPDB8%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+{
+"title": "Think It's Me",
+"artist": "S-X",
+"album": "Think It's Me",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a74dfiR1xjm7gJnC8fdGPiE%3fsid%3d9%26flags%3d8224%26sn%3d6"
+}
+]
+
+
+http://localhost:5005/state
+{
+"volume": 20,
+"mute": false,
+"equalizer": {
+"bass": -6,
+"treble": 5,
+"loudness": false
+},
+"currentTrack": {
+"artist": "",
+"title": "",
+"album": "",
+"albumArtUri": "",
+"duration": 0,
+"uri": "x-rincon-queue:RINCON_000E58C2012E01400#0",
+"type": "track",
+"stationName": ""
+},
+"nextTrack": {
+"artist": "",
+"title": "",
+"album": "",
+"albumArtUri": "",
+"duration": 0,
+"uri": ""
+},
+"trackNo": 0,
+"elapsedTime": 0,
+"elapsedTimeFormatted": "00:00:00",
+"playbackState": "STOPPED",
+"playMode": {
+"repeat": "none",
+"shuffle": false,
+"crossfade": false
+}
+}
+
+http://localhost:5005/bedroom/state
+{
+"volume": 11,
+"mute": false,
+"equalizer": {
+"bass": 0,
+"treble": 0,
+"loudness": true
+},
+"currentTrack": {
+"artist": "Lolo Zouaï",
+"title": "High Highs to Low Lows",
+"album": "High Highs to Low Lows",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1oNcADo4TZHpkfH8x1xRVW%3fsid%3d9%26flags%3d8224%26sn%3d6",
+"duration": 234,
+"uri": "x-sonos-spotify:spotify%3atrack%3a1oNcADo4TZHpkfH8x1xRVW?sid=9&flags=8224&sn=6",
+"type": "track",
+"stationName": "",
+"absoluteAlbumArtUri": "http://192.168.0.2:1400/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a1oNcADo4TZHpkfH8x1xRVW%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+"nextTrack": {
+"artist": "Kelela",
+"title": "Better",
+"album": "Take Me Apart",
+"albumArtUri": "/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0ts84OMi1c1ugEv7yRBqX2%3fsid%3d9%26flags%3d8224%26sn%3d6",
+"duration": 266,
+"uri": "x-sonos-spotify:spotify%3atrack%3a0ts84OMi1c1ugEv7yRBqX2?sid=9&flags=8224&sn=6",
+"absoluteAlbumArtUri": "http://192.168.0.2:1400/getaa?s=1&u=x-sonos-spotify%3aspotify%253atrack%253a0ts84OMi1c1ugEv7yRBqX2%3fsid%3d9%26flags%3d8224%26sn%3d6"
+},
+"trackNo": 25,
+"elapsedTime": 134,
+"elapsedTimeFormatted": "00:02:14",
+"playbackState": "PAUSED_PLAYBACK",
+"playMode": {
+"repeat": "none",
+"shuffle": true,
+"crossfade": false
+}
+}

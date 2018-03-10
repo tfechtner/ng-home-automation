@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { CONFIG } from '../config/main';
+import { CONFIG } from '../../config/main';
 import { isNullOrUndefined } from 'util';
 import { Subscription } from 'rxjs/Subscription';
 
