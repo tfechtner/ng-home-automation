@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 
 import { PageService } from './page.service';
 
-describe('SonosService', () => {
+describe('PageService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpModule],
