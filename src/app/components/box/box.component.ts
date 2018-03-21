@@ -21,7 +21,7 @@ export class BoxComponent implements OnInit {
     ngOnInit() {
     }
 
-    clickRoomPause() {
+    clickRoomPause(roomName) {
         this.sonosService.getRoomPause(this.id).subscribe(
             data => {
                 console.log('data', data);

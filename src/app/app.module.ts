@@ -32,15 +32,19 @@ import { LightingComponent } from './pages/lighting/lighting.component';
         LightingComponent
     ],
     imports: [
-        BrowserModule,
-        HttpModule,
+        BrowserModule.withServerTransition({ appId: 'ng-home-automation' }),
         RouterModule.forRoot(ROUTES),
     ],
     providers: [
         PageService,
         SonosService
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
+
+    constructor() {
+
+    }
+
 }
