@@ -1,0 +1,50 @@
+@import '../../../styles/colours';
+@import '../../../styles/variables';
+
+.panel {
+
+    &--row {
+        display: flex;
+        margin-bottom: $margin*2;
+    }
+
+    .box, .button {
+        display: block;
+        width: 80px;
+        height: 80px;
+        margin: $margin/2;
+        text-align: center;
+
+        .fa {
+            margin-top: 24px;
+            margin-left: 2px;
+        }
+    }
+
+    .button {
+        border-radius: $border-radius;
+        background-color: $blue-39;
+
+        &:hover {
+            background-color: $blue-50;
+            color: $white;
+        }
+
+        &:active {
+            background-color: $blue-34;
+            border: 1px solid $white;
+        }
+
+        .radio1 {
+            font-size: 2rem;
+            font-weight: bold;
+            line-height: 80px;
+        }
+
+        .sub-text {
+            display: block;
+            font-size: 0.8rem;
+            margin-top: 28px;
+        }
+    }
+}

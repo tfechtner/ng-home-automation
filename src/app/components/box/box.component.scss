@@ -28,6 +28,10 @@
 
     &__list {
 
+        a {
+            cursor: pointer;
+        }
+
         .list {
             font-size: $font-size-normal;
 
@@ -35,6 +39,12 @@
                 padding: $margin;
                 border-bottom: 1px solid $blue-1f;
                 line-height: $font-size-normal;
+
+                img {
+                    display: block;
+                    margin: 0 auto;
+                    max-height: 50px;
+                }
 
                 .fa {
                     vertical-align: middle;
