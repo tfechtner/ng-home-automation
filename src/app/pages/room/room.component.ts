@@ -18,6 +18,7 @@ export class RoomComponent implements OnInit, OnDestroy {
     rooms: Rooms = new Rooms(CONFIG.rooms);
     room: Room = null;
     roomName: string = null;
+    roomId: string = null;
     private subscription: Subscription;
 
     constructor(
@@ -33,6 +34,7 @@ export class RoomComponent implements OnInit, OnDestroy {
                 const room = this.rooms.getRoomById(params[paramRoomId]);
                 this.room = room;
                 this.roomName = room.getName();
+                this.roomId = room.getId();
                 this.pageService.setPageTitle(room.getName());
             }
         });

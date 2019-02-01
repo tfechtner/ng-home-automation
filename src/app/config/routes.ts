@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from '../pages/page-not-found/page-not-found.co
 import { RoomComponent } from '../pages/room/room.component';
 import { AudioComponent } from '../pages/audio/audio.component';
 import { LightingComponent } from '../pages/lighting/lighting.component';
+import { PanelComponent } from '../pages/panel/panel.component';
 
 export const ROUTES = [
 
@@ -35,6 +36,14 @@ export const ROUTES = [
     {
         path: CONFIG.routing.room.url + '/:' + CONFIG.routing.room.paramRoomId,
         component: RoomComponent,
+        data: {},
+        resolve: {},
+    },
+
+    // Panel
+    {
+        path: CONFIG.routing.panel,
+        component: PanelComponent,
         data: {},
         resolve: {},
     },

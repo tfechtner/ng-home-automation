@@ -33,6 +33,7 @@ let config = {
     routing : {
         base: '',
         audio: 'audio',
+        panel: 'panel',
         lighting: 'lighting',
         room: {
             url: 'room',

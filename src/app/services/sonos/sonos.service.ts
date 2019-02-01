@@ -1,75 +1,92 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { Http } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
 
-import { CONFIG } from '../../config/main';
 import { isNullOrUndefined } from 'util';
-import { Subscription } from 'rxjs/Subscription';
+import { CONFIG } from '../../config/main';
+
+import { SonosStateAdapter } from '../../adaptors/sonos/sonos.adaptor';
+import { SonosState } from '../../models/sonos/sonos.state';
 
 @Injectable()
-export class SonosService implements OnDestroy {
+export class SonosService {
 
     private connected: boolean = null;
-    private stateData: object = null;
-    private stateSubscription: Subscription;
+    private sonosState = new Subject<SonosState>();
 
-    constructor(private http: Http) {
+    constructor(private http: HttpClient) {
+        console.log('SonosService.constructor');
+        this.updateState();
+    }
 
-        // TODO: SonosService - Add refresh to state
-        let stateSubscription = this.getState()
-            .subscribe((stateData: object) => {
-                    this.stateData = stateData;
+    // Internals
+    public getState(): Observable<SonosState> {
+        return this.sonosState.asObservable();
+    }
+    public updateState() {
+        console.log('SonosService.updateState');
+        this.httpGetState()
+            .subscribe(
+                (stateData) => {
+                    const sonosStateAdapter = new SonosStateAdapter(stateData);
+                    this.sonosState.next(new SonosState( sonosStateAdapter.getJson() ));
                     this.connected = true;
                 },
                 error => {
                     this.connected = false;
                     console.log(error);
+                },
+                () => {
+                    // setTimeout(() => {
+                    //     this.updateState();
+                    // }, 5000);
                 });
-        this.stateSubscription = stateSubscription;
-
-    }
-
-    ngOnDestroy() {
-        this.stateSubscription.unsubscribe();
     }
 
     // API
-    public getZones(): Observable<any> {
+    public getZones(): Observable<object> {
         return this.httpGet(null, 'zones', null);
     }
-    public getState(): Observable<any> {
+    public httpGetState(): Observable<object> {
         return this.httpGet(null, 'state', null);
     }
-    public getLockVolumes(): Observable<any> {
+    public getLockVolumes(): Observable<object> {
         return this.httpGet(null, 'lockvolumes', null);
     }
-    public getUnLockVolumes(): Observable<any> {
+    public getUnLockVolumes(): Observable<object> {
         return this.httpGet(null, 'unlockvolumes', null);
     }
-    public getPauseAll(timeout?: number): Observable<any> {
+    public getPauseAll(timeout?: number): Observable<object> {
         return this.httpGet(null, 'pauseall', null);
     }
-    public getResumeAll(timeout?: number): Observable<any> {
+    public getResumeAll(timeout?: number): Observable<object> {
         return this.httpGet(null, 'resumeall', null);
     }
 
     // API Room
-    public getRoomPlay(room: string): Observable<any> {
+    public getRoomPlay(room: string): Observable<object> {
         return this.httpGet(room, 'play', null);
     }
-    public getRoomPause(room: string): Observable<any> {
+    public getRoomPause(room: string): Observable<object> {
         return this.httpGet(room, 'pause', null);
     }
-    public getRoomSleep(room: string, timeout: number|string = null): Observable<any> {
+    public getRoomSleep(room: string, timeout: number|string = null): Observable<object> {
         // timeout in seconds (number) or "off" (string)
         return this.httpGet(room, 'sleep', timeout.toString());
     }
-    public getRoomVolume(room: string, volume: number): Observable<any> {
+    public getRoomVolume(room: string, volume: number): Observable<object> {
         // volume 1 - 100
         return this.httpGet(room, 'volume', volume.toString());
     }
-    public getRoomState(room: string): Observable<any> {
+    public getRoomState(room: string): Observable<object> {
         return this.httpGet(room, 'state', null);
+    }
+    public getRoomFavourite(room: string, favourite: string): Observable<object> {
+        return this.httpGet(room, 'favourite', favourite);
+    }
+    public getRoomSay(room: string, sentence: string, volume: number): Observable<object> {
+        return this.httpGet(room, 'say', sentence, volume);
     }
 
     // General
@@ -77,7 +94,7 @@ export class SonosService implements OnDestroy {
         return this.connected;
     }
 
-    private httpGet(room: string, action: string, params: string): Observable<any> {
+    private httpGet(room: string, action: string, params: string, extra?: any): Observable<object> {
         let url = CONFIG.API.sonos;
 
         if (isNullOrUndefined(room) === false) {
@@ -88,6 +105,9 @@ export class SonosService implements OnDestroy {
         }
         if (isNullOrUndefined(params) === false) {
             url += '/' + params;
+        }
+        if (isNullOrUndefined(extra) === false) {
+            url += '/' + extra;
         }
         return this.http.get(url);
     }

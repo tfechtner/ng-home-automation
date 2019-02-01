@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
@@ -18,6 +18,7 @@ import { SonosService } from './services/sonos/sonos.service';
 import { RoomComponent } from './pages/room/room.component';
 import { AudioComponent } from './pages/audio/audio.component';
 import { LightingComponent } from './pages/lighting/lighting.component';
+import { PanelComponent } from './pages/panel/panel.component';
 
 @NgModule({
     declarations: [
@@ -29,11 +30,13 @@ import { LightingComponent } from './pages/lighting/lighting.component';
         BoxComponent,
         RoomComponent,
         AudioComponent,
-        LightingComponent
+        LightingComponent,
+        PanelComponent
     ],
     imports: [
         BrowserModule.withServerTransition({ appId: 'ng-home-automation' }),
         RouterModule.forRoot(ROUTES),
+        HttpClientModule
     ],
     providers: [
         PageService,
