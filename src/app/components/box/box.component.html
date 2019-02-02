@@ -1,14 +1,23 @@
 <div class="box">
     <div class="box__title">
         <span class="box__title--text" [innerHtml]="title"></span>
-        <a (click)="clickRoomToggle('bedroom')">
-            <i class="fa fa-lg fa-fw fa-pull-right" [ngClass]="{ 'fa-play' : playbackState === PLAYER_STATE_PAUSED, 'fa-play' : playbackState === PLAYER_STATE_STOPPED, 'fa-pause' : playbackState === PLAYER_STATE_PLAYING }"></i>
+        <a (click)="clickRoomToggle()">
+            <i class="fa fa-lg fa-fw fa-pull-right"
+               [ngClass]="{
+               'fa-play' : playbackState === SonosPlayerStateEnum.PAUSED_PLAYBACK || playbackState === SonosPlayerStateEnum.STOPPED,
+               'fa-pause' : playbackState === SonosPlayerStateEnum.PLAYING }"></i>
         </a>
     </div>
     <div class="box__list">
         <ul class="list">
-            <li class="list__item">
-                <img [src]="currentArtwork" />
+            <li class="list__item info">
+                <div class="info__artwork">
+                    <img [src]="currentArtwork" />
+                </div>
+                <div class="info__track">
+                    {{ SonosPlayerStateName.get(playbackState) }}<br/><br/>
+                    {{ artist }}
+                </div>
             </li>
             <li class="list__item">
                 <div class="row">

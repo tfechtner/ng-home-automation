@@ -1,4 +1,4 @@
-import {ISonosAdaptor} from './sonos.adaptor.interface';
+import {ISonosAdaptor } from './sonos.adaptor.interface';
 
 export class SonosStateAdapter implements ISonosAdaptor {
     protected _data: any;
@@ -8,7 +8,8 @@ export class SonosStateAdapter implements ISonosAdaptor {
             volume: stateData['volume'],
             mute: stateData['mute'],
             playbackState: stateData['playbackState'],
-            absoluteAlbumArtUri: stateData['currentTrack']['absoluteAlbumArtUri']
+            albumArtUri: stateData['currentTrack']['absoluteAlbumArtUri'],
+            artist: stateData['currentTrack']['artist']
         };
     }
 

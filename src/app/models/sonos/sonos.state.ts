@@ -1,15 +1,29 @@
+export enum SonosPlayerStateEnum {
+    PLAYING = 'PLAYING',
+    STOPPED = 'STOPPED',
+    PAUSED_PLAYBACK = 'PAUSED_PLAYBACK'
+}
+
+export const SonosPlayerStateName = new Map<string, string>([
+    [ SonosPlayerStateEnum.PLAYING, 'Playing' ],
+    [ SonosPlayerStateEnum.STOPPED, 'Stopped' ],
+    [ SonosPlayerStateEnum.PAUSED_PLAYBACK, 'Paused' ]
+]);
+
 export interface ISonosState {
     volume: number;
     mute: boolean;
     playbackState: string;
-    absoluteAlbumArtUri: string;
+    albumArtUri: string;
+    artist: string;
 }
 
 export class SonosState {
     private _volume: number;
     private _mute: boolean;
     private _playbackState: string;
-    private _absoluteAlbumArtUri: string;
+    private _albumArtUri: string;
+    private _artist: string;
 
     constructor(sonosStateData: ISonosState) {
         Object.assign(this, sonosStateData);
@@ -39,11 +53,19 @@ export class SonosState {
         this._playbackState = playbackState;
     }
 
-    get absoluteAlbumArtUri(): string {
-        return this._absoluteAlbumArtUri;
+    get albumArtUri(): string {
+        return this._albumArtUri;
     }
 
-    set absoluteAlbumArtUri(uri: string) {
-        this._absoluteAlbumArtUri = uri;
+    set albumArtUri(uri: string) {
+        this._albumArtUri = uri;
+    }
+
+    get artist(): string {
+        return this._artist;
+    }
+
+    set artist(value: string) {
+        this._artist = value;
     }
 }

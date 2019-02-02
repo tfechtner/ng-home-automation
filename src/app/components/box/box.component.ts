@@ -1,12 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import { SonosService } from '../../services/sonos/sonos.service';
-import { SonosState } from '../../models/sonos/sonos.state';
+import {
+    SonosPlayerStateEnum, SonosPlayerStateName,
+    SonosState
+} from '../../models/sonos/sonos.state';
 import { SonosStateAdapter } from '../../adaptors/sonos/sonos.adaptor';
-
-export const PLAYER_STATE_PLAYING = 'PLAYING';
-export const PLAYER_STATE_STOPPED = 'STOPPED';
-export const PLAYER_STATE_PAUSED = 'PAUSED_PLAYBACK';
 
 @Component({
     selector: 'app-box',
@@ -17,24 +16,25 @@ export class BoxComponent implements OnInit {
     @Input() id: string = null;
     @Input() title: string = null;
 
-    public PLAYER_STATE_PLAYING = PLAYER_STATE_PLAYING;
-    public PLAYER_STATE_STOPPED = PLAYER_STATE_STOPPED;
-    public PLAYER_STATE_PAUSED = PLAYER_STATE_PAUSED;
+    public SonosPlayerStateEnum = SonosPlayerStateEnum;
+    public SonosPlayerStateName = SonosPlayerStateName;
 
     public playbackState: string = null;
     public currentArtwork: string = null;
+    public artist: string = null;
 
-    constructor(private sonosService: SonosService) {
-    }
+    constructor(
+        private sonosService: SonosService
+    ) {}
 
     ngOnInit() {
         this.updateRoomState();
     }
 
     public clickRoomToggle() {
-        if (this.playbackState === PLAYER_STATE_PLAYING) {
+        if (this.playbackState === SonosPlayerStateEnum.PLAYING) {
             this.roomPause();
-        } else if (this.playbackState === PLAYER_STATE_PAUSED || this.playbackState === PLAYER_STATE_STOPPED) {
+        } else if (this.playbackState === SonosPlayerStateEnum.PAUSED_PLAYBACK || this.playbackState === SonosPlayerStateEnum.STOPPED) {
             this.roomPlay();
         }
     }
@@ -54,7 +54,8 @@ export class BoxComponent implements OnInit {
                 const sonosState = new SonosState( sonosStateAdapter.getJson() );
 
                 this.playbackState = sonosState.playbackState;
-                this.currentArtwork = sonosState.absoluteAlbumArtUri;
+                this.currentArtwork = sonosState.albumArtUri;
+                this.artist = sonosState.artist;
             },
             (error) => {
                 console.log(error);
@@ -62,7 +63,7 @@ export class BoxComponent implements OnInit {
             () => {
                 setTimeout(() => {
                     this.updateRoomState();
-                }, 5000);
+                }, 1000);
             }
         );
     }
@@ -71,7 +72,8 @@ export class BoxComponent implements OnInit {
         console.log('BoxComponent.roomPause');
         this.sonosService.getRoomPause(this.id).subscribe(
             data => {
-                this.playbackState = PLAYER_STATE_PAUSED;
+                console.log('Paused', data);
+                // this.playbackState = SonosPlayerStateEnum.PAUSED_PLAYBACK;
                 // this.updateRoomState();
             },
             (error) => {
@@ -84,7 +86,8 @@ export class BoxComponent implements OnInit {
         console.log('BoxComponent.roomPlay');
         this.sonosService.getRoomPlay(this.id).subscribe(
             data => {
-                this.playbackState = PLAYER_STATE_PLAYING;
+                console.log('Play', data);
+                // this.playbackState = SonosPlayerStateEnum.PLAYING;
                 // this.updateRoomState();
             },
             (error) => {

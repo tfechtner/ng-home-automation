@@ -11,8 +11,8 @@
 
     &__title {
         padding: $margin;
-        border-bottom: 1px solid $blue-1f;
-        background-color: $blue-50;
+        //border-bottom: 1px solid $blue-1f;
+        background-color: $blue-4f;
         line-height: $font-size-large;
 
         &--text {
@@ -37,20 +37,31 @@
 
             &__item {
                 padding: $margin;
-                border-bottom: 1px solid $blue-1f;
-                line-height: $font-size-normal;
-
-                img {
-                    display: block;
-                    margin: 0 auto;
-                    max-height: 50px;
-                }
+                //border-bottom: 1px solid $blue-1f;
 
                 .fa {
                     vertical-align: middle;
                 }
             }
         }
+    }
+}
+
+.info {
+    display: flex;
+
+    &__artwork {
+        img {
+            display: block;
+            width: 50px;
+            height: 50px;
+            margin-right: $margin;
+            border-radius: $border-radius;
+        }
+    }
+
+    &__track {
+        line-height: $font-size-normal;
 
     }
 }
