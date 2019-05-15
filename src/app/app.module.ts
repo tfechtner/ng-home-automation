@@ -2,8 +2,14 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
 
 import { ROUTES } from './config/routes';
+
+import { StoreState } from './state/store/store.state';
+
+import { PageService } from './services/page/page.service';
+import { SonosService } from './services/sonos/sonos.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -11,9 +17,6 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { TopNavComponent } from './components/top-nav/top-nav.component';
 import { BoxComponent } from './components/box/box.component';
-
-import { PageService } from './services/page/page.service';
-import { SonosService } from './services/sonos/sonos.service';
 
 import { RoomComponent } from './pages/room/room.component';
 import { AudioComponent } from './pages/audio/audio.component';
@@ -34,9 +37,10 @@ import { PanelComponent } from './pages/panel/panel.component';
         PanelComponent
     ],
     imports: [
-        BrowserModule.withServerTransition({ appId: 'ng-home-automation' }),
+        BrowserModule,
         RouterModule.forRoot(ROUTES),
-        HttpClientModule
+        HttpClientModule,
+        NgxsModule.forRoot([ StoreState ])
     ],
     providers: [
         PageService,

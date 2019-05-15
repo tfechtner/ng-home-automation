@@ -1,31 +1,93 @@
 @import '../../../styles/colours';
 @import '../../../styles/variables';
+@import '../../../styles/typography';
 
 .top-nav {
     flex-grow: 1;
     margin-bottom: $margin*2;
-    padding: $margin;
     border-radius: $border-radius;
+    overflow: hidden;
     background-color: $blue-39;
 
-    &__left {
+    .menu {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
 
+        &--item {
+            display: flex;
+            align-items: center;
+
+            &__link {
+                display: block;
+                padding: $margin*2;
+                background: $blue-39;
+                color: #eee;
+
+                &.selected {
+                    background: $blue-50;
+                }
+
+                &.red {
+                    border-bottom: 2px solid $red-light;
+                }
+
+                &.green {
+                    border-bottom: 2px solid $green;
+                }
+
+                &.yellow {
+                    border-bottom: 2px solid $yellow;
+                }
+
+                &.blue {
+                    border-bottom: 2px solid $blue-4f;
+                }
+            }
+
+            &__icon {
+                margin-right: $margin;
+                font-size: $font-size-large;
+                color: $blue-88;
+            }
+        }
+    }
+
+    &__left {
+        display: flex;
+        flex-grow: 1;
+        padding-left: 0;
+
+        .menu--item {
+            border-right: 2px solid $blue-1f;
+        }
     }
 
     &__right {
-        text-align: right;
-    }
+        display: flex;
+        justify-content: flex-end;
+        padding-right: 0;
 
-    &__connection {
-
-        &--connected {
-            color: $green
-        }
-        &--disconnected {
-            color: $red-light;
-        }
-        &--unknown {
-            color: $blue-50;
+        .menu--item {
+            border-left: 2px solid $blue-1f;
         }
     }
+}
+
+.connection {
+    padding: 0 $margin*2 !important;
+
+    &--connected {
+        color: $green;
+    }
+    &--disconnected {
+        color: $red-light;
+    }
+    &--unknown {
+        color: $blue-50;
+    }
+}
+
+.time {
+    padding: 0 $margin*2 !important;
 }

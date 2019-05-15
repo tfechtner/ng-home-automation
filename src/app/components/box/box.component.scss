@@ -12,12 +12,12 @@
     &__title {
         padding: $margin;
         //border-bottom: 1px solid $blue-1f;
-        background-color: $blue-4f;
+        background-color: $green;
         line-height: $font-size-large;
 
         &--text {
             font-family: $header-font;
-            font-size: $font-size-large;
+            font-size: $font-size-normal;
             text-transform: uppercase;
         }
 

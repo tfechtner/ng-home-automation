@@ -2,12 +2,40 @@
 
     <div class="row top-nav">
 
-        <div class="col-6 top-nav__left">
-            <h1 [innerHtml]="pageTitle">Home</h1>
+        <div class="top-nav__left">
+
+            <ul class="menu">
+                <li class="menu--item">
+                    <a (click)="null" class="menu--item__link red"><i class="menu--item__icon fa fa-home"></i>Home</a>
+                </li>
+                <li class="menu--item">
+                    <a (click)="null" class="menu--item__link green selected"><i class="menu--item__icon fa fa-music"></i>Audio</a>
+                </li>
+                <li class="menu--item">
+                    <a (click)="null" class="menu--item__link yellow"><i class="menu--item__icon fa fa-lightbulb-o"></i>Lighting</a>
+                </li>
+                <li class="menu--item">
+                    <a (click)="null" class="menu--item__link blue"><i class="menu--item__icon fa fa-video-camera"></i>CCTV</a>
+                </li>
+            </ul>
+
         </div>
 
-        <div class="col-6 top-nav__right">
-            <i class="top-nav__connection fa fa-2x fa-signal" [ngClass]="{'top-nav__connection--connected': connectedToSonos === true, 'top-nav__connection--disconnected': connectedToSonos === false , 'top-nav__connection--unkown': connectedToSonos === null }"></i>
+        <div class="top-nav__right">
+
+            <ul class="menu">
+                <li class="menu--item">
+                    <i class="menu--item__link connection fa fa-2x fa-signal"
+                       [ngClass]="{
+                       'connection--connected': connectedToSonos === true,
+                       'connection--disconnected': connectedToSonos === false ,
+                       'connection--unkown': connectedToSonos === null }"></i>
+                </li>
+                <li class="menu--item">
+                    <div class="time">{{ time | date:'HH:mm' }}</div>
+                </li>
+            </ul>
+
         </div>
 
     </div>

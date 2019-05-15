@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed} from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClientModule } from '@angular/common/http';
 
 import { BoxComponent } from './box.component';
 import { SonosService } from '../../services/sonos/sonos.service';
 import { SonosServiceMock } from '../../services/sonos/sonos.service.mock';
+
 
 describe('BoxComponent', () => {
     let component: BoxComponent;
@@ -15,7 +15,7 @@ describe('BoxComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [BoxComponent],
-            imports: [HttpModule],
+            imports: [HttpClientModule],
             providers: [SonosService],
         })
         .overrideComponent(

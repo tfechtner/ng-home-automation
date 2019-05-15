@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/http';
 
 import { PageService } from '../../services/page/page.service';
 import { SonosService } from '../../services/sonos/sonos.service';
@@ -17,7 +17,7 @@ describe('HomeComponent', () => {
                 HomeComponent,
                 BoxComponent
             ],
-            imports: [HttpModule],
+            imports: [HttpClientModule],
             providers: [
                 PageService,
                 SonosService

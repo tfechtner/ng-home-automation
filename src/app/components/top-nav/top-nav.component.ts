@@ -12,8 +12,9 @@ import {Subscription} from 'rxjs/Subscription';
 export class TopNavComponent implements OnInit, OnDestroy {
 
     connectedToSonos: boolean = null;
-
     pageTitle = '';
+    time = new Date();
+
     private pageTitleSubscription: Subscription;
 
     constructor(
@@ -22,6 +23,7 @@ export class TopNavComponent implements OnInit, OnDestroy {
     ) {}
 
     ngOnInit() {
+        this.getTime();
         this.pageTitleSubscription = this.pageService.getPageTitle().subscribe(title => {
             this.pageTitle = title;
         });
@@ -34,5 +36,11 @@ export class TopNavComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         this.pageTitleSubscription.unsubscribe();
+    }
+
+    public getTime() {
+        setTimeout(() => {
+            this.time = new Date();
+        }, 5000);
     }
 }

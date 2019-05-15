@@ -63,7 +63,7 @@ export class BoxComponent implements OnInit {
             () => {
                 setTimeout(() => {
                     this.updateRoomState();
-                }, 1000);
+                }, 5000);
             }
         );
     }
