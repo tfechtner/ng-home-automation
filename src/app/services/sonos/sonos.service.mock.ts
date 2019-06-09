@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Rx';
+import { Observable, of } from 'rxjs';
 
 export class SonosServiceMock {
 
@@ -6,15 +6,15 @@ export class SonosServiceMock {
     }
 
     public getZones(): Observable<object> {
-        return Observable.of(mockZoneData);
+        return of(mockZoneData);
     }
 
     public getState(): Observable<any> {
-        return Observable.of(mockStateData);
+        return of(mockStateData);
     }
 
     public getRoomState(): Observable<any> {
-        return Observable.of(mockRoomStateData);
+        return of(mockRoomStateData);
     }
 }
 

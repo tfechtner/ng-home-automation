@@ -78,7 +78,7 @@
     padding: 0 $margin*2 !important;
 
     &--connected {
-        color: $green;
+        color: $green !important;
     }
     &--disconnected {
         color: $red-light;

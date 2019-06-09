@@ -4,8 +4,10 @@ export class Rooms {
     private rooms: Array<Room> = [];
 
     constructor(initObject: Array<object>) {
-        for (const roomObj of initObject) {
-            this.rooms.push(new Room(roomObj));
+        for (const roomObj in initObject.keys()) {
+            if (initObject.hasOwnProperty(roomObj)) {
+                this.rooms.push(new Room(initObject[roomObj]));
+            }
         }
     }
 

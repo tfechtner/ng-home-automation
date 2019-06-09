@@ -2,14 +2,14 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgxsModule } from '@ngxs/store';
+import { NgxsModule, Store } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 
 import { ROUTES } from './config/routes';
 
-import { StoreState } from './state/store/store.state';
+import { appState } from './store/state';
 
 import { PageService } from './services/page/page.service';
-import { SonosService } from './services/sonos/sonos.service';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -22,6 +22,7 @@ import { RoomComponent } from './pages/room/room.component';
 import { AudioComponent } from './pages/audio/audio.component';
 import { LightingComponent } from './pages/lighting/lighting.component';
 import { PanelComponent } from './pages/panel/panel.component';
+import { NestJsService } from './services/nestJs/nestJs.service';
 
 @NgModule({
     declarations: [
@@ -40,18 +41,14 @@ import { PanelComponent } from './pages/panel/panel.component';
         BrowserModule,
         RouterModule.forRoot(ROUTES),
         HttpClientModule,
-        NgxsModule.forRoot([ StoreState ])
+        NgxsModule.forRoot(appState),
+        NgxsReduxDevtoolsPluginModule.forRoot()
     ],
     providers: [
         PageService,
-        SonosService
+        NestJsService
     ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
-
-    constructor() {
-
-    }
-
 }

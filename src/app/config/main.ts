@@ -27,7 +27,7 @@ let config = {
     APP_BASE_ASSETS: '',
     API: {
         baseUrl: '',
-        sonos: '/api'
+        nestJs: '/api'
     },
     routing : {
         base: '',
@@ -40,23 +40,18 @@ let config = {
         },
         pageNotFound: '404'
     },
-    rooms: [
-        {
-            id: 'lounge',
+    rooms: {
+        lounge: {
             name: 'Lounge',
+            sonosRoomName: 'Lounge',
             icon: 'fa-tv'
         },
-        {
-            id: 'bedroom',
+        bedroom: {
             name: 'Bedroom',
+            sonosRoomName: 'Bedroom',
             icon: 'fa-bed'
-        },
-        {
-            id: 'bathroom',
-            name: 'Bathroom',
-            icon: 'fa-bath'
         }
-    ]
+    }
 };
 
 

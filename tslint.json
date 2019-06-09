@@ -13,10 +13,6 @@
         "eofline": true,
         "forin": true,
         "grouped-imports": true,
-        "import-blacklist": [
-            true,
-            "rxjs"
-        ],
         "import-spacing": true,
         "indent": [
             true,

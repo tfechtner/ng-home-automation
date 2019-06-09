@@ -22,14 +22,14 @@
         </div>
 
         <div class="top-nav__right">
-
+{{isApiConnected}}
             <ul class="menu">
                 <li class="menu--item">
                     <i class="menu--item__link connection fa fa-2x fa-signal"
                        [ngClass]="{
-                       'connection--connected': connectedToSonos === true,
-                       'connection--disconnected': connectedToSonos === false ,
-                       'connection--unkown': connectedToSonos === null }"></i>
+                       'connection--connected': isApiConnected === true,
+                       'connection--disconnected': isApiConnected === false ,
+                       'connection--unkown': isApiConnected === null }"></i>
                 </li>
                 <li class="menu--item">
                     <div class="time">{{ time | date:'HH:mm' }}</div>

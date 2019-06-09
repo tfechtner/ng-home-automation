@@ -34,7 +34,7 @@ export const ROUTES = [
 
     // Room
     {
-        path: CONFIG.routing.room.url + '/:' + CONFIG.routing.room.paramRoomId,
+        path: CONFIG.routing.room + '/:' + CONFIG.routing.room.paramRoomId,
         component: RoomComponent,
         data: {},
         resolve: {},

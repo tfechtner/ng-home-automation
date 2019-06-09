@@ -29,7 +29,6 @@
         "core-js": "^2.4.1",
         "font-awesome": "^4.7.0",
         "rxjs": "6.5.2",
-        "rxjs-compat": "^6.0.0-rc.0",
         "zone.js": "^0.8.28"
     },
     "devDependencies": {
@@ -37,6 +36,7 @@
         "@angular/cli": "^7.3.9",
         "@angular/compiler-cli": "^7.2.15",
         "@angular/language-service": "^7.2.15",
+        "@ngxs/devtools-plugin": "^3.4.3",
         "@types/jasmine": "~2.8.6",
         "@types/jasminewd2": "~2.0.2",
         "@types/node": "~9.4.7",

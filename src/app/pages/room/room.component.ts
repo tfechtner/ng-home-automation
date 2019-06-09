@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { CONFIG } from '../../config/main';
 import { Rooms } from '../../models/rooms';
@@ -15,8 +15,8 @@ import { PageService } from '../../services/page/page.service';
 })
 export class RoomComponent implements OnInit, OnDestroy {
 
-    rooms: Rooms = new Rooms(CONFIG.rooms);
-    room: Room = null;
+    rooms = CONFIG.rooms;
+    room = null;
     roomName: string = null;
     roomId: string = null;
     private subscription: Subscription;
@@ -31,9 +31,10 @@ export class RoomComponent implements OnInit, OnDestroy {
         this.subscription = this.route.params.subscribe(params => {
             const paramRoomId = CONFIG.routing.room.paramRoomId;
             if (params.hasOwnProperty(paramRoomId)) {
-                const room = this.rooms.getRoomById(params[paramRoomId]);
+                const room = this.rooms[params[paramRoomId]];
+                console.log(room);
                 this.room = room;
-                this.roomName = room.getName();
+                this.roomName = room.name;
                 this.roomId = room.getId();
                 this.pageService.setPageTitle(room.getName());
             }

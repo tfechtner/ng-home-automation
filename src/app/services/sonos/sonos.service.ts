@@ -1,48 +1,56 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
-import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs';
 
 import { isNullOrUndefined } from 'util';
 import { CONFIG } from '../../config/main';
 
-import { SonosStateAdapter } from '../../adaptors/sonos/sonos.adaptor';
-import { SonosState } from '../../models/sonos/sonos.state';
+export interface ISonosRoomStateJson {
+    volume: number;
+    mute: boolean;
+    equalizer: { 
+        bass: number;
+        treble: number;
+        loudness: boolean;
+    };
+    currentTrack: {
+        artist: string;
+        title: string;
+        albumArtUri: string;
+        duration: number;
+        uri: string;
+        trackUri: string;
+        type: string;
+        stationName: string;
+        absoluteAlbumArtUri: string;
+    };
+    nextTrack: {
+        artist: string;
+        title: string;
+        album: string;
+        albumArtUri: string;
+        duration: number;
+        uri: string;
+    };
+    trackNo: number;
+    elapsedTime: number;
+    elapsedTimeFormatted: string;
+    playbackState: string;
+    playMode: {
+        repeat: string;
+        shuffle: false;
+        crossfade: false;
+    };
+}
 
 @Injectable()
 export class SonosService {
 
     private connected: boolean = null;
-    private sonosState = new Subject<SonosState>();
 
-    constructor(private http: HttpClient) {
-        console.log('SonosService.constructor');
-        this.updateState();
-    }
-
-    // Internals
-    public getState(): Observable<SonosState> {
-        return this.sonosState.asObservable();
-    }
-    public updateState() {
-        console.log('SonosService.updateState');
-        this.httpGetState()
-            .subscribe(
-                (stateData) => {
-                    const sonosStateAdapter = new SonosStateAdapter(stateData);
-                    this.sonosState.next(new SonosState( sonosStateAdapter.getJson() ));
-                    this.connected = true;
-                },
-                error => {
-                    this.connected = false;
-                    console.log(error);
-                },
-                () => {
-                    // setTimeout(() => {
-                    //     this.updateState();
-                    // }, 5000);
-                });
-    }
+    constructor(
+        private http: HttpClient
+    ) {}
 
     // API
     public getZones(): Observable<object> {
@@ -79,8 +87,8 @@ export class SonosService {
         // volume 1 - 100
         return this.httpGet(room, 'volume', volume.toString());
     }
-    public getRoomState(room: string): Observable<object> {
-        return this.httpGet(room, 'state', null);
+    public getRoomState(room: string): Observable<ISonosRoomStateJson> {
+        return this.httpGet<ISonosRoomStateJson>(room, 'state', null);
     }
     public getRoomFavourite(room: string, favourite: string): Observable<object> {
         return this.httpGet(room, 'favourite', favourite);
@@ -94,8 +102,8 @@ export class SonosService {
         return this.connected;
     }
 
-    private httpGet(room: string, action: string, params: string, extra?: any): Observable<object> {
-        let url = CONFIG.API.sonos;
+    private httpGet<T>(room: string, action: string, params: string, extra?: any): Observable<T> {
+        let url = '';
 
         if (isNullOrUndefined(room) === false) {
             url += '/' + room;
@@ -109,7 +117,7 @@ export class SonosService {
         if (isNullOrUndefined(extra) === false) {
             url += '/' + extra;
         }
-        return this.http.get(url);
+        return this.http.get<T>(url);
     }
 
 }

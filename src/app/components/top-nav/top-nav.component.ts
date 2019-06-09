@@ -1,8 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import { PageService } from '../../services/page/page.service';
-import { SonosService } from '../../services/sonos/sonos.service';
-import {Subscription} from 'rxjs/Subscription';
+import { Observable, Subscription } from 'rxjs';
+import { NestJsService } from '../../services/nestJs/nestJs.service';
+import { Select } from '@ngxs/store';
+import { INetworkStateModel, NetworkState } from '../../store/state/network/network.state';
 
 @Component({
     selector: 'app-top-nav',
@@ -10,28 +12,28 @@ import {Subscription} from 'rxjs/Subscription';
     styleUrls: ['./top-nav.component.scss']
 })
 export class TopNavComponent implements OnInit, OnDestroy {
+    @Select(NetworkState)
+    public _networkState$: Observable<INetworkStateModel>;
 
-    connectedToSonos: boolean = null;
-    pageTitle = '';
-    time = new Date();
+    public pageTitle = '';
+    public time = new Date();
+    public isApiConnected: boolean = null;
 
     private pageTitleSubscription: Subscription;
 
     constructor(
-        private sonosService: SonosService,
-        private pageService: PageService
+        private _nestJsService: NestJsService,
+        private _pageService: PageService
     ) {}
 
     ngOnInit() {
         this.getTime();
-        this.pageTitleSubscription = this.pageService.getPageTitle().subscribe(title => {
+        this.pageTitleSubscription = this._pageService.getPageTitle().subscribe(title => {
             this.pageTitle = title;
         });
-
-        // TODO: TopNavComponent - Subscribe to state updates from sonos service
-        setTimeout(() => {
-            this.connectedToSonos = this.sonosService.isConnected();
-        }, 0);
+        this._networkState$.subscribe( (networkState: INetworkStateModel) => {
+            this.isApiConnected = networkState.isApiConnected;
+        });
     }
 
     ngOnDestroy() {

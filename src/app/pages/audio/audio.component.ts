@@ -1,10 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { PageService } from '../../services/page/page.service';
-import { SonosService } from '../../services/sonos/sonos.service';
-import { SonosServiceMock } from '../../services/sonos/sonos.service.mock';
-import { Subscription } from 'rxjs/Subscription';
-import { SonosState } from '../../models/sonos/sonos.state';
+import { Subscription } from 'rxjs';
+import { CONFIG } from '../../config/main';
 
 @Component({
     selector: 'app-audio',
@@ -13,23 +11,16 @@ import { SonosState } from '../../models/sonos/sonos.state';
 })
 export class AudioComponent implements OnInit, OnDestroy {
 
-    private sonosState: SonosState = null;
+    public rooms = CONFIG.rooms;
     private subscriptions: Array<Subscription> = [];
 
     constructor(
         private pageService: PageService,
-        private sonosService: SonosService
     ) {}
 
     ngOnInit() {
         console.log('AudioComponent.ngOnInit');
         this.pageService.setPageTitle('Audio');
-
-        const sonosSubscription = this.sonosService.getState().subscribe(sonosState => {
-            console.log('sonosState updated: ', sonosState);
-        });
-        this.subscriptions.push(sonosSubscription);
-
     }
 
     ngOnDestroy() {
