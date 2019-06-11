@@ -51,6 +51,24 @@
                 color: $blue-88;
             }
         }
+
+        .connection {
+            padding: 0 $margin*2;
+
+            &--connected {
+                color: $green;
+            }
+            &--disconnected {
+                color: $red-light;
+            }
+            &--unknown {
+                color: $blue-88;
+            }
+        }
+
+        .time {
+            padding: 0 $margin*2 !important;
+        }
     }
 
     &__left {
@@ -72,22 +90,4 @@
             border-left: 2px solid $blue-1f;
         }
     }
-}
-
-.connection {
-    padding: 0 $margin*2 !important;
-
-    &--connected {
-        color: $green !important;
-    }
-    &--disconnected {
-        color: $red-light;
-    }
-    &--unknown {
-        color: $blue-50;
-    }
-}
-
-.time {
-    padding: 0 $margin*2 !important;
 }
