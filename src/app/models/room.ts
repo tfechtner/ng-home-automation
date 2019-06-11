@@ -1,29 +1,41 @@
+export interface IRoom {
+    _id: number;
+    _name: string;
+    _sonosKey: string;
+    _icon: string;
+}
+
+export const roomDefaults: IRoom = {
+    _id: null,
+    _name: null,
+    _sonosKey: null,
+    _icon: null
+};
+
 export class Room {
-    private id: string = null;
-    private name: string = null;
-    private icon: string = null;
+
+    private _id: number;
+    private _name: string;
+    private _sonosKey: string;
+    private _icon: string;
 
     constructor(initObject: object) {
-        if (initObject.hasOwnProperty('id')) {
-            this.id = initObject['id'];
-        }
-        if (initObject.hasOwnProperty('name')) {
-            this.name = initObject['name'];
-        }
-        if (initObject.hasOwnProperty('icon')) {
-            this.icon = initObject['icon'];
-        }
+        Object.assign(this, roomDefaults, initObject);
     }
 
-    getId() {
-        return this.id;
+    get id() {
+        return this._id;
     }
 
-    getName() {
-        return this.name;
+    get name() {
+        return this._name;
     }
 
-    getIcon() {
-        return this.icon;
+    get sonosKey(): string {
+        return this._sonosKey;
+    }
+
+    get icon() {
+        return this._icon;
     }
 }

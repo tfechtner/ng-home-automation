@@ -26,7 +26,8 @@ export class NetworkState {
 
     @Action(NetworkActions.GetApiState)
     getApiState(
-        { setState }: StateContext<INetworkStateModel>) {
+        { setState }: StateContext<INetworkStateModel>
+    ) {
         return this._nestJsService.getApiState().pipe(
             take(1),
             tap(  (apiState: GetStateDto) => {
@@ -39,6 +40,5 @@ export class NetworkState {
                 return of('Error on NetworkActions.GetApiState = ' + error);
             })
         );
-
     }
 }

@@ -16,4 +16,8 @@ export class NestJsService {
     public getApiState(): Observable<object> {
         return this.http.get(this.apiUrl + '/state');
     }
+
+    public getRooms(): Observable<object> {
+        return this.http.get(this.apiUrl + '/rooms');
+    }
 }
