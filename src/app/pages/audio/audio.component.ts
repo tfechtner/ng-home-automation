@@ -1,34 +1,26 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { PageService } from '../../services/page/page.service';
-import { Subscription } from 'rxjs';
-import { CONFIG } from '../../config/main';
+import { Observable } from 'rxjs';
+
+import { Select } from '@ngxs/store';
+import { RoomsState } from '../../store/state/rooms/rooms.state';
+import { Room } from '../../models/room';
 
 @Component({
     selector: 'app-audio',
     templateUrl: './audio.component.html',
     styleUrls: ['./audio.component.scss']
 })
-export class AudioComponent implements OnInit, OnDestroy {
-
-    public rooms = CONFIG.rooms;
-    private subscriptions: Array<Subscription> = [];
+export class AudioComponent implements OnInit {
+    @Select(RoomsState)
+    public rooms$: Observable<Room>;
 
     constructor(
         private pageService: PageService,
     ) {}
 
     ngOnInit() {
-        console.log('AudioComponent.ngOnInit');
         this.pageService.setPageTitle('Audio');
     }
-
-    ngOnDestroy() {
-        if (this.subscriptions.length > 0) {
-            for (let subscription of this.subscriptions) {
-                subscription.unsubscribe();
-            }
-        }
-    }
-
 }

@@ -23,8 +23,9 @@
                 padding: $margin*2;
                 background: $blue-39;
                 color: #eee;
+                text-decoration: none;
 
-                &.selected {
+                &--active {
                     background: $blue-50;
                 }
 

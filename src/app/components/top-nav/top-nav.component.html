@@ -6,16 +6,25 @@
 
             <ul class="menu">
                 <li class="menu--item">
-                    <a (click)="null" class="menu--item__link red"><i class="menu--item__icon fa fa-home"></i>Home</a>
+                    <a routerLink="/"
+                       routerLinkActive="menu--item__link--active"
+                       [routerLinkActiveOptions]="{exact: true}"
+                       class="menu--item__link red"><i class="menu--item__icon fa fa-home"></i>Home</a>
                 </li>
                 <li class="menu--item">
-                    <a (click)="null" class="menu--item__link green selected"><i class="menu--item__icon fa fa-music"></i>Audio</a>
+                    <a routerLink="/audio"
+                       routerLinkActive="menu--item__link--active"
+                       class="menu--item__link green"><i class="menu--item__icon fa fa-music"></i>Audio</a>
                 </li>
                 <li class="menu--item">
-                    <a (click)="null" class="menu--item__link yellow"><i class="menu--item__icon fa fa-lightbulb-o"></i>Lighting</a>
+                    <a routerLink="/lighting"
+                       routerLinkActive="menu--item__link--active"
+                       class="menu--item__link yellow"><i class="menu--item__icon fa fa-lightbulb-o"></i>Lighting</a>
                 </li>
                 <li class="menu--item">
-                    <a (click)="null" class="menu--item__link blue"><i class="menu--item__icon fa fa-video-camera"></i>CCTV</a>
+                    <a routerLink="/cctv"
+                       routerLinkActive="menu--item__link--active"
+                       class="menu--item__link blue"><i class="menu--item__icon fa fa-video-camera"></i>CCTV</a>
                 </li>
             </ul>
 

@@ -32,8 +32,8 @@ let config = {
     routing : {
         base: '',
         audio: 'audio',
-        panel: 'panel',
         lighting: 'lighting',
+        cctv: 'cctv',
         room: {
             url: 'room',
             paramRoomId: 'roomId'

@@ -1,4 +1,4 @@
-import { State, Action, StateContext, Selector } from '@ngxs/store';
+import { State, Action, StateContext, Selector, createSelector } from '@ngxs/store';
 import { RoomsActions } from './rooms.actions';
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -7,23 +7,21 @@ import { GetRoomsDto } from '../../../services/nestJs/dto/getRooms.dto';
 import { isNullOrUndefined } from '../../../utils/functions';
 import { Room } from '../../../models/room';
 
-export interface IRoomsStateModel {
-    rooms: Room[];
-}
+export class IRoomsStateModel extends Array<Room> {}
 
-export const defaults: IRoomsStateModel = {
-    rooms: []
-};
+export const defaults: Room[] = [];
 
-@State<IRoomsStateModel>({
+@State<Room[]>({
     name: 'Rooms',
     defaults
 })
 export class RoomsState {
 
     @Selector()
-    public static Rooms(state: IRoomsStateModel) {
-        return state.rooms;
+    public static Room(roomId: number) {
+        return createSelector([ RoomsState ], (state: IRoomsStateModel) => {
+            return state.filter( room => room.id === roomId);
+        });
     }
 
     constructor(
@@ -42,7 +40,7 @@ export class RoomsState {
                     roomsDto.forEach(room => {
                         newRooms.push(new Room(room));
                     });
-                    setState({ rooms: newRooms});
+                    setState(newRooms);
                 }
             }),
             catchError((error) => {

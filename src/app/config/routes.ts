@@ -9,19 +9,29 @@ import { PanelComponent } from '../pages/panel/panel.component';
 
 export const ROUTES = [
 
-    {
-        path: '',
-        component: HomeComponent,
-        data: {},
-        resolve: {},
-    },
-
     // Audio
     {
         path: CONFIG.routing.audio,
         component: AudioComponent,
-        data: {},
-        resolve: {},
+        children: [
+            {
+                path: ':urlName',
+                pathMatch: 'full',
+                component: RoomComponent
+            }
+        ]
+    },
+
+    {
+        path: '',
+        component: HomeComponent,
+        children: [
+            {
+                path: ':urlName',
+                pathMatch: 'full',
+                component: AudioComponent
+            }
+        ]
     },
 
     // Lighting
@@ -32,18 +42,18 @@ export const ROUTES = [
         resolve: {},
     },
 
-    // Room
+    // CCTV
     {
-        path: CONFIG.routing.room + '/:' + CONFIG.routing.room.paramRoomId,
-        component: RoomComponent,
+        path: CONFIG.routing.cctv,
+        component: PanelComponent,
         data: {},
         resolve: {},
     },
 
-    // Panel
+    // Room
     {
-        path: CONFIG.routing.panel,
-        component: PanelComponent,
+        path: CONFIG.routing.room + '/:' + CONFIG.routing.room.paramRoomId,
+        component: RoomComponent,
         data: {},
         resolve: {},
     },

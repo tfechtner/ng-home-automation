@@ -11,7 +11,7 @@ import { Room } from '../../models/room';
     styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-    @Select(RoomsState.Rooms)
+    @Select(RoomsState)
     public rooms$: Observable<Room>;
 
     constructor(
