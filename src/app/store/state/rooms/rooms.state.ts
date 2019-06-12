@@ -1,18 +1,18 @@
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { RoomsActions } from './rooms.actions';
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { NestJsService } from '../../../services/nestJs/nestJs.service';
 import { GetRoomsDto } from '../../../services/nestJs/dto/getRooms.dto';
 import { isNullOrUndefined } from '../../../utils/functions';
-import { Rooms } from '../../../models/rooms';
+import { Room } from '../../../models/room';
 
 export interface IRoomsStateModel {
-    rooms: Rooms;
+    rooms: Room[];
 }
 
 export const defaults: IRoomsStateModel = {
-    rooms: new Rooms()
+    rooms: []
 };
 
 @State<IRoomsStateModel>({
@@ -20,6 +20,11 @@ export const defaults: IRoomsStateModel = {
     defaults
 })
 export class RoomsState {
+
+    @Selector()
+    public static Rooms(state: IRoomsStateModel) {
+        return state.rooms;
+    }
 
     constructor(
         private _nestJsService: NestJsService
@@ -33,7 +38,11 @@ export class RoomsState {
             take(1),
             tap(  (roomsDto: GetRoomsDto) => {
                 if (!isNullOrUndefined(roomsDto)) {
-                    setState({ rooms: new Rooms(roomsDto)});
+                    const newRooms = [];
+                    roomsDto.forEach(room => {
+                        newRooms.push(new Room(room));
+                    });
+                    setState({ rooms: newRooms});
                 }
             }),
             catchError((error) => {

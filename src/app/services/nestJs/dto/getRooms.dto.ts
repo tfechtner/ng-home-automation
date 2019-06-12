@@ -1,7 +1,7 @@
 export interface GetRoomDto {
-    _id: number;
-    _name: string;
-    _sonosKey: string;
+    id: number;
+    name: string;
+    sonosKey: string;
 }
 
 export interface GetRoomsDto extends Array<GetRoomDto> {}

@@ -1,41 +1,26 @@
+import { GetRoomDto } from '../services/nestJs/dto/getRooms.dto';
+
 export interface IRoom {
-    _id: number;
-    _name: string;
-    _sonosKey: string;
-    _icon: string;
+    id: number;
+    name: string;
+    sonosKey: string;
+    icon: string;
 }
 
 export const roomDefaults: IRoom = {
-    _id: null,
-    _name: null,
-    _sonosKey: null,
-    _icon: null
+    id: null,
+    name: null,
+    sonosKey: null,
+    icon: null
 };
 
-export class Room {
+export class Room implements IRoom {
+    id: number;
+    name: string;
+    sonosKey: string;
+    icon: string;
 
-    private _id: number;
-    private _name: string;
-    private _sonosKey: string;
-    private _icon: string;
-
-    constructor(initObject: object) {
+    constructor(initObject?: GetRoomDto) {
         Object.assign(this, roomDefaults, initObject);
-    }
-
-    get id() {
-        return this._id;
-    }
-
-    get name() {
-        return this._name;
-    }
-
-    get sonosKey(): string {
-        return this._sonosKey;
-    }
-
-    get icon() {
-        return this._icon;
     }
 }
