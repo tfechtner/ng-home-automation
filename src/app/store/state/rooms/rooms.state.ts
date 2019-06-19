@@ -19,10 +19,10 @@ export class RoomsState {
 
     @Selector()
     public static Room(roomId: number) {
-        console.log('Room', roomId);
         return createSelector([ RoomsState ], (state: IRoomsStateModel) => {
-            console.log(state);
-            return state.filter( room => room.id === roomId)[0];
+            return state['Rooms'].filter( room => {
+                return room.id === roomId;
+            })[0]; // Hmmm
         });
     }
 
@@ -34,11 +34,9 @@ export class RoomsState {
     getRooms(
         { setState }: StateContext<IRoomsStateModel>
     ) {
-        console.log('@Action(RoomsActions.GetsRoomsAction)');
         return this._nestService.getRooms().pipe(
             take(1),
             tap(  (roomsDto: GetRoomsDto) => {
-                console.log('@Action(RoomsActions.GetsRoomsAction) TAP');
                 if (!isNullOrUndefined(roomsDto)) {
                     const newRooms = [];
                     roomsDto.forEach(room => {
