@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { PageService } from '../../services/page/page.service';
 import { Select, Store } from '@ngxs/store';
 import { RoomsState } from '../../store/state/rooms/rooms.state';
 import { Room } from '../../models/room';
-import { filter, find, map } from 'rxjs/operators';
+import { filter, find, map, tap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-room',
@@ -14,7 +14,12 @@ import { filter, find, map } from 'rxjs/operators';
     styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit {
-    public room$: Observable<Room>;
+    @Select(RoomsState)
+    public room$: Observable<RoomsState>;
+
+    public room: Room;
+
+    private _roomId: number;
 
     constructor(
         private store: Store,
@@ -22,16 +27,22 @@ export class RoomComponent implements OnInit {
         private pageService: PageService
     ) {
         this.route.params.subscribe(params => {
-            this.room$ = this.store.select(RoomsState).pipe(
-                filter(rooms => rooms.urlName === params.urlName)
-            );
+            console.log(params);
+            this._roomId = params.roomId.toString();
         });
 
         // this.pageService.setPageTitle(room.getName());
     }
 
     ngOnInit() {
-
+        console.log('RoomComponent.ngOnInit');
+        this.room$
+            .pipe(
+                // filter(room => room.id === this._roomId)
+            )
+            .subscribe(rooms => {
+                console.log(rooms);
+            });
     }
 
 }

@@ -3,9 +3,11 @@ import { of } from 'rxjs';
 
 import { State, Action, Selector, StateContext } from '@ngxs/store';
 import { SonosActions } from './sonos.actions';
-import { ISonosRoomStateJson, SonosService } from '../../../services/sonos/sonos.service';
+import { NestService } from '../../../services/nest/nest.service';
+import { SonosZones } from '../../../services/nest/dto/sonosZones.dto';
+import { SonosCoordinatorState } from '../../../services/nest/dto/sonosCoordinatorState.dto';
 
-export const sonosRoomStateDefaults: ISonosRoomStateJson = {
+export const sonosRoomStateDefaults: SonosCoordinatorState = {
     volume: null,
     mute: null,
     equalizer: {
@@ -45,8 +47,8 @@ export const sonosRoomStateDefaults: ISonosRoomStateJson = {
 
 export interface ISonosStateModel {
     isConnected: boolean;
-    lounge: ISonosRoomStateJson;
-    bedroom: ISonosRoomStateJson;
+    lounge: SonosCoordinatorState;
+    bedroom: SonosCoordinatorState;
 }
 
 export const defaults: ISonosStateModel = {
@@ -63,19 +65,36 @@ export class SonosState {
     @Selector()
     public static lounge(
         state: ISonosStateModel
-    ): ISonosRoomStateJson {
+    ): SonosCoordinatorState {
         return state.lounge;
     }
     @Selector()
     public static bedroom(
         state: ISonosStateModel
-    ): ISonosRoomStateJson {
+    ): SonosCoordinatorState {
         return state.bedroom;
     }
 
     constructor(
-        // private _sonosService: SonosService
+        private _nestService: NestService
     ) {}
+
+    @Action(SonosActions.GetZones)
+    GetZones(
+        { patchState }: StateContext<ISonosStateModel>
+    ) {
+        return this._nestService.getSonosZones().pipe(
+            take(1),
+            tap( (sonosZones: SonosZones) => {
+                const loungeZone = sonosZones.find(zone => zone.coordinator.roomName === 'lounge');
+                patchState({ lounge: loungeZone.coordinator.state });
+
+                const bedroomZone = sonosZones.find(zone => zone.coordinator.roomName === 'bedroom');
+                patchState({ bedroom: bedroomZone.coordinator.state });
+            }),
+            catchError(err => of('Caught error on SonosActions.GetZones = ' + err))
+        );
+    }
 
     @Action(SonosActions.RoomGetState)
     roomGetState(

@@ -1,4 +1,4 @@
-import { GetRoomDto } from '../services/nestJs/dto/getRooms.dto';
+import { GetRoomDto } from '../services/nest/dto/room.dto';
 
 export interface IRoom {
     id: number;

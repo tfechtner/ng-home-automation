@@ -27,7 +27,7 @@ let config = {
     APP_BASE_ASSETS: '',
     API: {
         baseUrl: '',
-        nestJs: '/api'
+        nest: '/api'
     },
     routing : {
         base: '',

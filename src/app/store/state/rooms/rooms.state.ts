@@ -2,8 +2,8 @@ import { State, Action, StateContext, Selector, createSelector } from '@ngxs/sto
 import { RoomsActions } from './rooms.actions';
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { NestJsService } from '../../../services/nestJs/nestJs.service';
-import { GetRoomsDto } from '../../../services/nestJs/dto/getRooms.dto';
+import { NestService } from '../../../services/nest/nest.service';
+import { GetRoomsDto } from '../../../services/nest/dto/rooms.dto';
 import { isNullOrUndefined } from '../../../utils/functions';
 import { Room } from '../../../models/room';
 
@@ -19,22 +19,26 @@ export class RoomsState {
 
     @Selector()
     public static Room(roomId: number) {
+        console.log('Room', roomId);
         return createSelector([ RoomsState ], (state: IRoomsStateModel) => {
-            return state.filter( room => room.id === roomId);
+            console.log(state);
+            return state.filter( room => room.id === roomId)[0];
         });
     }
 
     constructor(
-        private _nestJsService: NestJsService
+        private _nestService: NestService
     ) {}
 
     @Action(RoomsActions.GetsRoomsAction)
     getRooms(
         { setState }: StateContext<IRoomsStateModel>
     ) {
-        return this._nestJsService.getRooms().pipe(
+        console.log('@Action(RoomsActions.GetsRoomsAction)');
+        return this._nestService.getRooms().pipe(
             take(1),
             tap(  (roomsDto: GetRoomsDto) => {
+                console.log('@Action(RoomsActions.GetsRoomsAction) TAP');
                 if (!isNullOrUndefined(roomsDto)) {
                     const newRooms = [];
                     roomsDto.forEach(room => {

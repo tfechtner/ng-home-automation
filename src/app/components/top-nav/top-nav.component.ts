@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 
 import { PageService } from '../../services/page/page.service';
 import { Observable, Subscription } from 'rxjs';
-import { NestJsService } from '../../services/nestJs/nestJs.service';
+import { NestService } from '../../services/nest/nest.service';
 import { Select } from '@ngxs/store';
 import { INetworkStateModel, NetworkState } from '../../store/state/network/network.state';
 
@@ -22,7 +22,7 @@ export class TopNavComponent implements OnInit, OnDestroy {
     private pageTitleSubscription: Subscription;
 
     constructor(
-        private _nestJsService: NestJsService,
+        private _nestService: NestService,
         private _pageService: PageService
     ) {}
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { NetworkActions } from './store/state/network/network.actions';
 import { RoomsActions } from './store/state/rooms/rooms.actions';
+import { SonosActions } from './store/state/sonos/sonos.actions';
 
 @Component({
     selector: 'app-root',
@@ -14,9 +15,11 @@ export class AppComponent {
     constructor(
         private _store: Store
     ) {
-       this._updateApiState();
+        console.log('AppComponent.constructor');
+        this._updateApiState();
         this._store.dispatch([
-            new RoomsActions.GetsRoomsAction()
+            new RoomsActions.GetsRoomsAction(),
+            new SonosActions.GetZones()
         ]);
     }
 

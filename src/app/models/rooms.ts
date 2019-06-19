@@ -1,5 +1,5 @@
 import { Room } from './room';
-import { GetRoomsDto } from '../services/nestJs/dto/getRooms.dto';
+import { GetRoomsDto } from '../services/nest/dto/rooms.dto';
 import { isNullOrUndefined } from '../utils/functions';
 
 export class Rooms {

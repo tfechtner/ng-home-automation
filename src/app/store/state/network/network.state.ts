@@ -3,8 +3,8 @@ import { of } from 'rxjs';
 
 import { State, Action, StateContext } from '@ngxs/store';
 import { NetworkActions } from './network.actions';
-import { NestJsService } from '../../../services/nestJs/nestJs.service';
-import { GetStateDto } from '../../../services/nestJs/dto/getState.dto';
+import { NestService } from '../../../services/nest/nest.service';
+import { StateDto } from '../../../services/nest/dto/state.dto';
 
 export interface INetworkStateModel {
     isApiConnected: boolean;
@@ -21,16 +21,16 @@ export const defaults: INetworkStateModel = {
 export class NetworkState {
 
     constructor(
-        private _nestJsService: NestJsService
+        private _nestService: NestService
     ) {}
 
     @Action(NetworkActions.GetApiState)
     getApiState(
         { setState }: StateContext<INetworkStateModel>
     ) {
-        return this._nestJsService.getApiState().pipe(
+        return this._nestService.getApiState().pipe(
             take(1),
-            tap(  (apiState: GetStateDto) => {
+            tap(  (apiState: StateDto) => {
                 if (apiState && apiState.data === 'ok') {
                     setState({ isApiConnected: true });
                 }

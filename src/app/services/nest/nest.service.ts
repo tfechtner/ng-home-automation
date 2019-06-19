@@ -5,19 +5,23 @@ import { Observable } from 'rxjs';
 import { CONFIG } from '../../config/main';
 
 @Injectable()
-export class NestJsService {
-    private apiUrl = CONFIG.API.nestJs;
+export class NestService {
+    private apiUrl = CONFIG.API.nest;
 
     constructor(
         private http: HttpClient
     ) {
     }
 
-    public getApiState(): Observable<object> {
+    public getApiState(): Observable<any> {
         return this.http.get(this.apiUrl + '/state');
     }
 
-    public getRooms(): Observable<object> {
+    public getSonosZones(): Observable<any> {
+        return this.http.get(this.apiUrl + '/sonos/zones');
+    }
+
+    public getRooms(): Observable<any> {
         return this.http.get(this.apiUrl + '/rooms');
     }
 }

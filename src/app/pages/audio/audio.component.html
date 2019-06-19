@@ -5,7 +5,7 @@
         <ul class="rooms" *ngIf="(rooms$ | async) as rooms">
             <li class="room" *ngFor="let room of rooms">
 
-                <a [routerLink]="['/audio', room.urlName]"
+                <a [routerLink]="['/audio', room.id]"
                    routerLinkActive="room__link--active"
                    [routerLinkActiveOptions]="{exact: true}"
                    class="room__link">{{room.name}}</a>

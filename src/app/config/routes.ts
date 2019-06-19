@@ -15,7 +15,7 @@ export const ROUTES = [
         component: AudioComponent,
         children: [
             {
-                path: ':urlName',
+                path: ':roomId',
                 pathMatch: 'full',
                 component: RoomComponent
             }

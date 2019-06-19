@@ -22,7 +22,8 @@ import { RoomComponent } from './pages/room/room.component';
 import { AudioComponent } from './pages/audio/audio.component';
 import { LightingComponent } from './pages/lighting/lighting.component';
 import { PanelComponent } from './pages/panel/panel.component';
-import { NestJsService } from './services/nestJs/nestJs.service';
+import { NestService } from './services/nest/nest.service';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -39,14 +40,14 @@ import { NestJsService } from './services/nestJs/nestJs.service';
     ],
     imports: [
         BrowserModule,
-        RouterModule.forRoot(ROUTES),
         HttpClientModule,
-        NgxsModule.forRoot(appState),
+        RouterModule.forRoot(ROUTES),
+        NgxsModule.forRoot(appState, { developmentMode: !environment.production }),
         NgxsReduxDevtoolsPluginModule.forRoot()
     ],
     providers: [
         PageService,
-        NestJsService
+        NestService
     ],
     bootstrap: [AppComponent]
 })

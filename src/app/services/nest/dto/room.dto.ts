@@ -4,5 +4,3 @@ export interface GetRoomDto {
     urlName: string;
     sonosKey: string;
 }
-
-export interface GetRoomsDto extends Array<GetRoomDto> {}
