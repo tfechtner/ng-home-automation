@@ -1,7 +1,7 @@
 import { catchError, take, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
-import { State, Action, Selector, StateContext } from '@ngxs/store';
+import { State, Action, Selector, StateContext, createSelector } from '@ngxs/store';
 import { SonosActions } from './sonos.actions';
 import { NestService } from '../../../services/nest/nest.service';
 import { SonosZones } from '../../../services/nest/dto/sonosZones.dto';
@@ -69,10 +69,18 @@ export class SonosState {
         return state.lounge;
     }
     @Selector()
-    public static bedroom(
-        state: ISonosStateModel
+    public static bedroom(state: ISonosStateModel
     ): SonosCoordinatorState {
         return state.bedroom;
+    }
+
+    public static room(room: string) {
+        return createSelector([SonosState], (sonosState: ISonosStateModel): SonosCoordinatorState => {
+            if (sonosState.hasOwnProperty(room)) {
+                return sonosState[room];
+            }
+            return null;
+        });
     }
 
     constructor(

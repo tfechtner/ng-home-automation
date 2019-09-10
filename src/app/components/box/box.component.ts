@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 
 import { SonosPlayerStateEnum, SonosPlayerStateName } from '../../models/sonos/sonos.state';
 import { SonosStateAdapter } from '../../adaptors/sonos/sonos.adaptor';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { ISonosStateModel, SonosState } from '../../store/state/sonos/sonos.state';
 import { Observable } from 'rxjs';
 
@@ -24,10 +24,12 @@ export class BoxComponent implements OnInit {
     @Select(SonosState)
     private _sonosState$: Observable<ISonosStateModel>;
 
-    constructor() {}
+    constructor(
+        private _store: Store
+    ) {}
 
     ngOnInit() {
-        // this._initRoomState();
+        this._initRoomState();
     }
 
     public clickRoomToggle() {
@@ -44,12 +46,11 @@ export class BoxComponent implements OnInit {
     }
 
     private _initRoomState() {
-        this._sonosState$.subscribe(sonosState => {
-            // const roomState = sonosState[this.room.name.toLowerCase()];
-            // console.log(roomState);
-            // this.playbackState = roomState.playbackState;
-            // this.currentArtwork = roomState.currentTrack.albumArtUri;
-            // this.artist = roomState.currentTrack.artist;
+        this._store.select(SonosState.room(this.room)).subscribe(sonosState => {
+            const roomState = sonosState;
+            this.playbackState = roomState.playbackState;
+            this.currentArtwork = roomState.currentTrack.albumArtUri;
+            this.artist = roomState.currentTrack.artist;
         });
     }
 
