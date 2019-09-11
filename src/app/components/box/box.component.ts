@@ -1,17 +1,19 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
+
+import { Select, Store } from '@ngxs/store';
 
 import { SonosPlayerStateEnum, SonosPlayerStateName } from '../../models/sonos/sonos.state';
-import { SonosStateAdapter } from '../../adaptors/sonos/sonos.adaptor';
-import { Select, Store } from '@ngxs/store';
 import { ISonosStateModel, SonosState } from '../../store/state/sonos/sonos.state';
-import { Observable } from 'rxjs';
+import { SonosActions } from '../../store/state/sonos/sonos.actions';
+import { isNullOrUndefined } from '../../utils/functions';
 
 @Component({
     selector: 'app-box',
     templateUrl: './box.component.html',
     styleUrls: ['./box.component.scss'],
 })
-export class BoxComponent implements OnInit {
+export class BoxComponent implements OnInit, OnDestroy, OnChanges {
     @Input() room: string = null;
 
     public SonosPlayerStateEnum = SonosPlayerStateEnum;
@@ -24,19 +26,43 @@ export class BoxComponent implements OnInit {
     @Select(SonosState)
     private _sonosState$: Observable<ISonosStateModel>;
 
+    private _sonosStateSubscription$ = new Subscription();
+    private _subscriptions$ = new Subscription();
+
     constructor(
         private _store: Store
-    ) {}
+    ) {
+        console.log('BoxComponent.constructor');
+    }
 
-    ngOnInit() {
+    public ngOnInit() {
+        console.log('BoxComponent.ngOnInit');
         this._initRoomState();
     }
 
-    public clickRoomToggle() {
+    public ngOnDestroy() {
+        console.log('BoxComponent.ngOnDestroy');
+        this._sonosStateSubscription$.unsubscribe();
+    }
+
+    public ngOnChanges(changes: SimpleChanges) {
+        console.log('BoxComponent.ngOnChanges', changes);
+        const room = changes['room'];
+        if ((!isNullOrUndefined(room.previousValue) && !isNullOrUndefined(room.currentValue)) && room.previousValue !== room.currentValue) {
+            this._subscriptions$.remove(this._sonosStateSubscription$);
+            this._initRoomState();
+        }
+    }
+
+    public clickRoomPlay() {
+        if (this.playbackState === SonosPlayerStateEnum.PAUSED_PLAYBACK || this.playbackState === SonosPlayerStateEnum.STOPPED) {
+            this.roomPlay();
+        }
+    }
+
+    public clickRoomPause() {
         if (this.playbackState === SonosPlayerStateEnum.PLAYING) {
             this.roomPause();
-        } else if (this.playbackState === SonosPlayerStateEnum.PAUSED_PLAYBACK || this.playbackState === SonosPlayerStateEnum.STOPPED) {
-            this.roomPlay();
         }
     }
 
@@ -46,21 +72,32 @@ export class BoxComponent implements OnInit {
     }
 
     private _initRoomState() {
-        this._store.select(SonosState.room(this.room)).subscribe(sonosState => {
+        console.log('BoxComponent._initRoomState', this.room);
+        this._sonosStateSubscription$ = this._store.select(SonosState.room(this.room)).subscribe(sonosState => {
             const roomState = sonosState;
             this.playbackState = roomState.playbackState;
             this.currentArtwork = roomState.currentTrack.albumArtUri;
             this.artist = roomState.currentTrack.artist;
         });
+        this._subscriptions$.add(this._sonosStateSubscription$);
+        this._updateRoomState();
     }
 
-    private roomPause() {
-        console.log('BoxComponent.roomPause');
-
+    private _updateRoomState() {
+        this._store.dispatch(new SonosActions.GetRoomState({ room: this.room }));
+        setTimeout(() => {
+            if (!this._sonosStateSubscription$.closed) {
+                this._updateRoomState();
+            }
+        }, 250);
     }
 
     private roomPlay() {
-        console.log('BoxComponent.roomPlay');
+        this._store.dispatch(new SonosActions.RoomPlay({ room: this.room }));
+    }
+
+    private roomPause() {
+        this._store.dispatch(new SonosActions.RoomPause({ room: this.room }));
     }
 
     private roomFavourite(favourite: string) {

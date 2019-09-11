@@ -94,27 +94,47 @@ export class SonosState {
         return this._nestService.getSonosZones().pipe(
             take(1),
             tap( (sonosZones: SonosZones) => {
-                const loungeZone = sonosZones.find(zone => zone.coordinator.roomName === 'lounge');
+                const loungeZone = sonosZones.find(zone => zone.coordinator.roomName === 'Lounge');
                 patchState({ lounge: loungeZone.coordinator.state });
 
-                const bedroomZone = sonosZones.find(zone => zone.coordinator.roomName === 'bedroom');
+                const bedroomZone = sonosZones.find(zone => zone.coordinator.roomName === 'Bedroom');
                 patchState({ bedroom: bedroomZone.coordinator.state });
             }),
             catchError(err => of('Caught error on SonosActions.GetZones = ' + err))
         );
     }
 
-    @Action(SonosActions.RoomGetState)
-    roomGetState(
-        { getState, setState, patchState }: StateContext<ISonosStateModel>,
-        { payload }: SonosActions.RoomGetState) {
-        // return this._sonosService.getRoomState(payload.room).pipe(
-        //     take(1),
-        //     tap( roomState => {
-        //         patchState({ [payload.room]: { ...roomState }});
-        //     }),
-        //     catchError(err => of('Caught error on SonosActions.RoomGetState = ' + err))
-        // );
+    @Action(SonosActions.GetRoomState)
+    GetRoomState(
+        { patchState }: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.GetRoomState) {
+        return this._nestService.getSonosRoomState(payload.room).pipe(
+            take(1),
+            tap( roomState => {
+                patchState({ [payload.room]: { ...roomState }});
+            }),
+            catchError(err => of('Caught error on SonosActions.GetRoomState = ' + err))
+        );
+    }
 
+    @Action(SonosActions.RoomPlay)
+    RoomPlay(
+        { getState, setState, patchState }: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.RoomPlay) {
+        return this._nestService.getSonosRoomPlay(payload.room).pipe(
+            take(1),
+            catchError(err => of('Caught error on SonosActions.RoomPlay = ' + err))
+        );
+    }
+
+    @Action(SonosActions.RoomPause)
+    RoomPause(
+        {}: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.RoomPause
+    ) {
+        return this._nestService.getSonosRoomPause(payload.room).pipe(
+            take(1),
+            catchError(err => of('Caught error on SonosActions.RoomPause = ' + err))
+        );
     }
 }

@@ -10,10 +10,10 @@
     background-color: $blue-39;
 
     &__title {
-        padding: $margin;
+        padding: $margin*2;
         //border-bottom: 1px solid $blue-1f;
         background-color: $green;
-        line-height: $font-size-large;
+        //line-height: $font-size-large;
 
         &--text {
             font-family: $header-font;
@@ -36,11 +36,25 @@
             font-size: $font-size-normal;
 
             &__item {
-                padding: $margin;
+                padding: $margin*2;
                 //border-bottom: 1px solid $blue-1f;
 
                 .fa {
                     vertical-align: middle;
+                }
+            }
+
+            &__buttons {
+
+                &__button {
+                    padding: $margin*2;
+                    border-right: 2px solid $blue-1f;
+                    border-bottom: 2px solid $blue-1f;
+                    background-color: $blue-39;
+                    text-align: center;
+                }
+                &:last-child {
+                    margin-right: 0;
                 }
             }
         }
@@ -49,13 +63,14 @@
 
 .info {
     display: flex;
+    border-bottom: 2px solid $blue-1f;
 
     &__artwork {
         img {
             display: block;
             width: 50px;
             height: 50px;
-            margin-right: $margin;
+            margin-right: $margin*2;
             border-radius: $border-radius;
         }
     }
