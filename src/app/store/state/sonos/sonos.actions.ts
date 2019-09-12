@@ -18,4 +18,24 @@ export namespace SonosActions {
         public static readonly type = '[Sonos] Room Pause';
         constructor(public payload: { room: string }) {}
     }
+
+    export class RoomVolume {
+        public static readonly type = '[Sonos] Room Volume';
+        constructor(public payload: { room: string, volume: number }) {}
+    }
+
+    export class RoomMute {
+        public static readonly type = '[Sonos] Room Mute';
+        constructor(public payload: { room: string }) {}
+    }
+
+    export class RoomUnmute {
+        public static readonly type = '[Sonos] Room Unmute';
+        constructor(public payload: { room: string }) {}
+    }
+
+    export class RoomFavourite {
+        public static readonly type = '[Sonos] Room Favourite';
+        constructor(public payload: { room: string, favourite: string }) {}
+    }
 }

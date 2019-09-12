@@ -1,62 +1,72 @@
-<div class="box">
-    <div class="box__title">
-        <span class="box__title--text" [innerHtml]="room"></span>
+<div class="row">
+
+    <div class="col col-12 col-md-8 col-lg-8">
+
+        <div class="box">
+            <div class="box__title">
+                <span class="box__title--text" [innerHtml]="room"></span>
+            </div>
+            <div class="box__list">
+                <ul class="list">
+                    <li class="list__item info">
+                        <div class="info__artwork">
+                            <img [src]="currentArtwork" />
+                        </div>
+                        <div class="info__track">
+                            {{ SonosPlayerStateName.get(playbackState) }}<br/><br/>
+                            {{ artist }}
+                        </div>
+                    </li>
+                    <li class="list__buttons">
+                        <div class="row no-gutters">
+                            <div class="col-4 list__buttons__button">
+                                <a (click)="clickRoomVolume('down')">
+                                    <i class="fa fa-lg fa-fw fa-volume-down"></i>
+                                </a>
+                            </div>
+                            <div class="col-4 list__buttons__button">
+                                <span>{{ volume }}</span>
+                            </div>
+                            <div class="col-4 list__buttons__button">
+                                <a (click)="clickRoomVolume('up')">
+                                    <i class="fa fa-lg fa-fw fa-volume-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-4 list__buttons__button">
+                                <a (click)="clickRoomMute()" [ngClass]="{'active' : mute === true }">
+                                    <i class="fa fa-lg fa-fw fa-volume-off"></i>
+                                </a>
+                            </div>
+                            <div class="col-4 list__buttons__button">
+                                <a (click)="clickRoomPlay()" [ngClass]="{'active' : playbackState === SonosPlayerStateEnum.PLAYING }">
+                                    <i class="fa fa-lg fa-fw fa-play"></i>
+                                </a>
+                            </div>
+                            <div class="col-4 list__buttons__button">
+                                <a (click)="clickRoomPause()"[ngClass]="{'active' : playbackState === SonosPlayerStateEnum.STOPPED }">
+                                    <i class="fa fa-lg fa-fw fa-pause"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row no-gutters">
+                            <div class="col-6 list__buttons__button">
+                                <a (click)="clickRoomFavourite('BBC Radio 1')">BBC Radio 1</a>
+                            </div>
+                            <div class="col-6 list__buttons__button">
+                                <a (click)="clickRoomFavourite('Heart London')">Heart London</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
-    <div class="box__list">
-        <ul class="list">
-            <li class="list__item info">
-                <div class="info__artwork">
-                    <img [src]="currentArtwork" />
-                </div>
-                <div class="info__track">
-                    {{ SonosPlayerStateName.get(playbackState) }}<br/><br/>
-                    {{ artist }}
-                </div>
-            </li>
-            <li class="list__buttons">
-                <div class="row">
-                    <div class="col-4 list__buttons__button">
-                        <a (click)="clickRoomPlay()">
-                            <i class="fa fa-lg fa-fw fa-volume-down"></i>
-                        </a>
-                    </div>
-                    <div class="col-4 list__buttons__button">
-                        5
-                    </div>
-                    <div class="col-4 list__buttons__button">
-                        <a (click)="clickRoomPlay()">
-                            <i class="fa fa-lg fa-fw fa-volume-up"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-4 list__buttons__button">
-                        <a (click)="clickRoomPlay()">
-                            <i class="fa fa-lg fa-fw fa-volume-off"></i>
-                        </a>
-                    </div>
-                    <div class="col-4 list__buttons__button">
-                        <a (click)="clickRoomPlay()">
-                            <i class="fa fa-lg fa-fw fa-play"
-                               [ngClass]="{'active' : playbackState === SonosPlayerStateEnum.PLAYING }"></i>
-                        </a>
-                    </div>
-                    <div class="col-4 list__buttons__button">
-                        <a (click)="clickRoomPause()">
-                            <i class="fa fa-lg fa-fw fa-pause"
-                               [ngClass]="{'active' : playbackState === SonosPlayerStateEnum.PLAYING }"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-6 list__buttons__button">
-                        <a (click)="clickRoomFavourite('BBC Radio 1')">BBC Radio 1</a>
-                    </div>
-                    <div class="col-6 list__buttons__button">
-                        <a (click)="clickRoomFavourite('Heart London')">Heart London</a>
-                    </div>
-                </div>
-            </li>
-        </ul>
+
+    <div class="col col-4">
+        <router-outlet></router-outlet>
     </div>
+
 </div>

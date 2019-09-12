@@ -24,6 +24,7 @@ import { LightingComponent } from './pages/lighting/lighting.component';
 import { PanelComponent } from './pages/panel/panel.component';
 import { NestService } from './services/nest/nest.service';
 import { environment } from '../environments/environment';
+import { FavouritesComponent } from './pages/favourites/favourites.component';
 
 @NgModule({
     declarations: [
@@ -36,7 +37,8 @@ import { environment } from '../environments/environment';
         RoomComponent,
         AudioComponent,
         LightingComponent,
-        PanelComponent
+        PanelComponent,
+        FavouritesComponent
     ],
     imports: [
         BrowserModule,

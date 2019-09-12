@@ -1,20 +1,3 @@
 @import '../../../styles/colours';
 @import '../../../styles/variables';
 
-.rooms {
-    .room {
-
-        &__link {
-            display: block;
-            margin-bottom: 2px;
-            padding: $margin*2;
-            background-color: $blue-39;
-            text-decoration: none;
-            color: $white;
-
-            &--active {
-                background-color: $blue-50;
-            }
-        }
-    }
-}

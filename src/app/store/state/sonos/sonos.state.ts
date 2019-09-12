@@ -137,4 +137,48 @@ export class SonosState {
             catchError(err => of('Caught error on SonosActions.RoomPause = ' + err))
         );
     }
+
+    @Action(SonosActions.RoomVolume)
+    RoomVolume(
+        {}: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.RoomVolume
+    ) {
+        return this._nestService.getSonosRoomVolume(payload.room, payload.volume).pipe(
+            take(1),
+            catchError(err => of('Caught error on SonosActions.RoomVolume = ' + err))
+        );
+    }
+
+    @Action(SonosActions.RoomMute)
+    RoomMute(
+        {}: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.RoomMute
+    ) {
+        return this._nestService.getSonosRoomMute(payload.room, true).pipe(
+            take(1),
+            catchError(err => of('Caught error on SonosActions.RoomMute = ' + err))
+        );
+    }
+
+    @Action(SonosActions.RoomUnmute)
+    RoomUnmute(
+        {}: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.RoomUnmute
+    ) {
+        return this._nestService.getSonosRoomMute(payload.room, false).pipe(
+            take(1),
+            catchError(err => of('Caught error on SonosActions.RoomUnmute = ' + err))
+        );
+    }
+
+    @Action(SonosActions.RoomFavourite)
+    RoomFavourite(
+        {}: StateContext<ISonosStateModel>,
+        { payload }: SonosActions.RoomFavourite
+    ) {
+        return this._nestService.getSonosRoomFavourite(payload.room, payload.favourite).pipe(
+            take(1),
+            catchError(err => of('Caught error on SonosActions.RoomFavourite = ' + err))
+        );
+    }
 }

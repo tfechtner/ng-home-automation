@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 import { Select, Store } from '@ngxs/store';
@@ -19,9 +19,11 @@ export class BoxComponent implements OnInit, OnDestroy, OnChanges {
     public SonosPlayerStateEnum = SonosPlayerStateEnum;
     public SonosPlayerStateName = SonosPlayerStateName;
 
-    public playbackState: string = null;
-    public currentArtwork: string = null;
-    public artist: string = null;
+    public playbackState: string;
+    public currentArtwork: string;
+    public artist: string;
+    public volume: number;
+    public mute: boolean;
 
     @Select(SonosState)
     private _sonosState$: Observable<ISonosStateModel>;
@@ -38,6 +40,7 @@ export class BoxComponent implements OnInit, OnDestroy, OnChanges {
     public ngOnInit() {
         console.log('BoxComponent.ngOnInit');
         this._initRoomState();
+        this._updateRoomState();
     }
 
     public ngOnDestroy() {
@@ -49,6 +52,7 @@ export class BoxComponent implements OnInit, OnDestroy, OnChanges {
         console.log('BoxComponent.ngOnChanges', changes);
         const room = changes['room'];
         if ((!isNullOrUndefined(room.previousValue) && !isNullOrUndefined(room.currentValue)) && room.previousValue !== room.currentValue) {
+            console.log('Room changed!');
             this._subscriptions$.remove(this._sonosStateSubscription$);
             this._initRoomState();
         }
@@ -66,21 +70,41 @@ export class BoxComponent implements OnInit, OnDestroy, OnChanges {
         }
     }
 
+    public clickRoomMute() {
+        this.roomMute();
+    }
+
+    public clickRoomVolume(volume: string) {
+        if (volume === 'up' && this.volume < 101) {
+            this.roomVolume(this.volume + 5);
+        } else if (volume === 'down' && this.volume > 0) {
+            this.roomVolume(this.volume - 5);
+        }
+    }
+
     public clickRoomFavourite(favourite: string) {
-        console.log('BoxComponent.clickRoomFavourite', favourite);
         this.roomFavourite(favourite);
+    }
+
+    private _setRoomDefaults() {
+        this.playbackState = null;
+        this.currentArtwork = null;
+        this.artist = null;
+        this.volume = null;
+        this.mute = null;
     }
 
     private _initRoomState() {
         console.log('BoxComponent._initRoomState', this.room);
-        this._sonosStateSubscription$ = this._store.select(SonosState.room(this.room)).subscribe(sonosState => {
-            const roomState = sonosState;
+        this._setRoomDefaults();
+        this._sonosStateSubscription$ = this._store.select(SonosState.room(this.room)).subscribe(roomState => {
             this.playbackState = roomState.playbackState;
-            this.currentArtwork = roomState.currentTrack.albumArtUri;
+            this.currentArtwork = roomState.currentTrack.absoluteAlbumArtUri;
             this.artist = roomState.currentTrack.artist;
+            this.volume = roomState.volume;
+            this.mute = roomState.mute;
         });
         this._subscriptions$.add(this._sonosStateSubscription$);
-        this._updateRoomState();
     }
 
     private _updateRoomState() {
@@ -89,7 +113,7 @@ export class BoxComponent implements OnInit, OnDestroy, OnChanges {
             if (!this._sonosStateSubscription$.closed) {
                 this._updateRoomState();
             }
-        }, 250);
+        }, 1000);
     }
 
     private roomPlay() {
@@ -100,12 +124,19 @@ export class BoxComponent implements OnInit, OnDestroy, OnChanges {
         this._store.dispatch(new SonosActions.RoomPause({ room: this.room }));
     }
 
+    private roomVolume(volume: number) {
+        this._store.dispatch(new SonosActions.RoomVolume({ room: this.room, volume: volume }));
+    }
+
+    private roomMute() {
+        if (this.mute === false) {
+            this._store.dispatch(new SonosActions.RoomMute({ room: this.room }));
+        } else {
+            this._store.dispatch(new SonosActions.RoomUnmute({ room: this.room }));
+        }
+    }
+
     private roomFavourite(favourite: string) {
-        console.log('BoxComponent.roomFavourite');
+        this._store.dispatch(new SonosActions.RoomFavourite({ room: this.room, favourite: favourite }));
     }
-
-    private roomSay(sentence: string, volume: number) {
-        console.log('BoxComponent.roomSay');
-    }
-
 }

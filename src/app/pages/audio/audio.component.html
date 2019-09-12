@@ -2,19 +2,19 @@
 
     <div class="col col-12 col-md-3 col-lg-3">
 
-        <ul class="rooms" *ngIf="(rooms$ | async) as rooms">
-            <li class="room" *ngFor="let room of rooms">
+        <ul class="button-list" *ngIf="(rooms$ | async) as rooms">
+            <li class="button-list__item" *ngFor="let room of rooms">
 
                 <a [routerLink]="['/audio', room.id]"
-                   routerLinkActive="room__link--active"
+                   routerLinkActive="item__button--active"
                    [routerLinkActiveOptions]="{exact: true}"
-                   class="room__link">{{room.name}}</a>
+                   class="item__button">{{room.name}}</a>
             </li>
         </ul>
 
     </div>
 
-    <div class="col col-12 col-md-6 col-lg-8">
+    <div class="col col-12 col-md-9 col-lg-9">
         <router-outlet></router-outlet>
     </div>
 

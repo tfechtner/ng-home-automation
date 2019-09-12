@@ -6,6 +6,7 @@ import { RoomComponent } from '../pages/room/room.component';
 import { AudioComponent } from '../pages/audio/audio.component';
 import { LightingComponent } from '../pages/lighting/lighting.component';
 import { PanelComponent } from '../pages/panel/panel.component';
+import { FavouritesComponent } from '../pages/favourites/favourites.component';
 
 export const ROUTES = [
 
@@ -16,8 +17,15 @@ export const ROUTES = [
         children: [
             {
                 path: ':roomId',
-                pathMatch: 'full',
-                component: RoomComponent
+                pathMatch: 'prefix',
+                component: RoomComponent,
+                children: [
+                    {
+                        path: 'favourites',
+                        pathMatch: 'full',
+                        component: FavouritesComponent
+                    }
+                ]
             }
         ]
     },

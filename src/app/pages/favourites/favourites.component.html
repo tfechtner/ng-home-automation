@@ -1,0 +1,13 @@
+<div class="row">
+
+    <div class="col col-12">
+
+        <ul class="button-list" *ngIf="favourites as rooms">
+            <li class="button-list__item" *ngFor="let favourite of favourites">
+                <a class="item__button">{{ favourite }}</a>
+            </li>
+        </ul>
+
+    </div>
+
+</div>
