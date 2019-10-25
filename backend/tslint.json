@@ -1,0 +1,59 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {
+        "no-unused-expression": true
+    },
+    "rules": {
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "member-access": [
+            false
+        ],
+        "ordered-imports": [
+            true,
+            {
+                "import-sources-order": "lowercase-last",
+                "named-imports-order": "lowercase-first"
+            }
+        ],
+        "max-line-length": [
+            true,
+            150
+        ],
+        "member-ordering": [
+            false
+        ],
+        "interface-name": [
+            false
+        ],
+        "arrow-parens": false,
+        "object-literal-sort-keys": false,
+        "trailing-comma": [
+            true,
+            {
+                "multiline": {
+                    "objects": "never",
+                    "arrays": "never",
+                    "functions": "never",
+                    "typeLiterals": "ignore"
+                },
+                "esSpecCompliant": true
+            }
+        ],
+        "variable-name": {
+            "options": [
+                "ban-keywords",
+                "check-format",
+                "allow-leading-underscore",
+                "allow-pascal-case"
+            ]
+        },
+        "no-console": false
+    },
+    "rulesDirectory": []
+}
