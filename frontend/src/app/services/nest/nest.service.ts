@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { CONFIG } from '../../config/main';
+import { IFibaroDevices } from '../../../../../backend/src/fibaro/interfaces/fibaroDevices.interface';
+import { IFibaroDevice } from '../../../../../backend/src/fibaro/interfaces/fibaroDevice.interface';
 
 @Injectable()
 export class NestService {
@@ -53,5 +55,15 @@ export class NestService {
 
     public getSonosRoomFavourite(room: string, favourite: string): Observable<any> {
         return this.http.get(this.apiUrl + `/sonos/${room}/favourite/${favourite}`);
+    }
+
+    // Fibaro
+
+    public getFibaroDevices(): Observable<IFibaroDevices> {
+        return this.http.get<IFibaroDevices>(this.apiUrl + '/fibaro/devices');
+    }
+
+    public getFibaroDevice(id: number): Observable<IFibaroDevice> {
+        return this.http.get<IFibaroDevice>(this.apiUrl + `/fibaro/devices/${id}`);
     }
 }

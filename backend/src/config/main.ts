@@ -18,7 +18,8 @@ const config = {
     APP_BASE_ASSETS: '',
     API: {
         baseUrl: '',
-        sonos: 'http://localhost:5005/'
+        sonos: 'http://localhost:5005/',
+        fibaro: 'http://192.168.1.33/api/'
     },
     ROOMS: rooms
 };
