@@ -1,8 +1,8 @@
-import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { EventsService } from './events.service';
-import { CreateEventDto } from './create-event.dto';
+import { EventEntity } from './event.entity';
 
-@Controller()
+@Controller('events')
 export class EventsController {
     constructor(
         private readonly _eventsService: EventsService
@@ -15,18 +15,13 @@ export class EventsController {
         };
     }
 
-    @Get('events')
-    async findAll(@Res() res): Promise<Event[]> {
-        const events = await this._eventsService.findAll();
-        return res.status(HttpStatus.OK).json(events);
+    @Get()
+    index(): Promise<EventEntity[]> {
+        return this._eventsService.findAll();
     }
 
-    @Post('events/create')
-    async create(@Res() res, @Body() createCatDto: CreateEventDto) {
-        const newEvent = await this._eventsService.create(createCatDto);
-        return res.status(HttpStatus.OK).json({
-            message: 'Event has been submitted successfully!',
-            post: newEvent
-        });
+    @Post('create')
+    async create(@Body() eventData: EventEntity): Promise<any> {
+        return this._eventsService.create(eventData);
     }
 }

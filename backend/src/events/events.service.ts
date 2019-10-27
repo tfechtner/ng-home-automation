@@ -1,19 +1,21 @@
-import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Event } from './event.interface';
-import { CreateEventDto } from './create-event.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { EventEntity } from './event.entity';
 
 @Injectable()
 export class EventsService {
-    constructor(@InjectModel('Event') private readonly eventModel: Model<Event>) {}
 
-    async create(createCatDto: CreateEventDto): Promise<Event> {
-        const createdCat = new this.eventModel(createCatDto);
-        return await createdCat.save();
+    constructor(
+        @InjectRepository(EventEntity)
+        private eventRepository: Repository<EventEntity>
+    ) {}
+
+    async findAll(): Promise<EventEntity[]> {
+        return await this.eventRepository.find();
     }
 
-    async findAll(): Promise<Event[]> {
-        return await this.eventModel.find().exec();
+    async create(event: EventEntity): Promise<EventEntity> {
+        return await this.eventRepository.save(event);
     }
 }
