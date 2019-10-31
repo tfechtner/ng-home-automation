@@ -1,0 +1,15 @@
+@import 'variables';
+
+.fa-eye {
+    color: $yellow-bright;
+}
+
+.fa-cross,
+.fa-exclamation-triangle,
+.fa-eye-slash {
+    color: $red-dark;
+}
+
+.fa-check {
+    color: $green-light;
+}

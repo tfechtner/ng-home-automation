@@ -7,6 +7,7 @@ import { AudioComponent } from '../pages/audio/audio.component';
 import { LightingComponent } from '../pages/lighting/lighting.component';
 import { PanelComponent } from '../pages/panel/panel.component';
 import { FavouritesComponent } from '../pages/favourites/favourites.component';
+import { DevicesComponent } from '../pages/devices/devices.component';
 
 export const ROUTES = [
 
@@ -26,18 +27,6 @@ export const ROUTES = [
                         component: FavouritesComponent
                     }
                 ]
-            }
-        ]
-    },
-
-    {
-        path: '',
-        component: HomeComponent,
-        children: [
-            {
-                path: ':urlName',
-                pathMatch: 'full',
-                component: AudioComponent
             }
         ]
     },
@@ -66,12 +55,32 @@ export const ROUTES = [
         resolve: {},
     },
 
+    // Devices
+    {
+        path: CONFIG.routing.devices,
+        component: DevicesComponent,
+        data: {},
+        resolve: {},
+    },
+
     // 404 page
     {
         path: CONFIG.routing.pageNotFound,
         component: PageNotFoundComponent,
-        data: {
-        }
+        data: {}
+    },
+
+    // Home
+    {
+        path: '',
+        component: HomeComponent,
+        children: [
+            {
+                path: ':urlName',
+                pathMatch: 'full',
+                component: AudioComponent
+            }
+        ]
     },
 
     // Page not found action

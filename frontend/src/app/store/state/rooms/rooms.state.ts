@@ -18,11 +18,9 @@ export const defaults: Room[] = [];
 export class RoomsState {
 
     @Selector()
-    public static Room(roomId: number) {
+    public static room(roomId: number) {
         return createSelector([ RoomsState ], (state: IRoomsStateModel) => {
-            return state['Rooms'].filter( room => {
-                return room.id === roomId;
-            })[0]; // Hmmm
+            return state['Rooms'].find( room => room.id === roomId);
         });
     }
 

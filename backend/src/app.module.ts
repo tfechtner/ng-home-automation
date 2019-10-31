@@ -21,7 +21,7 @@ import { EventEntity } from './events/event.entity';
             host: 'localhost',
             port: 3306,
             username: 'root',
-            password: 'nest',
+            password: 'root',
             database: 'nest',
             entities: [__dirname + '/**/*.entity{.ts,.js}'],
             synchronize: true

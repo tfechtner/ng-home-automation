@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
-import { NgxsModule, Store } from '@ngxs/store';
+import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+
+import { MatTableModule } from '@angular/material/table';
 
 import { ROUTES } from './config/routes';
 
@@ -25,6 +27,8 @@ import { PanelComponent } from './pages/panel/panel.component';
 import { NestService } from './services/nest/nest.service';
 import { environment } from '../environments/environment';
 import { FavouritesComponent } from './pages/favourites/favourites.component';
+import { DevicesComponent } from './pages/devices/devices.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -38,14 +42,17 @@ import { FavouritesComponent } from './pages/favourites/favourites.component';
         AudioComponent,
         LightingComponent,
         PanelComponent,
-        FavouritesComponent
+        FavouritesComponent,
+        DevicesComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
+        MatTableModule,
         RouterModule.forRoot(ROUTES),
         NgxsModule.forRoot(appState, { developmentMode: !environment.production }),
-        NgxsReduxDevtoolsPluginModule.forRoot()
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NoopAnimationsModule
     ],
     providers: [
         PageService,

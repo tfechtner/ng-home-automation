@@ -21,6 +21,7 @@ export class AppComponent {
         this._store.dispatch([
             new RoomsActions.GetsRoomsAction(),
             new SonosActions.GetZones(),
+            new FibaroActions.GetRooms(),
             new FibaroActions.GetDevices()
         ]);
     }

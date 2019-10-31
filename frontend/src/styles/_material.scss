@@ -1,0 +1,30 @@
+@import 'typography';
+@import 'variables';
+
+/* Font overrides */
+.mat-table {
+    font-family: $body-font;
+
+    &.with-padding {
+        .mat-cell {
+            padding: $padding;
+        }
+    }
+}
+
+.mat-table {
+    font-size: $font-size-small;
+
+    .mat-header-row,
+    .mat-row {
+        border-bottom-color: $blue-1f;
+    }
+
+    .mat-header-row {
+        background-color: $blue-50;
+    }
+
+    .mat-row {
+        background-color: $blue-39;
+    }
+}

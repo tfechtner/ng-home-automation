@@ -1,16 +1,19 @@
 import { catchError, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { State, Action, StateContext } from '@ngxs/store';
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { NestService } from '../../../services/nest/nest.service';
 import { FibaroActions } from './fibaro.actions';
 import { IFibaroDevice, IFibaroDevices } from '../../../../../../backend/src/fibaro/interfaces';
+import { IFibaroRooms } from '../../../../../../backend/src/fibaro/interfaces/fibaroRooms.interface';
 
 export interface IFibaroStateModel {
     devices: IFibaroDevices;
+    rooms: IFibaroRooms;
 }
 
 export const defaults: IFibaroStateModel = {
-    devices: []
+    devices: [],
+    rooms: []
 };
 
 @State<IFibaroStateModel>({
@@ -19,17 +22,27 @@ export const defaults: IFibaroStateModel = {
 })
 export class FibaroState {
 
+    @Selector()
+    public static devices(state: IFibaroStateModel): IFibaroDevices {
+        return state.devices;
+    }
+
+    @Selector()
+    public static rooms(state: IFibaroStateModel): IFibaroRooms {
+        return state.rooms;
+    }
+
     constructor(
         private _nestService: NestService
     ) {}
 
     @Action(FibaroActions.GetDevices)
     getDevices(
-        { setState }: StateContext<IFibaroStateModel>
+        { patchState }: StateContext<IFibaroStateModel>
     ): Observable<any> {
         return this._nestService.getFibaroDevices().pipe(
             tap( (devices: IFibaroDevices) => {
-                setState({ devices: devices });
+                patchState({ devices: devices });
             }),
             catchError((error) => {
                 return of('Error on FibaroActions.GetDevices = ' + error);
@@ -66,6 +79,20 @@ export class FibaroState {
             catchError((error) => {
                 console.log(error);
                 return of('Error on FibaroActions.GetDevice = ' + error);
+            })
+        );
+    }
+
+    @Action(FibaroActions.GetRooms)
+    getRooms(
+        { patchState }: StateContext<IFibaroStateModel>
+    ): Observable<any> {
+        return this._nestService.getFibaroRooms().pipe(
+            tap( (rooms: IFibaroRooms) => {
+                patchState({ rooms: rooms });
+            }),
+            catchError((error) => {
+                return of('Error on FibaroActions.GetRooms = ' + error);
             })
         );
     }

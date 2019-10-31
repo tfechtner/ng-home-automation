@@ -1,0 +1,47 @@
+<mat-table class="with-padding" [dataSource]="fibaroDevices$">
+
+    <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let device"> {{ device.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let device"> {{ device.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef>Type</mat-header-cell>
+        <mat-cell *matCellDef="let device"> {{ device.type }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="enabled">
+        <mat-header-cell *matHeaderCellDef>Enabled</mat-header-cell>
+        <mat-cell *matCellDef="let device">
+            <i class="fa" [ngClass]="{ 'fa-check': device.enabled, 'fa-times': !device.enabled }"></i>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="visible">
+        <mat-header-cell *matHeaderCellDef>Visible</mat-header-cell>
+        <mat-cell *matCellDef="let device">
+            <i class="fa" [ngClass]="{ 'fa-eye': device.visible, 'fa-eye-slash': !device.visible }"></i>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dead">
+        <mat-header-cell *matHeaderCellDef>Dead</mat-header-cell>
+        <mat-cell *matCellDef="let device">
+            <i *ngIf="device.properties" class="fa" [ngClass]="{ 'fa-exclamation-triangle': device.properties.dead === 'true' }"></i>
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="roomID">
+        <mat-header-cell *matHeaderCellDef>Room</mat-header-cell>
+        <mat-cell *matCellDef="let device"> <ng-container *ngIf="device.roomID !== 0">{{ device.roomID }}</ng-container> </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

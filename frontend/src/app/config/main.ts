@@ -34,6 +34,7 @@ let config = {
         audio: 'audio',
         lighting: 'lighting',
         cctv: 'cctv',
+        devices: 'devices',
         room: {
             url: 'room',
             paramRoomId: 'roomId'

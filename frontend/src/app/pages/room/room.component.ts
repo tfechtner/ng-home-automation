@@ -19,7 +19,7 @@ export class RoomComponent implements OnInit {
     ) {
         this.route.params.subscribe(params => {
             const roomId = parseInt(params.roomId, 10);
-            this.store.select(RoomsState.Room(roomId)).subscribe(
+            this.store.select(RoomsState.room(roomId)).subscribe(
                 room => {
                     this.room$ = room;
                 }

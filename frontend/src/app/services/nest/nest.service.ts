@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { CONFIG } from '../../config/main';
 import { IFibaroDevices } from '../../../../../backend/src/fibaro/interfaces/fibaroDevices.interface';
 import { IFibaroDevice } from '../../../../../backend/src/fibaro/interfaces/fibaroDevice.interface';
+import { IFibaroRooms } from '../../../../../backend/src/fibaro/interfaces/fibaroRooms.interface';
+import { IFibaroRoom } from '../../../../../backend/src/fibaro/interfaces/fibaroRoom.interface';
 
 @Injectable()
 export class NestService {
@@ -65,5 +67,13 @@ export class NestService {
 
     public getFibaroDevice(id: number): Observable<IFibaroDevice> {
         return this.http.get<IFibaroDevice>(this.apiUrl + `/fibaro/devices/${id}`);
+    }
+
+    public getFibaroRooms(): Observable<IFibaroRooms> {
+        return this.http.get<IFibaroRooms>(this.apiUrl + '/fibaro/rooms');
+    }
+
+    public getFibaroRoom(id: number): Observable<IFibaroRoom> {
+        return this.http.get<IFibaroRoom>(this.apiUrl + `/fibaro/rooms/${id}`);
     }
 }

@@ -6,7 +6,7 @@ async function bootstrap() {
         logger: console
     });
     app.enableCors();
-    await app.listen(3000, '192.168.1.44');
+    await app.listen(3000, 'localhost');
 }
 
 bootstrap();
