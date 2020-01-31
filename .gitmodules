@@ -1,0 +1,4 @@
+[submodule "sleepy-waters-43092"]
+	path = cloud
+	url = https://git.heroku.com/sleepy-waters-43092.git
+	branch = master
