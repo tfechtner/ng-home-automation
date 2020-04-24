@@ -6,6 +6,7 @@ async function bootstrap() {
         logger: console
     });
     app.enableCors();
+    app.enableShutdownHooks();
     await app.listen(3000, 'localhost');
 }
 

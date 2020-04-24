@@ -1,7 +1,16 @@
-import { HttpModule, HttpService, Module, OnModuleInit } from '@nestjs/common';
+import {
+    HttpModule,
+    HttpService,
+    Module,
+    OnApplicationBootstrap,
+    OnApplicationShutdown,
+    OnModuleInit
+} from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { AxiosRequestConfig } from 'axios';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { EventEntity } from './events/event.entity';
 import { EventsController } from './events/events.controller';
 import { EventsService } from './events/events.service';
 import { FibaroController } from './fibaro/fibaro.controller';
@@ -10,8 +19,7 @@ import { RoomsController } from './rooms/rooms.controller';
 import { RoomsService } from './rooms/rooms.service';
 import { SonosController } from './sonos/sonos.controller';
 import { SonosService } from './sonos/sonos.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { EventEntity } from './events/event.entity';
+import { TelegramService } from './telegram/telegram.service';
 
 @Module({
     imports: [
@@ -40,17 +48,20 @@ import { EventEntity } from './events/event.entity';
         RoomsService,
         SonosService,
         FibaroService,
-        EventsService
+        EventsService,
+        TelegramService
     ]
 })
-export class AppModule implements OnModuleInit {
+export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplicationShutdown {
     constructor(
-        private httpService: HttpService
+        private httpService: HttpService,
+        private telegramService: TelegramService
     ) {}
 
     onModuleInit() {
         console.log('\nNest AppModule started on http://localhost:3000/');
         console.log('AppModule.onModuleInit\n');
+
         this.httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
                 console.log(config.url);
@@ -59,5 +70,14 @@ export class AppModule implements OnModuleInit {
             (error) => {
                 return Promise.reject(error);
             });
+    }
+
+    onApplicationBootstrap() {
+        this.telegramService.sendMessage('NestHome application started.').subscribe();
+    }
+
+    onApplicationShutdown(signal?: string) {
+        console.log('onApplicationShutdown', signal);
+        this.telegramService.sendMessage('NestHome application stopped.').subscribe();
     }
 }

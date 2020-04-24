@@ -5,8 +5,8 @@ import { map } from 'rxjs/operators';
 import { CONFIG } from '../config/main';
 import { IFibaroDevice } from './interfaces';
 import { IFibaroDevices } from './interfaces/fibaroDevices.interface';
-import { IFibaroRooms } from './interfaces/fibaroRooms.interface';
 import { IFibaroRoom } from './interfaces/fibaroRoom.interface';
+import { IFibaroRooms } from './interfaces/fibaroRooms.interface';
 
 @Injectable()
 export class FibaroService {
