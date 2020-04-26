@@ -33,7 +33,7 @@ const socialLinks = [
 ];
 
 const DATA_SERVICES = [
-    {provide: UserData, useClass: UserService}
+    {provide: UserData, useClass: UserService},
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -95,6 +95,7 @@ export const NB_CORE_PROVIDERS = [
     ],
     declarations: [],
 })
+
 export class CoreModule {
     constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
         throwIfAlreadyLoaded(parentModule, 'CoreModule');

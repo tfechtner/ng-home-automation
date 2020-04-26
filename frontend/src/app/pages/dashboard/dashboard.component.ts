@@ -7,11 +7,11 @@ import { Component, OnDestroy } from '@angular/core';
 })
 export class DashboardComponent implements OnDestroy {
 
-    private alive = true;
+    // private alive = true;
 
     constructor() { }
 
     ngOnDestroy() {
-        this.alive = false;
+        // this.alive = false;
     }
 }
