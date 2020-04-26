@@ -4,7 +4,7 @@ const compression = require('compression');
 
 const _ip = '192.168.0.44';
 const _port = 4100;
-const _app_folder = 'dist/application';
+const _app_folder = 'www';
 
 const app = express();
 app.use(compression());
