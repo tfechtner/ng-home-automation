@@ -1,4 +1,5 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { SonosEvent, SonosEventType } from './dto/sonsoEvent.dto';
 import { SonosService } from './sonos.service';
 
 @Controller('sonos')
@@ -66,5 +67,19 @@ export class SonosController {
         @Param('favourite') favourite: string
     ): any {
         return this._sonosService.getRoomFavourite(room, favourite);
+    }
+
+    @Post('event')
+    async sonos(@Body() sonosEvent: SonosEvent) {
+        switch (sonosEvent.type) {
+            case SonosEventType.VOLUME_CHANGE:
+                console.log('SonosController.event volume changed to ');
+                break;
+            case SonosEventType.TRANSPORT_STATE:
+                console.log('SonosController.event transport state');
+                break;
+            default:
+                console.log('SonosController.event unknown', sonosEvent);
+        }
     }
 }

@@ -7,7 +7,9 @@ import { map } from 'rxjs/operators';
 export class TelegramService {
     constructor(
         private httpService: HttpService
-    ) {}
+    ) {
+        console.log('TelegramService.constructor');
+    }
 
     private config = {
         api: 'https://api.telegram.org/bot',
@@ -22,7 +24,7 @@ export class TelegramService {
 
         return this.httpService.get(this.requestUrl + 'sendMessage', config).pipe(
             map(axiosResponse => {
-                console.log(axiosResponse.data);
+                console.log('TelegramService.sendMessage response', axiosResponse.data);
             })
         );
     }

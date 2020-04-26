@@ -1,9 +1,0 @@
-.DS_Store
-.gitignore
-.env*
-.ops
-.docker*
-dist
-node_modules
-README.md
-Dockerfile*
