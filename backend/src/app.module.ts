@@ -59,7 +59,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     ) {}
 
     onModuleInit() {
-        console.log('\nNest AppModule started on http://192.168.0.25:3000/');
+        console.log('\nNest AppModule started on http://192.168.0.44:3000/');
         console.log('AppModule.onModuleInit\n');
 
         this.httpService.axiosRef.interceptors.request.use(
@@ -73,11 +73,11 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     }
 
     onApplicationBootstrap() {
-        // this.telegramService.sendMessage('NestHome application started.').subscribe();
+        this.telegramService.sendMessage('NestHome application started.').subscribe();
     }
 
     onApplicationShutdown(signal?: string) {
         console.log('AppModule.onApplicationShutdown', signal);
-        // this.telegramService.sendMessage('NestHome application stopped.').subscribe();
+        this.telegramService.sendMessage('NestHome application stopped.').subscribe();
     }
 }

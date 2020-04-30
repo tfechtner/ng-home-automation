@@ -7,7 +7,7 @@ async function bootstrap() {
     });
     app.enableCors();
     app.enableShutdownHooks();
-    await app.listen(3000, '192.168.0.25');
+    await app.listen(3000, '192.168.0.44');
 }
 
-bootstrap();
+bootstrap().finally();
