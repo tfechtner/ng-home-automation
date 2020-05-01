@@ -2,3 +2,8 @@
 	path = cloud
 	url = https://git.heroku.com/sleepy-waters-43092.git
 	branch = master
+
+[submodule "node-sonos-http-api"]
+	path = sonos/node-sonos-http-api
+	url = https://github.com/jishi/node-sonos-http-api.git
+	branch = master

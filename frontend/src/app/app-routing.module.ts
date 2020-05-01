@@ -5,21 +5,24 @@ export const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('./pages/pages.module')
-            .then(m => m.PagesModule),
+            .then(m => m.PagesModule)
     },
     {
         path: '**',
-        redirectTo: 'pages',
-    },
+        redirectTo: 'pages'
+    }
 ];
 
 const config: ExtraOptions = {
-    useHash: false,
+    useHash: false
 };
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, config)],
-    exports: [RouterModule],
+    imports: [
+        RouterModule.forRoot(routes, config)
+    ],
+    exports: [
+        RouterModule
+    ]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

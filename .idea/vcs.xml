@@ -3,5 +3,6 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/cloud" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/sonos/node-sonos-http-api" vcs="Git" />
   </component>
 </project>

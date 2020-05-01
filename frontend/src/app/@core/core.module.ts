@@ -8,7 +8,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import {
     LayoutService,
     PlayerService,
-    StateService,
+    StateService
 } from './utils';
 import { UserData } from './data/users';
 import { UserService } from './mock/users.service';
@@ -18,22 +18,22 @@ const socialLinks = [
     {
         url: 'https://github.com/akveo/nebular',
         target: '_blank',
-        icon: 'github',
+        icon: 'github'
     },
     {
         url: 'https://www.facebook.com/akveo/',
         target: '_blank',
-        icon: 'facebook',
+        icon: 'facebook'
     },
     {
         url: 'https://twitter.com/akveo_inc',
         target: '_blank',
-        icon: 'twitter',
-    },
+        icon: 'twitter'
+    }
 ];
 
 const DATA_SERVICES = [
-    {provide: UserData, useClass: UserService},
+    {provide: UserData, useClass: UserService}
 ];
 
 export class NbSimpleRoleProvider extends NbRoleProvider {
@@ -51,49 +51,49 @@ export const NB_CORE_PROVIDERS = [
         strategies: [
             NbDummyAuthStrategy.setup({
                 name: 'email',
-                delay: 3000,
-            }),
+                delay: 3000
+            })
         ],
         forms: {
             login: {
-                socialLinks: socialLinks,
+                socialLinks: socialLinks
             },
             register: {
-                socialLinks: socialLinks,
-            },
-        },
+                socialLinks: socialLinks
+            }
+        }
     }).providers,
 
     NbSecurityModule.forRoot({
         accessControl: {
             guest: {
-                view: '*',
+                view: '*'
             },
             user: {
                 parent: 'guest',
                 create: '*',
                 edit: '*',
-                remove: '*',
-            },
-        },
+                remove: '*'
+            }
+        }
     }).providers,
 
     {
-        provide: NbRoleProvider, useClass: NbSimpleRoleProvider,
+        provide: NbRoleProvider, useClass: NbSimpleRoleProvider
     },
     LayoutService,
     PlayerService,
-    StateService,
+    StateService
 ];
 
 @NgModule({
     imports: [
-        CommonModule,
+        CommonModule
     ],
     exports: [
-        NbAuthModule,
+        NbAuthModule
     ],
-    declarations: [],
+    declarations: []
 })
 
 export class CoreModule {
@@ -105,8 +105,8 @@ export class CoreModule {
         return {
             ngModule: CoreModule,
             providers: [
-                ...NB_CORE_PROVIDERS,
-            ],
+                ...NB_CORE_PROVIDERS
+            ]
         };
     }
 }

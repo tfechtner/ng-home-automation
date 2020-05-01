@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:version="1.0rc1 (09960d6, 2020-04-09)"
+   sodipodi:docname="robin.svg"
+   style="zoom: 4;"
+   id="svg_document"
+   preserveAspectRatio="xMidYMid meet"
+   viewBox="0 0 300 300"
+   height="300px"
+   width="300px"
+   version="1.1">
+  <metadata
+     id="metadata170">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     inkscape:current-layer="robin"
+     inkscape:window-maximized="0"
+     inkscape:window-y="23"
+     inkscape:window-x="0"
+     inkscape:cy="134.88672"
+     inkscape:cx="112.99158"
+     inkscape:zoom="2.8966667"
+     showgrid="false"
+     id="namedview168"
+     inkscape:window-height="1023"
+     inkscape:window-width="1647"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <!-- Created with macSVG - https://macsvg.org/ - https://github.com/dsward2/macsvg/ -->
+  <title
+     d=""
+     id="svg_document_title">Untitled.svg</title>
+  <defs
+     id="svg_document_defs" />
+  <g
+     visibility="visible"
+     id="robin">
+    <image
+       sodipodi:absref="/Users/work/Personal/ng-home-automation/frontend-old/resources/robin-simple.png"
+       xlink:href="robin-simple.png"
+       x="-267.5"
+       height="586"
+       y="-146"
+       id="image1"
+       xlink:role="file:///Users/work/Personal/ng-home-automation/frontend-old/resources/robin-simple.png"
+       width="829.5"
+       preserveAspectRatio="xMidYMid meet"
+       visibility="visible"
+       style="display:inline"
+       inkscape:label="PNG" />
+    <polygon
+       visibility="visible"
+       fill="#f3ac3e"
+       stroke-width="3px"
+       id="beak-top"
+       points="246.25,108.5 243.5,95.25 280.5,108.75 " />
+    <path
+       sodipodi:nodetypes="cccc"
+       inkscape:connector-curvature="0"
+       d="M 267.03051,108.50589 H 245.73233 L 245,119.25 Z"
+       style="display:inline;visibility:visible;fill:#eb6f20;stroke:none;stroke-width:3px"
+       id="beak-bottom" />
+    <circle
+       style="display:inline"
+       visibility="visible"
+       cx="198"
+       r="47.75"
+       fill="#000000"
+       cy="109"
+       id="head"
+       stroke="#000000" />
+    <path
+       sodipodi:nodetypes="sssss"
+       inkscape:connector-curvature="0"
+       d="m 221.97929,178.30841 c -12.34256,32.60584 -53.32539,51.77086 -88.37745,53.68239 -37.675003,2.05457 -80.782498,-25.46719 -80.782504,-50.92059 -4e-6,-25.4534 51.285234,-88.895284 96.662824,-88.895285 45.37761,-10e-7 118.89421,-36.43554 72.49713,86.133485 z"
+       style="fill:#ff0000;fill-rule:evenodd;stroke-width:1.68766"
+       id="path178" />
+  </g>
+</svg>
