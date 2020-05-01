@@ -9,8 +9,7 @@ async function bootstrap() {
     app.enableCors();
     app.enableShutdownHooks();
     const configService = app.get(ConfigService);
-    console.log('XXX >>>', configService.get('PORT'), configService.get('HOST'));
     await app.listen(configService.get('PORT'), configService.get('HOST'));
 }
 
-bootstrap().finally();
+bootstrap();
