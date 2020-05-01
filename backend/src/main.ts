@@ -1,3 +1,4 @@
+import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
@@ -7,7 +8,9 @@ async function bootstrap() {
     });
     app.enableCors();
     app.enableShutdownHooks();
-    await app.listen(3000, '192.168.0.44');
+    const configService = app.get(ConfigService);
+    console.log('XXX >>>', configService.get('PORT'), configService.get('HOST'));
+    await app.listen(configService.get('PORT'), configService.get('HOST'));
 }
 
 bootstrap().finally();

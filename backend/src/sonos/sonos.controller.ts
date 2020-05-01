@@ -1,11 +1,13 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { NestWebsocketGateway } from '../websocket/nest-websocket.gateway';
 import { SonosEvent, SonosEventType } from './dto/sonsoEvent.dto';
 import { SonosService } from './sonos.service';
 
 @Controller('sonos')
 export class SonosController {
     constructor(
-        private readonly _sonosService: SonosService
+        private readonly _sonosService: SonosService,
+        private _nestWebsocketGateway: NestWebsocketGateway
     ) {}
 
     @Get('zones')
@@ -81,5 +83,6 @@ export class SonosController {
             default:
                 console.log('SonosController.event unknown', sonosEvent);
         }
+        this._nestWebsocketGateway.emitSonosEvent(sonosEvent);
     }
 }
