@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AxiosRequestConfig } from 'axios';
-import { environment } from '../../frontend/src/environments/environment';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DevicesController } from './devices/devices.controller';
@@ -94,15 +93,15 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     }
 
     onApplicationBootstrap() {
-        if (environment.production) {
-            this._telegramService.sendMessage('NestHome Backend started.').subscribe();
-        }
+        // if (environment.production) {
+        this._telegramService.sendMessage('NestHome Backend started.').subscribe();
+        // }
     }
 
     onApplicationShutdown(signal?: string) {
         console.log('AppModule.onApplicationShutdown', signal);
-        if (environment.production) {
-            this._telegramService.sendMessage('NestHome Backend stopped.').subscribe();
-        }
+        // if (environment.production) {
+        this._telegramService.sendMessage('NestHome Backend stopped.').subscribe();
+        // }
     }
 }
