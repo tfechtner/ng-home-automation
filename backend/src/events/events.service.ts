@@ -31,6 +31,7 @@ export class EventsService {
         switch (event.deviceID) {
             case DEVICES_MAP.get(DEVICE_KEYS.MAIN_BEDROOM_SENSOR).fibaroId :
             case DEVICES_MAP.get(DEVICE_KEYS.DRESSING_ROOM_SENSOR).fibaroId :
+            case DEVICES_MAP.get(DEVICE_KEYS.STUDY_SENSOR).fibaroId :
             case DEVICES_MAP.get(DEVICE_KEYS.BOOT_ROOM_SENSOR).fibaroId :
             case DEVICES_MAP.get(DEVICE_KEYS.GARAGE_BOOT_ROOM_DOOR_SENSOR).fibaroId :
             case DEVICES_MAP.get(DEVICE_KEYS.SIDE_PATH_SENSOR).fibaroId :
