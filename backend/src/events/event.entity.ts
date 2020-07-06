@@ -9,17 +9,22 @@ export class EventEntity {
     @Column({
         default: null
     })
-    room: string;
+    deviceID: number;
 
     @Column({
         default: null
     })
-    device: string;
+    propertyName: string;
 
     @Column({
         default: null
     })
-    status: string;
+    type: string;
+
+    @Column({
+        default: null
+    })
+    value: string;
 
     @Column({
         type: 'timestamp',

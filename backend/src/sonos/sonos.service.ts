@@ -2,24 +2,22 @@ import { HttpService, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { CONFIG } from '../config/main';
-
-import Axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
-
-import { mockData } from './sonos.mock';
+import { NestConfigService } from '../services/nest-config.service';
 
 @Injectable()
 export class SonosService {
+
+    private _sonosApi: string;
+
     constructor(
-        private httpService: HttpService
+        private httpService: HttpService,
+        private _nestConfigService: NestConfigService
     ) {
-        // const mock = new MockAdapter(Axios);
-        // mock.onGet(CONFIG.API.sonos + 'zones').reply(200, mockData);
+        this._sonosApi = this._nestConfigService.sonosApi;
     }
 
     public getZones(): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + 'zones').pipe(
+        return this.httpService.get(this._sonosApi + 'zones').pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -27,7 +25,7 @@ export class SonosService {
     }
 
     public getRoomState(room: string): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + `${room}/state`).pipe(
+        return this.httpService.get(this._sonosApi + `${room}/state`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -35,7 +33,7 @@ export class SonosService {
     }
 
     public getRoomPlay(room: string): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + `${room}/play`).pipe(
+        return this.httpService.get(this._sonosApi + `${room}/play`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -43,7 +41,7 @@ export class SonosService {
     }
 
     public getRoomPause(room: string): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + `${room}/pause`).pipe(
+        return this.httpService.get(this._sonosApi + `${room}/pause`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -51,7 +49,7 @@ export class SonosService {
     }
 
     public getRoomVolume(room: string, volume: number): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + `${room}/volume/${volume}`).pipe(
+        return this.httpService.get(this._sonosApi + `${room}/volume/${volume}`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -60,7 +58,7 @@ export class SonosService {
 
     public getRoomMute(room: string, mute: boolean): Observable<any> {
         const status = mute ? 'mute' : 'unmute';
-        return this.httpService.get(CONFIG.API.sonos + `${room}/${status}`).pipe(
+        return this.httpService.get(this._sonosApi + `${room}/${status}`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -68,7 +66,7 @@ export class SonosService {
     }
 
     public getFavourites(): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + `favourites`).pipe(
+        return this.httpService.get(this._sonosApi + `favourites`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })
@@ -76,7 +74,7 @@ export class SonosService {
     }
 
     public getRoomFavourite(room: string, favourite: string): Observable<any> {
-        return this.httpService.get(CONFIG.API.sonos + `${room}/favourite/${favourite}`).pipe(
+        return this.httpService.get(this._sonosApi + `${room}/favourite/${favourite}`).pipe(
             map(axiosResponse => {
                 return axiosResponse.data;
             })

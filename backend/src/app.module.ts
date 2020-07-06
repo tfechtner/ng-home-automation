@@ -1,16 +1,13 @@
-import {
-    HttpModule,
-    HttpService,
-    Module,
-    OnApplicationBootstrap,
-    OnApplicationShutdown,
-    OnModuleInit
-} from '@nestjs/common';
+import { HttpModule, HttpService, Module, OnApplicationBootstrap, OnApplicationShutdown, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AxiosRequestConfig } from 'axios';
+import { environment } from '../../frontend/src/environments/environment';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DevicesController } from './devices/devices.controller';
+import { DevicesService } from './devices/devices.service';
 import { EventEntity } from './events/event.entity';
 import { EventsController } from './events/events.controller';
 import { EventsService } from './events/events.service';
@@ -20,6 +17,8 @@ import { RoomsController } from './rooms/rooms.controller';
 import { RoomsService } from './rooms/rooms.service';
 import { NestConfigService } from './services/nest-config.service';
 import { NestConfigModule } from './services/nest-config/nest-config.module';
+import { ScraperService } from './services/scraper.service';
+import { TasksService } from './services/tasks.service';
 import { SonosController } from './sonos/sonos.controller';
 import { SonosService } from './sonos/sonos.service';
 import { TelegramService } from './telegram/telegram.service';
@@ -29,28 +28,36 @@ import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
     imports: [
         HttpModule,
         ConfigModule.forRoot(),
+        ScheduleModule.forRoot(),
         TypeOrmModule.forRootAsync({
-            imports: [NestConfigModule],
+            imports: [
+                NestConfigModule
+            ],
             useFactory: (nestConfigService: NestConfigService) => ({
                 type: 'mysql',
-                host: nestConfigService.mysqlHost,
-                port: nestConfigService.mysqlPort,
-                username: nestConfigService.mysqlUsername,
-                password: nestConfigService.mysqlPassword,
-                database: nestConfigService.mysqlDatabase,
+                host: nestConfigService.mysql.host,
+                port: nestConfigService.mysql.port,
+                username: nestConfigService.mysql.username,
+                password: nestConfigService.mysql.password,
+                database: nestConfigService.mysql.database,
                 entities: [__dirname + '/**/*.entity{.ts,.js}'],
                 synchronize: true
             }),
-            inject: [NestConfigService]
+            inject: [
+                NestConfigService
+            ]
         }),
-        TypeOrmModule.forFeature([EventEntity])
+        TypeOrmModule.forFeature([
+            EventEntity
+        ])
     ],
     controllers: [
         AppController,
         RoomsController,
         SonosController,
         FibaroController,
-        EventsController
+        EventsController,
+        DevicesController
     ],
     providers: [
         AppService,
@@ -59,8 +66,11 @@ import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
         NestConfigService,
         NestWebsocketGateway,
         RoomsService,
+        ScraperService,
         SonosService,
-        TelegramService
+        TasksService,
+        TelegramService,
+        DevicesService
     ]
 })
 export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplicationShutdown {
@@ -71,8 +81,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     ) {}
 
     onModuleInit() {
-        console.log(`\nNest AppModule started on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
-        console.log('AppModule.onModuleInit\n');
+        console.log(`\n[ AppModule ] NestHome Backend started on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
@@ -85,11 +94,15 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     }
 
     onApplicationBootstrap() {
-        this._telegramService.sendMessage('NestHome application started.').subscribe();
+        if (environment.production) {
+            this._telegramService.sendMessage('NestHome Backend started.').subscribe();
+        }
     }
 
     onApplicationShutdown(signal?: string) {
         console.log('AppModule.onApplicationShutdown', signal);
-        this._telegramService.sendMessage('NestHome application stopped.').subscribe();
+        if (environment.production) {
+            this._telegramService.sendMessage('NestHome Backend stopped.').subscribe();
+        }
     }
 }

@@ -10,5 +10,5 @@ export interface IFibaroRoom {
     };
     defaultThermostat: number;
     sortOrder: number;
-    category: string
+    category: string;
 }

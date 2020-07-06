@@ -9,7 +9,7 @@ export class AppController {
     @Get('state')
     getState(): object {
         return {
-            data: 'ok',
+            data: 'ok xx'
         };
     }
 

@@ -1,6 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
+export interface IMySqlConfig {
+    host: string;
+    port: number;
+    username: string;
+    password: string;
+    database: string;
+}
+
+export interface IFibaroConfig {
+    api: string;
+    username: string;
+    password: string;
+}
+
+export interface ITelegramConfig {
+    api: string;
+    token: string;
+    chatId: number;
+}
+
 @Injectable()
 export class NestConfigService {
     constructor(
@@ -15,35 +35,33 @@ export class NestConfigService {
         return this._configService.get('PORT');
     }
 
-    get mysqlHost(): string {
-        return this._configService.get('MYSQL_HOST');
+    get mysql(): IMySqlConfig {
+        return {
+            host: this._configService.get('MYSQL_HOST'),
+            port: this._configService.get('MYSQL_PORT'),
+            username: this._configService.get('MYSQL_USERNAME'),
+            password: this._configService.get('MYSQL_PASSWORD'),
+            database: this._configService.get('MYSQL_DATABASE')
+        };
     }
 
-    get mysqlPort(): number {
-        return this._configService.get('MYSQL_PORT');
+    get sonosApi(): string {
+        return this._configService.get('SONOS_API');
     }
 
-    get mysqlUsername(): string {
-        return this._configService.get('MYSQL_USERNAME');
+    get fibaro(): IFibaroConfig {
+        return {
+            api: this._configService.get('FIBARO_API'),
+            username: this._configService.get('FIBARO_USERNAME'),
+            password: this._configService.get('FIBARO_PASSWORD')
+        };
     }
 
-    get mysqlPassword(): string {
-        return this._configService.get('MYSQL_PASSWORD');
-    }
-
-    get mysqlDatabase(): string {
-        return this._configService.get('MYSQL_DATABASE');
-    }
-
-    get telegramApi(): string {
-        return this._configService.get('TELEGRAM_API');
-    }
-
-    get telegramToken(): string {
-        return this._configService.get('TELEGRAM_TOKEN');
-    }
-
-    get telegramChatId(): number {
-        return this._configService.get('TELEGRAM_CHAT_ID');
+    get telegram(): ITelegramConfig {
+        return {
+            api: this._configService.get('TELEGRAM_API'),
+            token: this._configService.get('TELEGRAM_TOKEN'),
+            chatId: this._configService.get('TELEGRAM_CHAT_ID')
+        };
     }
 }

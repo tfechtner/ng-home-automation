@@ -54,7 +54,8 @@
                 "allow-pascal-case"
             ]
         },
-        "no-console": false
+        "no-console": false,
+        "no-string-literal": false
     },
     "rulesDirectory": []
 }
