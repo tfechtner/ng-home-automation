@@ -1,5 +1,0 @@
-{
-    "name": "nest-home-backend-server",
-    "script": "dist/backend/src/main.js",
-    "instances": "1"
-}

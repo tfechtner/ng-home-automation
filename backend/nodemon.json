@@ -3,5 +3,5 @@
         "dist"
     ],
     "ext": "js",
-    "exec": "node dist/backend/src/main"
+    "exec": "node dist/main"
 }

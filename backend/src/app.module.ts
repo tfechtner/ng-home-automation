@@ -18,6 +18,9 @@ import { NestConfigService } from './services/nest-config.service';
 import { NestConfigModule } from './services/nest-config/nest-config.module';
 import { ScraperService } from './services/scraper.service';
 import { TasksService } from './services/tasks.service';
+import { SettingsController } from './settings/settings.controller';
+import { SettingsEntity } from './settings/settings.entity';
+import { SettingsService } from './settings/settings.service';
 import { SonosController } from './sonos/sonos.controller';
 import { SonosService } from './sonos/sonos.service';
 import { TelegramService } from './telegram/telegram.service';
@@ -47,7 +50,8 @@ import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
             ]
         }),
         TypeOrmModule.forFeature([
-            EventEntity
+            EventEntity,
+            SettingsEntity
         ])
     ],
     controllers: [
@@ -56,7 +60,8 @@ import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
         SonosController,
         FibaroController,
         EventsController,
-        DevicesController
+        DevicesController,
+        SettingsController
     ],
     providers: [
         AppService,
@@ -66,6 +71,7 @@ import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
         NestWebsocketGateway,
         RoomsService,
         ScraperService,
+        SettingsService,
         SonosService,
         TasksService,
         TelegramService,

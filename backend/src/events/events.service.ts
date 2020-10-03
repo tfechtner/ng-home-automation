@@ -3,7 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DEVICE_KEYS, DEVICES_MAP } from '../config/main';
 import { IDevice } from '../devices/models/device';
+import { FibaroEventType } from '../fibaro/dto/fibaroEvent.dto';
 import { TelegramService } from '../telegram/telegram.service';
+import { NestWebsocketGateway } from '../websocket/nest-websocket.gateway';
 import { EventEntity } from './event.entity';
 
 @Injectable()
@@ -14,6 +16,7 @@ export class EventsService {
     constructor(
         @InjectRepository(EventEntity)
         private _eventRepository: Repository<EventEntity>,
+        private _nestWebsocketGateway: NestWebsocketGateway,
         private _telegramService: TelegramService
     ) {}
 
@@ -37,6 +40,13 @@ export class EventsService {
             case DEVICES_MAP.get(DEVICE_KEYS.SIDE_PATH_SENSOR).fibaroId :
                 this._sensorTriggered(event);
                 break;
+
+            case DEVICES_MAP.get(DEVICE_KEYS.MAIN_BEDROOM_THERMOSTAT).fibaroId :
+            case DEVICES_MAP.get(DEVICE_KEYS.DRESSING_ROOM_THERMOSTAT).fibaroId :
+            case DEVICES_MAP.get(DEVICE_KEYS.STUDY_THERMOSTAT).fibaroId :
+            case DEVICES_MAP.get(DEVICE_KEYS.BOOT_ROOM_THERMOSTAT).fibaroId :
+                this._temperatureChanged(event);
+                break;
         }
     }
 
@@ -44,7 +54,7 @@ export class EventsService {
         if (event.propertyName === 'value' && event.value === '1') {
 
             const deviceKey = this._findDeviceKey(event.deviceID);
-            console.log('[ Event ] ' + deviceKey + ' triggered');
+            console.log('[ Event ] ' + deviceKey + ' motion');
 
             const lastTriggered = this._lastTriggeredMap.get(deviceKey);
 
@@ -59,6 +69,27 @@ export class EventsService {
                 this._setLastTriggered(deviceKey);
             }
         }
+        this._nestWebsocketGateway.emitFibaroEvent({
+            type: FibaroEventType.MOTION_DETECTED,
+            data: {
+                deviceId: event.deviceID,
+                value: event.value
+            }
+        });
+    }
+
+    private _temperatureChanged(event: EventEntity) {
+        if (event.propertyName === 'value') {
+            const deviceKey = this._findDeviceKey(event.deviceID);
+            console.log('[ Event ] ' + deviceKey + ' temperature');
+        }
+        this._nestWebsocketGateway.emitFibaroEvent({
+            type: FibaroEventType.TEMPERATURE_CHANGED,
+            data: {
+                deviceId: event.deviceID,
+                value: event.value
+            }
+        });
     }
 
     private _findDeviceKey(fibaroId: number): DEVICE_KEYS {
