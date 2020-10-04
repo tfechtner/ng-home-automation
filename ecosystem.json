@@ -18,11 +18,10 @@
 
     "deploy": {
         "production": {
-            "key"  : "/Users/work/.ssh/tfechtner-Github.pub",
             "user": "work",
             "host": ["192.168.0.44"],
             "ref": "origin/develop",
-            "repo": "git@github.com:tfechtner/ng-home-automation.git",
+            "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
             "post-deploy": "cd backend && npm install && npm run prestart:prod && pm2 reload ecosystem.json --env production"
         }
