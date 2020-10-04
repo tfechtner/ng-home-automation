@@ -24,7 +24,7 @@ module.exports = {
             ref: 'origin/develop',
             repo: 'git@github.com:tfechtner/ng-home-automation.git',
             path: '/Users/work/Workspace/ng-home-automation',
-            'post-deploy': 'cd backend npm install && npm run prestart:prod && pm2 reload ecosystem.config.js --env production'
+            'post-deploy': 'cd backend && npm install && npm run prestart:prod && pm2 reload ecosystem.config.js --env production'
         }
     }
 };
