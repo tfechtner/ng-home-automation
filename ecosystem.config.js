@@ -19,10 +19,10 @@ module.exports = {
 
     deploy: {
         production: {
-            user: 'node',
+            user: 'work',
             host: '192.168.0.44',
             ref: 'origin/develop',
-            repo: 'github.com/tfechtner/ng-home-automation',
+            repo: 'git@github.com:tfechtner/ng-home-automation.git',
             path: '/Users/work/Workspace/ng-home-automation',
             'post-deploy': 'cd backend npm install && npm run prestart:prod && pm2 reload ecosystem.config.js --env production'
         }
