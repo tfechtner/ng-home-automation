@@ -18,6 +18,7 @@
 
     "deploy": {
         "production": {
+            "user": "work",
             "host": ["work-MacMiniNest"],
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
