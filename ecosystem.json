@@ -18,12 +18,11 @@
 
     "deploy": {
         "production": {
-            "user": "work",
             "host": ["work-MacMiniNest"],
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "whoami && echo $PATH && echo 'Node:' && node -v"
+            "post-deploy": "source ~/.zshrc && whoami && echo $PATH && echo 'Node:' && node -v"
         }
     }
 }
