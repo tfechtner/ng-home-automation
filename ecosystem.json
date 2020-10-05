@@ -18,12 +18,11 @@
 
     "deploy": {
         "production": {
-            "user": "work",
-            "host": ["192.168.0.44"],
+            "host": ["work-MacMiniNest"],
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "echo 'Node:' && node -v && cd backend && pwd"
+            "post-deploy": "whoami && cd backend && pwd && echo 'Node:' && node -v"
         }
     }
 }
