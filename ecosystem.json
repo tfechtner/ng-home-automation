@@ -1,7 +1,7 @@
 {
     "apps": [{
         "name": "nest-home-backend-server",
-        "script": "current/backend/dist/main.js",
+        "script": "backend/dist/main.js",
 
         "args": "one two",
         "instances": 1,
@@ -22,7 +22,7 @@
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "source ~/.zshrc && cd backend && npm install && npm run prestart:prod && cd .. && pm2 reload ecosystem.json --env production"
+            "post-deploy": "source ~/.zshrc && cd backend && npm install && npm run prestart:prod && cd && pm2 reload ecosystem.json --env production"
         }
     }
 }
