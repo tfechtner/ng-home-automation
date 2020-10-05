@@ -1,7 +1,7 @@
 {
     "apps": [{
         "name": "nest-home-backend-server",
-        "script": "dist/backend/src/main.js",
+        "script": "current/backend/dist/main.js",
 
         "args": "one two",
         "instances": 1,
