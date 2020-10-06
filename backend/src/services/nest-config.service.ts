@@ -25,7 +25,11 @@ export interface ITelegramConfig {
 export class NestConfigService {
     constructor(
         private _configService: ConfigService
-    ) { }
+    ) {
+        console.log('NestConfigService.constructor');
+        console.log('NestConfigService HOST:', this._configService.get('HOST'));
+        console.log('NestConfigService MYSQL_HOST:', this._configService.get('MYSQL_HOST'));
+    }
 
     get host(): string {
         return this._configService.get('HOST');
