@@ -26,10 +26,12 @@ import { SonosService } from './sonos/sonos.service';
 import { TelegramService } from './telegram/telegram.service';
 import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
 
+const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '.env';
+
 @Module({
     imports: [
         HttpModule,
-        ConfigModule.forRoot(),
+        ConfigModule.forRoot({ envFilePath }),
         ScheduleModule.forRoot(),
         TypeOrmModule.forRootAsync({
             imports: [
