@@ -30,12 +30,19 @@
         }
     ],
     "deploy": {
-        "production": {
+        "prod": {
             "host": ["work-MacMiniNest"],
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "source ~/.zshrc && cd backend && npm install && npm run prestart:prod && cd .. && cd frontend-server && npm install && npm run build && cd .. && rm -rf ./frontend-server/www/* && cp -r ./frontend/dist/* ./frontend-server/www && pm2 reload ecosystem.json --env production"
+            "post-deploy": "source ~/.zshrc && cd backend && npm install && npm run prestart:prod && cd .. && cd frontend-server && npm install && npm run build && cd .. && cd frontend && npm install && npm run build:prod && cd .. && rm -rf ./frontend-server/www/* && cp -r ./frontend/dist/* ./frontend-server/www && pm2 reload ecosystem.json --env production"
+        },
+        "prod-frontend": {
+            "host": ["work-MacMiniNest"],
+            "ref": "origin/develop",
+            "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
+            "path": "/Users/work/Workspace/ng-home-automation",
+            "post-deploy": "source ~/.zshrc && cd frontend && npm install && npm run build:prod && cd .. && rm -rf ./frontend-server/www/* && cp -r ./frontend/dist/* ./frontend-server/www"
         }
     }
 }
