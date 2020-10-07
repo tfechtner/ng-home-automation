@@ -2,7 +2,7 @@
 import express from 'express';
 import compression from 'compression';
 
-const ip = '192.168.0.44';
+const ip = process.env.NODE_ENV === 'production' ? '192.168.0.44' : '192.168.0.32';
 const port = 4100;
 const appFolder = 'frontend-server/www';
 

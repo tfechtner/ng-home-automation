@@ -1,5 +1,0 @@
-{
-    "name": "nest-home-sonos-api",
-    "script": "node-sonos-http-api/server.js",
-    "instances": "1"
-}
