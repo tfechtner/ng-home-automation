@@ -56,7 +56,7 @@
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "source ~/.zshrc && cd backend && npm install && npm run prestart:prod && pm2 reload ecosystem.json --env production --only nest-home-backend-server"
+            "post-deploy": "source ~/.zshrc && cd backend && npm install && npm run prestart:prod && cd .. && pm2 reload ecosystem.json --env production --only nest-home-backend-server"
         },
         "prod-frontend": {
             "host": ["work-MacMiniNest"],
