@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AxiosRequestConfig } from 'axios';
+import * as packageJson from '../package.json';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DevicesController } from './devices/devices.controller';
@@ -88,11 +89,11 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     ) {}
 
     onModuleInit() {
-        console.log(`\n[ AppModule ] NestHome Backend started on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
+        console.log(`\n[ AppModule ] Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
-                console.log(config.url);
+                // console.log(config.url);
                 return config;
             },
             (error) => {
@@ -102,12 +103,13 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
     onApplicationBootstrap() {
         // if (environment.production) {
-        this._telegramService.sendMessage('NestHome Backend started.').subscribe();
+        console.log('[ AppModule ] Application Bootstrap');
+        this._telegramService.sendMessage(`NestHome Backend started v${packageJson['version']}.`).subscribe();
         // }
     }
 
     onApplicationShutdown(signal?: string) {
-        console.log('AppModule.onApplicationShutdown', signal);
+        console.log('[ AppModule ] Application Shutdown', signal);
         // if (environment.production) {
         this._telegramService.sendMessage('NestHome Backend stopped.').subscribe();
         // }

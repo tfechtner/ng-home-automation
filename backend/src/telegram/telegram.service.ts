@@ -25,7 +25,7 @@ export class TelegramService {
         return this._httpService.get(this.requestUrl + 'sendMessage', config).pipe(
             take(1),
             map(axiosResponse => {
-                console.log('[ TelegramService ] Message sent response ok: ', axiosResponse.data['ok']);
+                console.log('[ TelegramService ] Message', !!axiosResponse.data['ok'] ? 'sent successfully' : 'failed');
             })
         );
     }

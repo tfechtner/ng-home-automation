@@ -75,13 +75,13 @@ export class SonosController {
     async sonos(@Body() sonosEvent: SonosEvent) {
         switch (sonosEvent.type) {
             case SonosEventType.VOLUME_CHANGE:
-                console.log('SonosController.event volume changed to ');
+                console.log('[ SonosController ] Event: VOLUME_CHANGE');
                 break;
             case SonosEventType.TRANSPORT_STATE:
-                console.log('SonosController.event transport state');
+                console.log('[ SonosController ] Event: TRANSPORT_STATE');
                 break;
             default:
-                console.log('SonosController.event unknown', sonosEvent);
+                console.log('[ SonosController ] Event: Uncaught yet');
         }
         this._nestWebsocketGateway.emitSonosEvent(sonosEvent);
     }
