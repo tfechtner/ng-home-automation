@@ -104,14 +104,14 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     onApplicationBootstrap() {
         // if (environment.production) {
         console.log('[ AppModule ] Application Bootstrap');
-        this._telegramService.sendMessage(`NestHome Backend started v${packageJson['version']}.`).subscribe();
+        this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
         // }
     }
 
     onApplicationShutdown(signal?: string) {
         console.log('[ AppModule ] Application Shutdown', signal);
         // if (environment.production) {
-        this._telegramService.sendMessage('NestHome Backend stopped.').subscribe();
+        this._telegramService.sendMessage('Backend stopped.').subscribe();
         // }
     }
 }

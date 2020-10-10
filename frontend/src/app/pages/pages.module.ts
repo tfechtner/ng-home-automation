@@ -13,12 +13,12 @@ import { NotFoundComponent } from './not-found/not-found.component';
         ThemeModule,
         DashboardModule,
         NbCardModule,
-        NbMenuModule,
+        NbMenuModule
     ],
     declarations: [
         NotFoundComponent,
-        PagesComponent,
-    ],
+        PagesComponent
+    ]
 })
 export class PagesModule {
 }

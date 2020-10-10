@@ -5,5 +5,5 @@ import { StateService } from './state.service';
 export {
     LayoutService,
     PlayerService,
-    StateService,
+    StateService
 };

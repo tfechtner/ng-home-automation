@@ -8,7 +8,7 @@ import {
     NbRadioModule,
     NbSelectModule,
     NbListModule,
-    NbIconModule,
+    NbIconModule
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeModule } from '../../@theme/theme.module';
@@ -32,14 +32,14 @@ import { FormsModule } from '@angular/forms';
         NbListModule,
         NbIconModule,
         NbButtonModule,
-        NgxEchartsModule,
+        NgxEchartsModule
     ],
     declarations: [
         DashboardComponent,
         RoomSelectorComponent,
         RoomsComponent,
-        PlayerComponent,
-    ],
+        PlayerComponent
+    ]
 })
 export class DashboardModule {
 }
