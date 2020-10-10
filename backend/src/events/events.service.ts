@@ -38,6 +38,7 @@ export class EventsService {
             case DEVICES_MAP.get(DEVICE_KEYS.BOOT_ROOM_SENSOR).fibaroId :
             case DEVICES_MAP.get(DEVICE_KEYS.GARAGE_BOOT_ROOM_DOOR_SENSOR).fibaroId :
             case DEVICES_MAP.get(DEVICE_KEYS.SIDE_PATH_SENSOR).fibaroId :
+            case DEVICES_MAP.get(DEVICE_KEYS.PATIO_SENSOR).fibaroId :
                 this._sensorTriggered(event);
                 break;
 

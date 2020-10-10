@@ -1,6 +1,6 @@
 {
     "name": "nest-home-backend",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Nest Home Backend",
     "license": "MIT",
     "scripts": {
@@ -17,7 +17,7 @@
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./test/jest-e2e.json",
-        "deploy": "./deploy.sh"
+        "deploy": "pm2 deploy ../ecosystem.json prod-backend"
     },
     "dependencies": {
         "@nestjs/common": "^7.2.0",

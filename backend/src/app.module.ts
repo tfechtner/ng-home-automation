@@ -2,7 +2,7 @@ import { HttpModule, HttpService, Module, OnApplicationBootstrap, OnApplicationS
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosError, AxiosRequestConfig } from 'axios';
 import * as packageJson from '../package.json';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -93,11 +93,11 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
-                // console.log(config.url);
+                // console.log('[ Debug ] Axios Request URL: ', config.url);
                 return config;
             },
-            (error) => {
-                return Promise.reject(error);
+            (axiosError: AxiosError) => {
+                return Promise.reject(axiosError);
             });
     }
 

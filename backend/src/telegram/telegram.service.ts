@@ -1,7 +1,7 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { NestConfigService } from '../services/nest-config.service';
 
 @Injectable()
@@ -23,8 +23,11 @@ export class TelegramService {
         const config: AxiosRequestConfig = { params: { chat_id: this.config.chatId, text: message } };
 
         return this._httpService.get(this.requestUrl + 'sendMessage', config).pipe(
-            take(1),
-            map(axiosResponse => {
+            catchError((axiosError: AxiosError) => {
+                console.log('[ TelegramService ] Error: ', axiosError.message);
+                return [];
+            }),
+            map((axiosResponse: AxiosResponse) => {
                 console.log('[ TelegramService ] Message', !!axiosResponse.data['ok'] ? 'sent successfully' : 'failed');
             })
         );

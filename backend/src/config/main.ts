@@ -30,7 +30,8 @@ export enum DEVICE_KEYS {
     GARAGE_BOOT_ROOM_DOOR_SENSOR = 'GARAGE_BOOT_ROOM_DOOR_SENSOR',
     BOOT_ROOM_SENSOR = 'BOOT_ROOM_SENSOR',
     BOOT_ROOM_THERMOSTAT = 'BOOT_ROOM_THERMOSTAT',
-    SIDE_PATH_SENSOR = 'SIDE_PATH_SENSOR'
+    SIDE_PATH_SENSOR = 'SIDE_PATH_SENSOR',
+    PATIO_SENSOR = 'PATIO_SENSOR'
 }
 
 export enum DEVICE_TYPES_ENUM {
@@ -49,7 +50,8 @@ export enum ROOMS_ENUM {
     DRESSING_ROOM = 'DRESSING_ROOM',
     STUDY = 'STUDY',
     BOOT_ROOM = 'BOOT_ROOM',
-    SIDE_PATH = 'SIDE_PATH'
+    SIDE_PATH = 'SIDE_PATH',
+    GARDEN = 'GARDEN'
 }
 
 export const DEVICES_MAP = new Map<string, IDevice>([
@@ -157,6 +159,13 @@ export const DEVICES_MAP = new Map<string, IDevice>([
         name: 'Side Path Motion Sensor',
         room: ROOMS_ENUM.SIDE_PATH,
         fibaroId: 83
+    }],
+    [
+        DEVICE_KEYS.PATIO_SENSOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
+        name: 'Patio Motion Sensor',
+        room: ROOMS_ENUM.GARDEN,
+        fibaroId: 132
     }]
 ]);
 

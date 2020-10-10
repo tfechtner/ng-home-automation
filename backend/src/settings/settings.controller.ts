@@ -1,5 +1,6 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { SettingsEntity } from './settings.entity';
+import { SettingHouseMode } from './settings.model';
 import { SettingsService } from './settings.service';
 
 @Controller('settings')
@@ -23,5 +24,12 @@ export class SettingsController {
     @Post('save')
     async save(@Body() settingsData: SettingsEntity): Promise<SettingsEntity> {
         return this._settingsService.save(settingsData);
+    }
+
+    @Get('set-house-mode/:mode')
+    setHouseMode(
+        @Param('mode') mode: SettingHouseMode
+    ): Promise<SettingsEntity> {
+        return this._settingsService.setHouseMode(mode);
     }
 }
