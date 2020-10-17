@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DEVICES_MAP } from '@backend/config/main';
 
 @Component({
     selector: 'ngx-temperatures',
@@ -8,7 +7,7 @@ import { DEVICES_MAP } from '@backend/config/main';
 })
 export class TemperaturesComponent implements OnInit {
 
-    private devices = DEVICES_MAP;
+    // private devices = DEVICES_MAP;
     // private thermostats = [];
 
     constructor() {
