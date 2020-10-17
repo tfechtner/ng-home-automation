@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { NestService } from '@services/nest/nest.service';
 import { NestWebsocketService } from '@services/websocket/nest-websocket.service';
 import { SettingsActions } from './@state/settings/settings.actions';
 
@@ -12,7 +11,7 @@ export class AppComponent implements OnInit {
 
     constructor(
         private _store: Store,
-        private _nestService: NestService,
+        // private _nestService: NestService,
         private _nestWebsocketService: NestWebsocketService
     ) { }
 

@@ -59,7 +59,7 @@ export class FibaroState {
     ): Observable<any> {
         return this._nestService.getFibaroDevice(payload.id).pipe(
             tap( (deviceData: IFibaroDevice) => {
-                let devices = [ ...getState().devices ];
+                const devices = [ ...getState().devices ];
                 console.log(devices);
                 console.log(deviceData.properties.value);
                 const index = devices.findIndex(device => device.id === payload.id);

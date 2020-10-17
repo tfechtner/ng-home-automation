@@ -12,7 +12,7 @@ export interface INetworkStateModel {
 }
 
 export const defaults: INetworkStateModel = {
-    isApiConnected: null,
+    isApiConnected: null
 };
 
 @State<INetworkStateModel>({

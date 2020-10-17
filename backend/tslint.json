@@ -55,6 +55,7 @@
             ]
         },
         "no-console": false,
+        "no-empty-interface": false,
         "no-string-literal": false
     },
     "rulesDirectory": []
