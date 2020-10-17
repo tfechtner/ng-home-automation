@@ -10,16 +10,12 @@ export class NestWebsocketService {
 
     constructor(
         private _toastrService: NbToastrService
-    ) {
-        console.log('NestWebsocketService.constructor');
-    }
+    ) { }
 
     connect() {
-        console.log('NestWebsocketService.connect');
         this.socket = io.connect(CONFIG.API.nest);
 
         this.socket.on('connect', () => {
-            console.log('NestWebsocketService.connect connect');
             this._toastrService.show(
                 'Connected',
                 `NestWebsocketService`,
@@ -34,7 +30,6 @@ export class NestWebsocketService {
         });
 
         this.socket.on('disconnect', (reason) => {
-            console.log('NestWebsocketService.connect disconnect', reason);
             this._toastrService.show(
                 'Disconnected',
                 `NestWebsocketService`,

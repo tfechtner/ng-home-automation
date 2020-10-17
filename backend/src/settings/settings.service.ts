@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { SettingDto } from './dto/setting.dto';
+import { SettingHouseModeEnum } from './enums/settingHouseModes.enum';
 import { SettingsEntity } from './settings.entity';
-import { SettingHouseMode } from './settings.model';
 
 @Injectable()
 export class SettingsService {
@@ -20,6 +21,8 @@ export class SettingsService {
         });
     }
 
+    // Repo
+
     async findAll(): Promise<SettingsEntity[]> {
         return await this._settingsRepository.find();
     }
@@ -32,24 +35,26 @@ export class SettingsService {
         });
     }
 
-    async save(setting: SettingsEntity): Promise<SettingsEntity> {
+    async save(setting: SettingDto): Promise<SettingsEntity> {
         return await this._settingsRepository.save(setting);
     }
 
+    // Internal
+
     public getHouseMode(): any {
         const value = this._settings.find(setting => setting.key === 'houseMode').value;
-        return SettingHouseMode[value];
+        return SettingHouseModeEnum[value];
     }
 
-    public setHouseMode(mode: SettingHouseMode) {
-        const newSetting: SettingsEntity = {
+    public setHouseMode(mode: SettingHouseModeEnum) {
+        const newSetting: SettingDto = {
             key: 'houseMode',
-            value: SettingHouseMode[mode]
+            value: SettingHouseModeEnum[mode]
         };
         return this.save(newSetting).then((savedSetting: SettingsEntity) => {
             const settingIndex = this._settings.findIndex(setting => setting.key === 'houseMode');
             this._settings[settingIndex] = savedSetting;
-            console.log('[ SettingsService ] House Mode Set To:', this.getHouseMode());
+            console.log('[ SettingsService ] House Mode Set To:', savedSetting.value);
             return savedSetting;
         });
     }

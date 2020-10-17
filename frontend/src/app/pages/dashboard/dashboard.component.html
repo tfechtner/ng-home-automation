@@ -1,3 +1,31 @@
 <div class="row">
-    Dash
+
+    <div class="col-md-6">
+        <nb-card class="theme-card">
+            <nb-card-header>
+                Theme
+            </nb-card-header>
+            <nb-card-body>
+                <button *ngFor="let theme of themes" nbButton (click)="changeTheme(theme.value)" [status]="currentTheme === theme.value ? 'primary' : ''">
+                    {{ theme.name }}
+                </button>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+    <div class="col-md-6">
+        <nb-card class="theme-card">
+            <nb-card-header>
+                House Mode
+            </nb-card-header>
+            <nb-card-body>
+                <button *ngFor="let mode of houseModes" nbButton (click)="changeHouseMode(mode.value)" [status]="currentHouseMode === mode.value ? 'primary' : ''">
+                    {{ mode.name }}
+                </button>
+            </nb-card-body>
+        </nb-card>
+    </div>
+
+    <ngx-temperatures></ngx-temperatures>
+
 </div>

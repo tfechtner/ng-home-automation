@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { SettingHouseModeEnum } from '@backend/settings/enums/settingHouseModes.enum';
 import { Observable } from 'rxjs';
+import { SettingDto } from '@backend/settings/dto/setting.dto';
 
 import { CONFIG } from '../../config/main';
-import { IFibaroDevices } from '../../../../../backend/src/fibaro/interfaces/fibaroDevices.interface';
-import { IFibaroDevice } from '../../../../../backend/src/fibaro/interfaces/fibaroDevice.interface';
-import { IFibaroRooms } from '../../../../../backend/src/fibaro/interfaces/fibaroRooms.interface';
-import { IFibaroRoom } from '../../../../../backend/src/fibaro/interfaces/fibaroRoom.interface';
+import { IFibaroDevices } from '@backend/fibaro/interfaces/fibaroDevices.interface';
+import { IFibaroDevice } from '@backend/fibaro/interfaces/fibaroDevice.interface';
+import { IFibaroRooms } from '@backend/fibaro/interfaces/fibaroRooms.interface';
+import { IFibaroRoom } from '@backend/fibaro/interfaces/fibaroRoom.interface';
 
 @Injectable()
 export class NestService {
@@ -14,16 +16,13 @@ export class NestService {
 
     constructor(
         private http: HttpClient
-    ) {
-        console.log('NestService.constructor');
-    }
+    ) { }
 
     public getApiState(): Observable<any> {
         return this.http.get(this.apiUrl + '/state');
     }
 
     public getRooms(): Observable<any> {
-        console.log('NestService.getRooms', this.apiUrl);
         return this.http.get(this.apiUrl + '/rooms');
     }
 
@@ -78,5 +77,15 @@ export class NestService {
 
     public getFibaroRoom(id: number): Observable<IFibaroRoom> {
         return this.http.get<IFibaroRoom>(this.apiUrl + `/fibaro/rooms/${id}`);
+    }
+
+    // Settings
+
+    public getSettings(): Observable<SettingDto[]> {
+        return this.http.get<SettingDto[]>(this.apiUrl + `/settings`);
+    }
+
+    public setHouseMode(houseMode: SettingHouseModeEnum): Observable<SettingDto> {
+        return this.http.get<SettingDto>(this.apiUrl + `/settings/set-house-mode/${houseMode}`);
     }
 }

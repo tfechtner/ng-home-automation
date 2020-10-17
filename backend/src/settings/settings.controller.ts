@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { SettingDto } from './dto/setting.dto';
+import { SettingHouseModeEnum } from './enums/settingHouseModes.enum';
 import { SettingsEntity } from './settings.entity';
-import { SettingHouseMode } from './settings.model';
 import { SettingsService } from './settings.service';
 
 @Controller('settings')
@@ -10,26 +11,26 @@ export class SettingsController {
     ) {}
 
     @Get()
-    index(): Promise<SettingsEntity[]> {
+    async index(): Promise<SettingDto[]> {
         return this._settingsService.findAll();
     }
 
     @Get(':key')
-    getSetting(
+    async getSetting(
         @Param('key') key: string
-    ): Promise<SettingsEntity[]> {
+    ): Promise<SettingDto[]> {
         return this._settingsService.findByKey(key);
     }
 
     @Post('save')
-    async save(@Body() settingsData: SettingsEntity): Promise<SettingsEntity> {
+    async save(@Body() settingsData: SettingsEntity): Promise<SettingDto> {
         return this._settingsService.save(settingsData);
     }
 
     @Get('set-house-mode/:mode')
-    setHouseMode(
-        @Param('mode') mode: SettingHouseMode
-    ): Promise<SettingsEntity> {
+    async setHouseMode(
+        @Param('mode') mode: SettingHouseModeEnum
+    ): Promise<SettingDto> {
         return this._settingsService.setHouseMode(mode);
     }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DEVICE_KEYS, DEVICES_MAP } from '../../../../../backend/src/config/main';
+import { DEVICE_KEYS, DEVICES_MAP } from '@backend/config/main';
 
 @Component({
     selector: 'ngx-temperatures',

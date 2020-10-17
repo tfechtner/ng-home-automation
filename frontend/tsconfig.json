@@ -3,6 +3,7 @@
     "compilerOptions": {
         "importHelpers": true,
         "module": "esnext",
+        "baseUrl": "src",
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
@@ -22,6 +23,13 @@
             {
                 "name": "tslint-language-service"
             }
-        ]
+        ],
+        "paths": {
+            "@backend/*": ["../../backend/src/*"],
+            "@environment/*": ["environments/*"],
+            "@models/*": ["app/@models/*"],
+            "@services/*": ["app/@services/*"],
+            "@utils/*": ["app/@utils/*"]
+        }
     }
 }

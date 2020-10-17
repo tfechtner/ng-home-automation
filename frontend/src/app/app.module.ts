@@ -1,14 +1,17 @@
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './@core/core.module';
-import { ThemeModule } from './@theme/theme.module';
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { NbMenuModule, NbSidebarModule, NbToastrModule } from '@nebular/theme';
-import { NestService } from './services/nest/nest.service';
-import { NestWebsocketService } from './services/websocket/nest-websocket.service';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { NestService } from '@services/nest/nest.service';
+import { NestWebsocketService } from '@services/websocket/nest-websocket.service';
+import { CoreModule } from './@core/core.module';
+import { appState, appStateOptions } from './@state';
+import { ThemeModule } from './@theme/theme.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +26,9 @@ import { NestWebsocketService } from './services/websocket/nest-websocket.servic
         NbMenuModule.forRoot(),
         NbToastrModule.forRoot(),
         CoreModule.forRoot(),
-        ThemeModule.forRoot()
+        ThemeModule.forRoot(),
+        NgxsModule.forRoot(appState, appStateOptions),
+        NgxsReduxDevtoolsPluginModule.forRoot()
     ],
     providers: [
         NestService,

@@ -10,5 +10,4 @@ export class SettingsEntity {
         default: null
     })
     value: string;
-
 }

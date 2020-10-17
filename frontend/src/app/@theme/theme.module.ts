@@ -85,7 +85,7 @@ export class ThemeModule {
             providers: [
                 ...NbThemeModule.forRoot(
                     {
-                        name: DARK_THEME.name
+                        name: DEFAULT_THEME.name
                     },
                     [DEFAULT_THEME, COSMIC_THEME, CORPORATE_THEME, DARK_THEME]
                 ).providers

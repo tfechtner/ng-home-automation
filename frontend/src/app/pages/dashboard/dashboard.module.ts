@@ -12,6 +12,7 @@ import {
 } from '@nebular/theme';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeModule } from '../../@theme/theme.module';
+import { TemperaturesComponent } from '../../components/temperatures/temperatures.component';
 import { DashboardComponent } from './dashboard.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { RoomSelectorComponent } from './rooms/room-selector/room-selector.component';
@@ -38,7 +39,8 @@ import { FormsModule } from '@angular/forms';
         DashboardComponent,
         RoomSelectorComponent,
         RoomsComponent,
-        PlayerComponent
+        PlayerComponent,
+        TemperaturesComponent
     ]
 })
 export class DashboardModule {
