@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SettingDto } from './dto/setting.dto';
 import { SettingHouseModeEnum } from './enums/settingHouseModes.enum';
+import { SettingKeysEnum } from './enums/settingKeys.enum';
 import { SettingsEntity } from './settings.entity';
 
 @Injectable()
@@ -48,7 +49,7 @@ export class SettingsService {
 
     public setHouseMode(mode: SettingHouseModeEnum) {
         const newSetting: SettingDto = {
-            key: 'houseMode',
+            key: SettingKeysEnum.HOUSE_MODE,
             value: SettingHouseModeEnum[mode]
         };
         return this.save(newSetting).then((savedSetting: SettingsEntity) => {
