@@ -4,6 +4,8 @@ import { Repository } from 'typeorm';
 import { DEVICE_KEYS, DEVICES_MAP } from '../config/main';
 import { IDevice } from '../devices/models/device';
 import { FibaroEventType } from '../fibaro/dto/fibaroEvent.dto';
+import { SettingHouseModeEnum } from '../settings/enums/settingHouseModes.enum';
+import { SettingsService } from '../settings/settings.service';
 import { TelegramService } from '../telegram/telegram.service';
 import { NestWebsocketGateway } from '../websocket/nest-websocket.gateway';
 import { EventEntity } from './event.entity';
@@ -17,7 +19,8 @@ export class EventsService {
         @InjectRepository(EventEntity)
         private _eventRepository: Repository<EventEntity>,
         private _nestWebsocketGateway: NestWebsocketGateway,
-        private _telegramService: TelegramService
+        private _telegramService: TelegramService,
+        private _settingsService: SettingsService
     ) {}
 
     async findAll(): Promise<EventEntity[]> {
@@ -61,10 +64,15 @@ export class EventsService {
 
             if (!!lastTriggered) {
                 if (this._getMinutesSince(lastTriggered) >= 1) {
+                    const houseMode = this._settingsService.getHouseMode();
                     this._setLastTriggered(deviceKey);
 
-                    const deviceName = DEVICES_MAP.get(deviceKey).name;
-                    this._telegramService.sendMessage(deviceName + ' triggered.').subscribe();
+                    if (houseMode === SettingHouseModeEnum.AWAY) {
+                        const deviceName = DEVICES_MAP.get(deviceKey).name;
+                        this._telegramService.sendMessage(deviceName + ' triggered.').subscribe();
+                    } else {
+                        console.log('[ Event ] No Telegram message sent as house mode is \'' + houseMode + '\'');
+                    }
                 }
             } else {
                 this._setLastTriggered(deviceKey);

@@ -77,7 +77,7 @@
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "source ~/.zshrc && cd sonos/node-sonos-http-api && npm install && pm2 startOrRestart ecosystem.json --env production --only nest-home-sonos-api"
+            "post-deploy": "source ~/.zshrc && cd sonos/node-sonos-http-api && npm install && pm2 reload ecosystem.json --env production --only nest-home-sonos-api"
         }
     }
 }
