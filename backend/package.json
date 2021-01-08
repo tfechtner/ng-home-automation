@@ -20,7 +20,7 @@
         "deploy": "pm2 deploy ../ecosystem.json prod-backend"
     },
     "dependencies": {
-        "@nestjs/common": "^7.2.0",
+        "@nestjs/common": "^7.6.5",
         "@nestjs/config": "^0.5.0",
         "@nestjs/core": "^7.2.0",
         "@nestjs/microservices": "^7.2.0",
