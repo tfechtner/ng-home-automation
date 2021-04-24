@@ -24,6 +24,7 @@ import { SettingsEntity } from './settings/settings.entity';
 import { SettingsService } from './settings/settings.service';
 import { SonosController } from './sonos/sonos.controller';
 import { SonosService } from './sonos/sonos.service';
+import { TelegramController } from './telegram/telegram.controller';
 import { TelegramService } from './telegram/telegram.service';
 import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
 
@@ -64,7 +65,8 @@ const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '
         FibaroController,
         EventsController,
         DevicesController,
-        SettingsController
+        SettingsController,
+        TelegramController
     ],
     providers: [
         AppService,

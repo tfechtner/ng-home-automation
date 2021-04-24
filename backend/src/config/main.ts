@@ -30,6 +30,11 @@ export enum DEVICE_KEYS {
     GARAGE_BOOT_ROOM_DOOR_SENSOR = 'GARAGE_BOOT_ROOM_DOOR_SENSOR',
     BOOT_ROOM_SENSOR = 'BOOT_ROOM_SENSOR',
     BOOT_ROOM_THERMOSTAT = 'BOOT_ROOM_THERMOSTAT',
+    UTILITY_MOULD_SENSOR = 'UTILITY_MOULD_SENSOR',
+    UTILITY_THERMOSTAT = 'UTILITY_THERMOSTAT',
+    UTILITY_HUMIDITY = 'UTILITY_HUMIDITY',
+    UTILITY_DEW_POINT = 'UTILITY_DEW_POINT',
+    UTILITY_HEAT_DETECTOR = 'UTILITY_HEAT_DETECTOR',
     SIDE_PATH_SENSOR = 'SIDE_PATH_SENSOR',
     PATIO_SENSOR = 'PATIO_SENSOR'
 }
@@ -41,6 +46,10 @@ export enum DEVICE_TYPES_ENUM {
     SENSOR_DOOR = 'SENSOR_DOOR',
     SENSOR_MOTION = 'SENSOR_MOTION',
     SENSOR_THERMOSTAT = 'SENSOR_THERMOSTAT',
+    SENSOR_MOULD = 'SENSOR_MOULD',
+    SENSOR_HUMIDITY = 'SENSOR_HUMIDITY',
+    SENSOR_DEW_POINT = 'SENSOR_DEW_POINT',
+    SENSOR_HEAT_DETECTOR = 'SENSOR_HEAT_DETECTOR',
     SPEAKER = 'SPEAKER',
     CAMERA = 'CAMERA'
 }
@@ -50,6 +59,7 @@ export enum ROOMS_ENUM {
     DRESSING_ROOM = 'DRESSING_ROOM',
     STUDY = 'STUDY',
     BOOT_ROOM = 'BOOT_ROOM',
+    UTILITY = 'UTILITY',
     SIDE_PATH = 'SIDE_PATH',
     GARDEN = 'GARDEN'
 }
@@ -152,6 +162,41 @@ export const DEVICES_MAP = new Map<string, IDevice>([
         name: 'Boot Room Temperature Sensor',
         room: ROOMS_ENUM.BOOT_ROOM,
         fibaroId: 27
+    }],
+    [
+        DEVICE_KEYS.UTILITY_MOULD_SENSOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_MOULD,
+        name: 'Utility Mould Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 143
+    }],
+    [
+        DEVICE_KEYS.UTILITY_THERMOSTAT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT,
+        name: 'Utility Temperature Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 144
+    }],
+    [
+        DEVICE_KEYS.UTILITY_HUMIDITY, {
+        type: DEVICE_TYPES_ENUM.SENSOR_HUMIDITY,
+        name: 'Utility Humidity Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 145
+    }],
+    [
+        DEVICE_KEYS.UTILITY_DEW_POINT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_DEW_POINT,
+        name: 'Utility Dew Point Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 146
+    }],
+    [
+        DEVICE_KEYS.UTILITY_HEAT_DETECTOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_HEAT_DETECTOR,
+        name: 'Utility Heat Detector Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 147
     }],
     [
         DEVICE_KEYS.SIDE_PATH_SENSOR, {
