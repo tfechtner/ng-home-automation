@@ -35,6 +35,11 @@ export enum DEVICE_KEYS {
     UTILITY_HUMIDITY = 'UTILITY_HUMIDITY',
     UTILITY_DEW_POINT = 'UTILITY_DEW_POINT',
     UTILITY_HEAT_DETECTOR = 'UTILITY_HEAT_DETECTOR',
+    KITCHEN_MOULD_SENSOR = 'KITCHEN_MOULD_SENSOR',
+    KITCHEN_THERMOSTAT = 'KITCHEN_THERMOSTAT',
+    KITCHEN_HUMIDITY = 'KITCHEN_HUMIDITY',
+    KITCHEN_DEW_POINT = 'KITCHEN_DEW_POINT',
+    KITCHEN_HEAT_DETECTOR = 'KITCHEN_HEAT_DETECTOR',
     SIDE_PATH_SENSOR = 'SIDE_PATH_SENSOR',
     PATIO_SENSOR = 'PATIO_SENSOR'
 }
@@ -58,6 +63,7 @@ export enum ROOMS_ENUM {
     MAIN_BEDROOM = 'MAIN_BEDROOM',
     DRESSING_ROOM = 'DRESSING_ROOM',
     STUDY = 'STUDY',
+    KITCHEN = 'KITCHEN',
     BOOT_ROOM = 'BOOT_ROOM',
     UTILITY = 'UTILITY',
     SIDE_PATH = 'SIDE_PATH',
@@ -197,6 +203,41 @@ export const DEVICES_MAP = new Map<string, IDevice>([
         name: 'Utility Heat Detector Sensor',
         room: ROOMS_ENUM.UTILITY,
         fibaroId: 147
+    }],
+    [
+        DEVICE_KEYS.KITCHEN_MOULD_SENSOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_MOULD,
+        name: 'Kitchen Mould Sensor',
+        room: ROOMS_ENUM.KITCHEN,
+        fibaroId: 154
+    }],
+    [
+        DEVICE_KEYS.KITCHEN_THERMOSTAT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT,
+        name: 'Kitchen Temperature Sensor',
+        room: ROOMS_ENUM.KITCHEN,
+        fibaroId: 155
+    }],
+    [
+        DEVICE_KEYS.KITCHEN_HUMIDITY, {
+        type: DEVICE_TYPES_ENUM.SENSOR_HUMIDITY,
+        name: 'Kitchen Humidity Sensor',
+        room: ROOMS_ENUM.KITCHEN,
+        fibaroId: 156
+    }],
+    [
+        DEVICE_KEYS.KITCHEN_DEW_POINT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_DEW_POINT,
+        name: 'Kitchen Dew Point Sensor',
+        room: ROOMS_ENUM.KITCHEN,
+        fibaroId: 157
+    }],
+    [
+        DEVICE_KEYS.KITCHEN_HEAT_DETECTOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_HEAT_DETECTOR,
+        name: 'Kitchen Heat Detector Sensor',
+        room: ROOMS_ENUM.KITCHEN,
+        fibaroId: 158
     }],
     [
         DEVICE_KEYS.SIDE_PATH_SENSOR, {
