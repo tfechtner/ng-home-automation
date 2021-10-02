@@ -26,6 +26,10 @@ export class NestService {
         return this.http.get(this.apiUrl + '/rooms');
     }
 
+    public getEvents(): Observable<any> {
+        return this.http.get(this.apiUrl + '/events');
+    }
+
     // Sonos
 
     public getSonosZones(): Observable<any> {

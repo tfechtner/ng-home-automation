@@ -6,5 +6,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'home-outline',
         link: '/dashboard',
         home: true
+    },
+    {
+        title: 'Events',
+        icon: 'activity-outline',
+        link: '/events',
+        home: true
     }
 ];
