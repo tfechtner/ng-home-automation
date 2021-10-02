@@ -36,6 +36,20 @@ export class SonosController {
         return this._sonosService.getRoomPause(room);
     }
 
+    @Get(':room/next')
+    roomNext(
+        @Param('room') room: string
+    ): any {
+        return this._sonosService.getRoomNext(room);
+    }
+
+    @Get(':room/previous')
+    roomPrevious(
+        @Param('room') room: string
+    ): any {
+        return this._sonosService.getRoomPrevious(room);
+    }
+
     @Get(':room/volume/:volume')
     roomVolume(
         @Param('room') room: string,

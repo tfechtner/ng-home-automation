@@ -48,6 +48,22 @@ export class SonosService {
         );
     }
 
+    public getRoomNext(room: string): Observable<any> {
+        return this.httpService.get(this._sonosApi + `${room}/next`).pipe(
+            map(axiosResponse => {
+                return axiosResponse.data;
+            })
+        );
+    }
+
+    public getRoomPrevious(room: string): Observable<any> {
+        return this.httpService.get(this._sonosApi + `${room}/previous`).pipe(
+            map(axiosResponse => {
+                return axiosResponse.data;
+            })
+        );
+    }
+
     public getRoomVolume(room: string, volume: number): Observable<any> {
         return this.httpService.get(this._sonosApi + `${room}/volume/${volume}`).pipe(
             map(axiosResponse => {

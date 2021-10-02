@@ -24,7 +24,7 @@ export class EventsService {
     ) {}
 
     async findAll(): Promise<EventEntity[]> {
-        return await this._eventRepository.find();
+        return await this._eventRepository.find({ take: 100, order: { id: 'DESC' } });
     }
 
     async create(event: EventEntity): Promise<EventEntity> {
