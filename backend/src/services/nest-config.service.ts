@@ -64,4 +64,8 @@ export class NestConfigService {
             chatId: this._configService.get('TELEGRAM_CHAT_ID')
         };
     }
+
+    get ringRefreshToken(): string {
+        return this._configService.get('RING_REFRESH_TOKEN');
+    }
 }

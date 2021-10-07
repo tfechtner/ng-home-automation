@@ -1,4 +1,4 @@
-import { HttpModule, HttpService, Module, OnApplicationBootstrap, OnApplicationShutdown, OnModuleInit } from '@nestjs/common';
+import { HttpModule, HttpService, Logger, Module, OnApplicationBootstrap, OnApplicationShutdown, OnModuleInit } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,6 +6,7 @@ import { AxiosError, AxiosRequestConfig } from 'axios';
 import * as packageJson from '../package.json';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CameraService } from './camera/camera.service';
 import { DevicesController } from './devices/devices.controller';
 import { DevicesService } from './devices/devices.service';
 import { EventEntity } from './events/event.entity';
@@ -13,6 +14,7 @@ import { EventsController } from './events/events.controller';
 import { EventsService } from './events/events.service';
 import { FibaroController } from './fibaro/fibaro.controller';
 import { FibaroService } from './fibaro/fibaro.service';
+import { RingService } from './ring/ring.service';
 import { RoomsController } from './rooms/rooms.controller';
 import { RoomsService } from './rooms/rooms.service';
 import { NestConfigService } from './services/nest-config.service';
@@ -80,22 +82,28 @@ const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '
         SonosService,
         TasksService,
         TelegramService,
-        DevicesService
+        DevicesService,
+        RingService,
+        CameraService,
+        Logger
     ]
 })
 export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplicationShutdown {
     constructor(
         private _nestConfigService: NestConfigService,
         private _httpService: HttpService,
-        private _telegramService: TelegramService
+        private _telegramService: TelegramService,
+        private _ringService: RingService,
+        private _cameraService: CameraService,
+        private _logger: Logger
     ) {}
 
     onModuleInit() {
-        console.log(`\n[ AppModule ] Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
+        this._logger.log(`[ AppModule ] Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
-                // console.log('[ Debug ] Axios Request URL: ', config.url);
+                // this._logger.log('[ Debug ] Axios Request URL: ', config.url);
                 return config;
             },
             (axiosError: AxiosError) => {
@@ -105,15 +113,15 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
     onApplicationBootstrap() {
         // if (environment.production) {
-        console.log('[ AppModule ] Application Bootstrap');
-        this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
+        this._logger.log('[ AppModule ] Application Bootstrap');
+        // this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
         // }
     }
 
     onApplicationShutdown(signal?: string) {
-        console.log('[ AppModule ] Application Shutdown', signal);
+        this._logger.log('[ AppModule ] Application Shutdown', signal);
         // if (environment.production) {
-        this._telegramService.sendMessage('Backend stopped.').subscribe();
+        // this._telegramService.sendMessage('Backend stopped.').subscribe();
         // }
     }
 }

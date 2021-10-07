@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { SettingDto } from './dto/setting.dto';
@@ -13,12 +13,13 @@ export class SettingsService {
 
     constructor(
         @InjectRepository(SettingsEntity)
-        private _settingsRepository: Repository<SettingsEntity>
+        private _settingsRepository: Repository<SettingsEntity>,
+        private _logger: Logger
     ) {
         this.findAll().then(settings => {
             this._settings = settings;
         }).then(() => {
-            console.log('[ SettingsService ] House Mode:', this.getHouseMode());
+            this._logger.log('[ SettingsService ] House Mode:', this.getHouseMode());
         });
     }
 
@@ -55,7 +56,7 @@ export class SettingsService {
         return this.save(newSetting).then((savedSetting: SettingsEntity) => {
             const settingIndex = this._settings.findIndex(setting => setting.key === 'houseMode');
             this._settings[settingIndex] = savedSetting;
-            console.log('[ SettingsService ] House Mode Set To:', savedSetting.value);
+            this._logger.log('[ SettingsService ] House Mode Set To:', savedSetting.value);
             return savedSetting;
         });
     }

@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DEVICE_KEYS, DEVICES_MAP } from '../config/main';
@@ -20,7 +20,8 @@ export class EventsService {
         private _eventRepository: Repository<EventEntity>,
         private _nestWebsocketGateway: NestWebsocketGateway,
         private _telegramService: TelegramService,
-        private _settingsService: SettingsService
+        private _settingsService: SettingsService,
+        private _logger: Logger
     ) {}
 
     async findAll(): Promise<EventEntity[]> {
@@ -58,7 +59,7 @@ export class EventsService {
         if (event.propertyName === 'value' && event.value === '1') {
 
             const deviceKey = this._findDeviceKey(event.deviceID);
-            console.log('[ Event ] ' + deviceKey + ' motion');
+            this._logger.log('[ Event ] ' + deviceKey + ' motion');
 
             const lastTriggered = this._lastTriggeredMap.get(deviceKey);
 
@@ -71,7 +72,7 @@ export class EventsService {
                         const deviceName = DEVICES_MAP.get(deviceKey).name;
                         this._telegramService.sendMessage(deviceName + ' triggered.').subscribe();
                     } else {
-                        console.log('[ Event ] No Telegram message sent as house mode is \'' + houseMode + '\'');
+                        this._logger.log('[ Event ] No Telegram message sent as house mode is \'' + houseMode + '\'');
                     }
                 }
             } else {
@@ -90,7 +91,7 @@ export class EventsService {
     private _temperatureChanged(event: EventEntity) {
         if (event.propertyName === 'value') {
             const deviceKey = this._findDeviceKey(event.deviceID);
-            console.log('[ Event ] ' + deviceKey + ' temperature');
+            this._logger.log('[ Event ] ' + deviceKey + ' temperature');
         }
         this._nestWebsocketGateway.emitFibaroEvent({
             type: FibaroEventType.TEMPERATURE_CHANGED,

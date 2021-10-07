@@ -30,10 +30,14 @@
         "@nestjs/typeorm": "^7.1.5",
         "@nestjs/websockets": "^7.6.5",
         "mysql": "^2.18.1",
+        "nest-winston": "^1.6.1",
+        "node-hikvision-api": "0.0.2",
         "reflect-metadata": "0.1.13",
         "rimraf": "2.6.3",
+        "ring-client-api": "^9.22.0",
         "rxjs": "6.4.0",
-        "typeorm": "^0.2.20"
+        "typeorm": "^0.2.37",
+        "winston": "^3.3.3"
     },
     "devDependencies": {
         "@nestjs/testing": "6.1.1",
