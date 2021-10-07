@@ -18,7 +18,7 @@ export class CameraService {
             user 	: 'admin',
             pass 	: '2bH2v9iGq6Ne',
             log 	: false
-        });
+        }, this._logger);
 
         this._logger.log(`[ CameraService ] ${!!this._hallCamera ? 'Connected' : 'Not Connected'}`);
 
