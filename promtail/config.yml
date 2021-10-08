@@ -23,4 +23,4 @@ scrape_configs:
           - localhost
         labels:
           job: backend
-          __path__: ../backend/*log
+          __path__: ~/Workspace/ng-home-automation/logs/backend-out*.log
