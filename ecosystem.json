@@ -3,8 +3,8 @@
         {
             "name": "nest-home-backend-server",
             "script": "backend/dist/main.js",
-            "error_file": "backend/logs/err.log",
-            "out_file": "backend/logs/out.log",
+            "error": "backend/logs/err.log",
+            "output": "backend/logs/out.log",
             "log_date_format" : "YYYY-MM-DD HH:mm Z",
             "instances": 1,
             "autorestart": true,
