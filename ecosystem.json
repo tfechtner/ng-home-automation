@@ -3,9 +3,8 @@
         {
             "name": "nest-home-backend-server",
             "script": "backend/dist/main.js",
-            "out_file": "~/Workspace/ng-home-automation/logs/backend-out.log",
-            "error_file": "~/Workspace/ng-home-automation/logs/backend-error.log",
-            "log_date_format" : "YYYY-MM-DD HH:mm Z",
+            "out_file": "logs/backend-out.log",
+            "error_file": "logs/backend-error.log",
             "instances": 1,
             "autorestart": true,
             "watch": false,
@@ -20,6 +19,8 @@
         {
             "name": "nest-home-frontend-server",
             "script": "frontend-server/dist/server.js",
+            "out_file": "logs/frontend-out.log",
+            "error_file": "logs/frontend-error.log",
             "instances": 1,
             "autorestart": true,
             "watch": false,
@@ -34,6 +35,8 @@
         {
             "name": "nest-home-sonos-api",
             "script": "sonos/node-sonos-http-api/server.js",
+            "out_file": "logs/sonos-out.log",
+            "error_file": "logs/sonos-error.log",
             "instances": 1,
             "autorestart": true,
             "watch": false,
