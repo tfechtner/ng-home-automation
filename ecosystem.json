@@ -108,7 +108,7 @@
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "source promtail/.env && sed -e 's|GRAFANA_URL|$GRAFANA_LOKI_URL|' promtail/config.yml && pm2 reload ecosystem.json --env production --only nest-home-promtail"
+            "post-deploy": "source promtail/.env && sed -e s|GRAFANA_URL|$GRAFANA_LOKI_URL| promtail/config.yml && pm2 reload ecosystem.json --env production --only nest-home-promtail"
         }
     }
 }
