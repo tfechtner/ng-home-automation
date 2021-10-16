@@ -3,8 +3,8 @@
         {
             "name": "nest-home-backend-server",
             "script": "backend/dist/main.js",
-            "out_file": "~/Workspace/ng-home-automation/logs/backend-out.log",
-            "error_file": "~/Workspace/ng-home-automation/logs/backend-error.log",
+            "out_file": "./logs/backend-out.log",
+            "error_file": "./logs/backend-error.log",
             "instances": 1,
             "autorestart": true,
             "watch": false,
@@ -19,8 +19,8 @@
         {
             "name": "nest-home-frontend-server",
             "script": "frontend-server/dist/server.js",
-            "out_file": "~/Workspace/ng-home-automation/logs/frontend-out.log",
-            "error_file": "~/Workspace/ng-home-automation/logs/frontend-error.log",
+            "out_file": "./logs/frontend-out.log",
+            "error_file": "./logs/frontend-error.log",
             "instances": 1,
             "autorestart": true,
             "watch": false,
@@ -35,8 +35,26 @@
         {
             "name": "nest-home-sonos-api",
             "script": "sonos/node-sonos-http-api/server.js",
-            "out_file": "~/Workspace/ng-home-automation/logs/sonos-out.log",
-            "error_file": "~/Workspace/ng-home-automation/logs/sonos-error.log",
+            "out_file": "./logs/sonos-out.log",
+            "error_file": "./logs/sonos-error.log",
+            "instances": 1,
+            "autorestart": true,
+            "watch": false,
+            "max_memory_restart": "1G",
+            "env": {
+                "NODE_ENV": "development"
+            },
+            "env_production": {
+                "NODE_ENV": "production"
+            }
+        },
+        {
+            "name": "nest-home-promtail",
+            "script": "/usr/local/bin/promtail",
+            "out_file": "./logs/promtail-out.log",
+            "error_file": "./logs/promtail-error.log",
+            "exec_interpreter": "none",
+            "args": ["-config.file=promtail/config.yml", "-config.expand-env=true"],
             "instances": 1,
             "autorestart": true,
             "watch": false,
@@ -84,6 +102,13 @@
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
             "post-deploy": "source ~/.zshrc && cd sonos/node-sonos-http-api && npm install && pm2 reload ecosystem.json --env production --only nest-home-sonos-api"
+        },
+        "prod-promtail": {
+            "host": ["work-MacMiniNest"],
+            "ref": "origin/develop",
+            "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
+            "path": "/Users/work/Workspace/ng-home-automation",
+            "post-deploy": "source promtail/.env && sed -i \"s|GRAFANA_URL|$GRAFANA_LOKI_URL|\" promtail/config.yml && pm2 reload ecosystem.json --env production --only nest-home-promtail"
         }
     }
 }
