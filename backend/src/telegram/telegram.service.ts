@@ -10,7 +10,9 @@ export class TelegramService {
         private _httpService: HttpService,
         private _nestConfigService: NestConfigService,
         private _logger: Logger
-    ) { }
+    ) {
+        this._logger = new Logger('TelegramService');
+    }
 
     private config = {
         api: this._nestConfigService.telegram.api,
@@ -25,11 +27,11 @@ export class TelegramService {
 
         return this._httpService.get(this.requestUrl + 'sendMessage', config).pipe(
             catchError((axiosError: AxiosError) => {
-                this._logger.log('[ TelegramService ] Error:', axiosError.response.data.error_code + ' - ' + axiosError.response.data?.description);
+                this._logger.log('Error:', axiosError.response.data.error_code + ' - ' + axiosError.response.data?.description);
                 return [];
             }),
             map((axiosResponse: AxiosResponse) => {
-                this._logger.log('[ TelegramService ] Message', !!axiosResponse.data['ok'] ? 'sent successfully' : 'failed');
+                this._logger.log('Message', !!axiosResponse.data['ok'] ? 'sent successfully' : 'failed');
             })
         );
     }

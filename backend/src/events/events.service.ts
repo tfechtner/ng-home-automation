@@ -7,7 +7,7 @@ import { FibaroEventType } from '../fibaro/dto/fibaroEvent.dto';
 import { SettingHouseModeEnum } from '../settings/enums/settingHouseModes.enum';
 import { SettingsService } from '../settings/settings.service';
 import { TelegramService } from '../telegram/telegram.service';
-import { NestWebsocketGateway } from '../websocket/nest-websocket.gateway';
+import { WebsocketGateway } from '../websocket/nest-websocket.gateway';
 import { EventEntity } from './event.entity';
 
 @Injectable()
@@ -18,11 +18,13 @@ export class EventsService {
     constructor(
         @InjectRepository(EventEntity)
         private _eventRepository: Repository<EventEntity>,
-        private _nestWebsocketGateway: NestWebsocketGateway,
+        private _websocketGateway: WebsocketGateway,
         private _telegramService: TelegramService,
         private _settingsService: SettingsService,
         private _logger: Logger
-    ) {}
+    ) {
+        this._logger = new Logger('EventsService');
+    }
 
     async findAll(): Promise<EventEntity[]> {
         return await this._eventRepository.find({ take: 100, order: { id: 'DESC' } });
@@ -59,7 +61,7 @@ export class EventsService {
         if (event.propertyName === 'value' && event.value === '1') {
 
             const deviceKey = this._findDeviceKey(event.deviceID);
-            this._logger.log('[ Event ] ' + deviceKey + ' motion');
+            this._logger.log(deviceKey + ' motion');
 
             const lastTriggered = this._lastTriggeredMap.get(deviceKey);
 
@@ -72,14 +74,14 @@ export class EventsService {
                         const deviceName = DEVICES_MAP.get(deviceKey).name;
                         this._telegramService.sendMessage(deviceName + ' triggered.').subscribe();
                     } else {
-                        this._logger.log('[ Event ] No Telegram message sent as house mode is \'' + houseMode + '\'');
+                        this._logger.log('No Telegram message sent as house mode is \'' + houseMode + '\'');
                     }
                 }
             } else {
                 this._setLastTriggered(deviceKey);
             }
         }
-        this._nestWebsocketGateway.emitFibaroEvent({
+        this._websocketGateway.emitFibaroEvent({
             type: FibaroEventType.MOTION_DETECTED,
             data: {
                 deviceId: event.deviceID,
@@ -91,9 +93,9 @@ export class EventsService {
     private _temperatureChanged(event: EventEntity) {
         if (event.propertyName === 'value') {
             const deviceKey = this._findDeviceKey(event.deviceID);
-            this._logger.log('[ Event ] ' + deviceKey + ' temperature');
+            this._logger.log(deviceKey + ' temperature');
         }
-        this._nestWebsocketGateway.emitFibaroEvent({
+        this._websocketGateway.emitFibaroEvent({
             type: FibaroEventType.TEMPERATURE_CHANGED,
             data: {
                 deviceId: event.deviceID,

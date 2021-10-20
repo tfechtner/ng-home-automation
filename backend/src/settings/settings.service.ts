@@ -16,10 +16,12 @@ export class SettingsService {
         private _settingsRepository: Repository<SettingsEntity>,
         private _logger: Logger
     ) {
+        this._logger = new Logger('SettingsService');
+
         this.findAll().then(settings => {
             this._settings = settings;
         }).then(() => {
-            this._logger.log('[ SettingsService ] House Mode:', this.getHouseMode());
+            this._logger.log('House Mode: ' + this.getHouseMode());
         });
     }
 
@@ -56,7 +58,7 @@ export class SettingsService {
         return this.save(newSetting).then((savedSetting: SettingsEntity) => {
             const settingIndex = this._settings.findIndex(setting => setting.key === 'houseMode');
             this._settings[settingIndex] = savedSetting;
-            this._logger.log('[ SettingsService ] House Mode Set To:', savedSetting.value);
+            this._logger.log('House Mode Set To:', savedSetting.value);
             return savedSetting;
         });
     }

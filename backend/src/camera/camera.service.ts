@@ -12,37 +12,44 @@ export class CameraService {
         private _nestConfigService: NestConfigService,
         private _logger: Logger
     ) {
+        this._logger = new Logger('CameraService');
+        
         this._hallCamera = new Hikvision({
             host	: '192.168.0.181',
             port 	: '80',
             user 	: 'admin',
             pass 	: '2bH2v9iGq6Ne',
-            log 	: false
+            log 	: true
         }, this._logger);
 
-        this._logger.log(`[ CameraService ] ${!!this._hallCamera ? 'Connected' : 'Not Connected'}`);
+        this._logger.log(`${!!this._hallCamera ? 'Connected' : 'Not Connected'}`);
 
-        // this._initHealthCheck();
+        this._initHealthCheck();
         this._initCameraAlarms();
     }
 
     private _initHealthCheck() {
-        this._logger.log('[ CameraService ] Health Check' + this._hallCamera.ptzStatus());
+        this._logger.log('Health Check xxx');
+        // this._hallCamera.ptzStatus();
     }
 
     private _initCameraAlarms() {
         this._hallCamera.on('alarm', (code, action, index) =>  {
-            this._logger.log('[ CameraService ] ' + code + ' ' + action + ' ' + index);
-            // if (code === 'VideoMotion'   && action === 'Start') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Video Motion Detected'); }
-            // if (code === 'VideoMotion'   && action === 'Stop') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Video Motion Ended'); }
-            // if (code === 'LineDetection' && action === 'Start') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Line Cross Detected'); }
-            // if (code === 'LineDetection' && action === 'Stop') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Line Cross Ended'); }
-            // if (code === 'AlarmLocal'    && action === 'Start') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Local Alarm Triggered: ' + index); }
-            // if (code === 'AlarmLocal'    && action === 'Stop') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Local Alarm Ended: ' + index); }
-            // if (code === 'VideoLoss'     && action === 'Start') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Video Lost!'); }
-            // if (code === 'VideoLoss'     && action === 'Stop') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Video Found!'); }
-            // if (code === 'VideoBlind'    && action === 'Start') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Video Blind!'); }
-            // if (code === 'VideoBlind'    && action === 'Stop') { this._logger.log(' [ CameraService ] ' + this._getDateTime() + ' Channel ' + index + ': Video Unblind!'); }
+            this._logger.log(code + ' ' + action + ' ' + index);
+            // if (code === 'VideoMotion'   && action === 'Start') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Video Motion Detected'); }
+            // if (code === 'VideoMotion'   && action === 'Stop') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Video Motion Ended'); }
+            // if (code === 'LineDetection' && action === 'Start') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Line Cross Detected'); }
+            // if (code === 'LineDetection' && action === 'Stop') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Line Cross Ended'); }
+            // if (code === 'AlarmLocal'    && action === 'Start') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Local Alarm Triggered: ' + index); }
+            // if (code === 'AlarmLocal'    && action === 'Stop') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Local Alarm Ended: ' + index); }
+            // if (code === 'VideoLoss'     && action === 'Start') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Video Lost!'); }
+            // if (code === 'VideoLoss'     && action === 'Stop') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Video Found!'); }
+            // if (code === 'VideoBlind'    && action === 'Start') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Video Blind!'); }
+            // if (code === 'VideoBlind'    && action === 'Stop') { this._logger.log(' ' + this._getDateTime() + ' Channel ' + index + ': Video Unblind!'); }
+        });
+
+        this._hallCamera.on('error', (code, action, index) => {
+            this._logger.error(code + ' ' + action + ' ' + index);
         });
     }
 

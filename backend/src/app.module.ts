@@ -28,7 +28,7 @@ import { SonosController } from './sonos/sonos.controller';
 import { SonosService } from './sonos/sonos.service';
 import { TelegramController } from './telegram/telegram.controller';
 import { TelegramService } from './telegram/telegram.service';
-import { NestWebsocketGateway } from './websocket/nest-websocket.gateway';
+import { WebsocketGateway } from './websocket/nest-websocket.gateway';
 
 const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '.env';
 
@@ -75,7 +75,7 @@ const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '
         EventsService,
         FibaroService,
         NestConfigService,
-        NestWebsocketGateway,
+        WebsocketGateway,
         RoomsService,
         ScraperService,
         SettingsService,
@@ -89,6 +89,7 @@ const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '
     ]
 })
 export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplicationShutdown {
+
     constructor(
         private _nestConfigService: NestConfigService,
         private _httpService: HttpService,
@@ -96,14 +97,16 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
         private _ringService: RingService,
         private _cameraService: CameraService,
         private _logger: Logger
-    ) {}
+    ) {
+        this._logger = new Logger('AppModule');
+    }
 
     onModuleInit() {
-        this._logger.log(`[ AppModule ] Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
+        this._logger.log(`Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
-                // this._logger.log('[ Debug ] Axios Request URL: ', config.url);
+                // this._logger.log('[Debug] Axios Request URL: ', config.url);
                 return config;
             },
             (axiosError: AxiosError) => {
@@ -113,13 +116,13 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
     onApplicationBootstrap() {
         // if (environment.production) {
-        this._logger.log('[ AppModule ] Application Bootstrap');
+        this._logger.log('Application Bootstrap');
         // this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
         // }
     }
 
     onApplicationShutdown(signal?: string) {
-        this._logger.log('[ AppModule ] Application Shutdown', signal);
+        this._logger.log('Application Shutdown', signal);
         // if (environment.production) {
         // this._telegramService.sendMessage('Backend stopped.').subscribe();
         // }

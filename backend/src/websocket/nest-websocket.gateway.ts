@@ -1,45 +1,43 @@
 import { Logger } from '@nestjs/common';
-import {
-    OnGatewayConnection,
-    OnGatewayDisconnect,
-    OnGatewayInit,
-    SubscribeMessage,
-    WebSocketGateway,
-    WebSocketServer
-} from '@nestjs/websockets';
+import { OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WebSocketGateway, WebSocketServer } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 import { FibaroEvent } from '../fibaro/dto/fibaroEvent.dto';
 import { SonosEvent } from '../sonos/dto/sonsoEvent.dto';
 
 @WebSocketGateway()
-export class NestWebsocketGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
+export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
 
-    @WebSocketServer() server: Server;
-    private logger: Logger = new Logger('NestWebsocketGateway');
+    constructor(
+        private _logger: Logger
+    ) {
+        this._logger = new Logger('WebsocketGateway');
+    }
+
+    @WebSocketServer()server: Server;
 
     @SubscribeMessage('msgToServer')
     handleMessage(client: Socket, payload: string): void {
-        this.logger.log('[ WebSocket ] Handle message');
+        this._logger.log('Handle message');
         this.server.emit('msgToClient', payload);
     }
 
     afterInit(server: Server) {
-        this.logger.log('[ WebSocket ] Init');
+        this._logger.log('Initiliased');
     }
 
     handleDisconnect(client: Socket) {
-        this.logger.log(`[ WebSocket ] Client disconnected`);
+        this._logger.log(`Client disconnected`);
     }
 
     handleConnection(client: Socket, ...args: any[]) {
-        this.logger.log(`[ WebSocket ] Client connected`);
+        this._logger.log(`Client connected`);
     }
 
     emitSonosEvent(event: SonosEvent) {
-        this.server.emit('[ WebSocket ] Emit Sonos event', event);
+        this.server.emit('Emit Sonos event', event);
     }
 
     emitFibaroEvent(event: FibaroEvent) {
-        this.server.emit('[ WebSocket ] Emit Fibaro event', event);
+        this.server.emit('Emit Fibaro event', event);
     }
 }

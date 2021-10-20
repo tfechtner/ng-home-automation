@@ -1,7 +1,6 @@
 import * as events from 'events';
 import * as net from 'net';
 import * as request from 'request';
-import * as util from 'util';
 import * as	xml2js from 'xml2js';
 
 import { Logger } from '@nestjs/common';
@@ -31,7 +30,8 @@ export class Hikvision extends events.EventEmitter {
         private _logger: Logger
     ) {
         super();
-
+        this._logger = new Logger('Hikvision');
+        
         if (options.log) {
             this.TRACE = options.log;
         }
@@ -41,7 +41,7 @@ export class Hikvision extends events.EventEmitter {
     }
 
     public connect(options): Socket {
-        const authHeader = 'Authorization: Basic ' + new Buffer(options.user + ':' + options.pass).toString('base64');
+        const authHeader = 'Authorization: Basic ' + Buffer.from(options.user + ':' + options.pass, 'base64').toString('base64');
 
         return net.connect(options, () => {
             const header = 'GET /ISAPI/Event/notification/alertStream HTTP/1.1\r\n' +
@@ -90,7 +90,7 @@ export class Hikvision extends events.EventEmitter {
                                 if (that.activeEvents.hasOwnProperty(event)) {
                                     const eventDetails = that.activeEvents[event];
                                     if (that.TRACE) {
-                                        this._logger.log('Ending Event: ' + event + ' - ' + eventDetails['code'] + ' - ' + ((Date.now() - eventDetails['Systimestamp']) / 1000));
+                                        that._logger.log('Ending Event: ' + event + ' - ' + eventDetails['code'] + ' - ' + ((Date.now() - eventDetails['Systimestamp']) / 1000));
                                     }
                                     this.emit('alarm', eventDetails['code'], 'Stop', eventDetails['index']);
                                 }
@@ -117,7 +117,7 @@ export class Hikvision extends events.EventEmitter {
 
                         // known active events
                     } else {
-                        if (that.TRACE) { this._logger.log('    Skipped Event: ' + code + ' ' + action + ' ' + index + ' ' + count ); }
+                        if (that.TRACE) { that._logger.log('Skipped Event: ' + code + ' ' + action + ' ' + index + ' ' + count ); }
 
                         // Update lasttimestamp
                         const eventDets = { };
@@ -133,13 +133,17 @@ export class Hikvision extends events.EventEmitter {
                                 const eventDetails = that.activeEvents[event];
                                 if (((Date.now() - eventDetails['lasttimestamp']) / 1000) > 2) {
                                     if (that.TRACE) {
-                                        this._logger.log('    Ending Event: ' + event + ' - ' + eventDetails['code'] + ' - ' + ((Date.now() - eventDetails['lasttimestamp']) / 1000));
+                                        that._logger.log('Ending Event: ' + event + ' - ' + eventDetails['code'] + ' - ' + ((Date.now() - eventDetails['lasttimestamp']) / 1000));
                                     }
                                     that.emit('alarm', eventDetails['code'], 'Stop', eventDetails['index']);
                                     delete that.activeEvents[event];
                                 }
                             }
                         }
+                    }
+                } else if (err) {
+                    if (that.TRACE) {
+                        that._logger.error('ERROR: ' + err);
                     }
                 }
             });
@@ -149,6 +153,11 @@ export class Hikvision extends events.EventEmitter {
     // Request PTZ Status
     public ptzStatus() {
         request(this.BASEURI + '/cgi-bin/ptz.cgi?action=getStatus', (error, response, body) => {
+            if (this.TRACE) {
+                this._logger.log('ERROR: ' + error);
+                this._logger.log('RESPONSE: ' + JSON.stringify(response));
+                this._logger.log('BODY: ' + body);
+            }
             if ((!error) && (response.statusCode === 200)) {
                 body = body.toString().split('\r\n').trim();
                 if (this.TRACE) { this._logger.log('PTZ STATUS: ' + body); }
@@ -191,7 +200,7 @@ export class Hikvision extends events.EventEmitter {
 
     private _handleError(err) {
         if (this.TRACE) {
-            this._logger.log('Connection error: ' + err);
+            this._logger.error('Connection error: ' + err);
         }
         this.emit('error', err);
     }

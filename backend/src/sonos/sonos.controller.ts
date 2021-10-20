@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Logger, Param, Post } from '@nestjs/common';
-import { NestWebsocketGateway } from '../websocket/nest-websocket.gateway';
+import { WebsocketGateway } from '../websocket/nest-websocket.gateway';
 import { SonosEvent, SonosEventType } from './dto/sonsoEvent.dto';
 import { SonosService } from './sonos.service';
 
@@ -7,9 +7,11 @@ import { SonosService } from './sonos.service';
 export class SonosController {
     constructor(
         private readonly _sonosService: SonosService,
-        private _nestWebsocketGateway: NestWebsocketGateway,
+        private _websocketGateway: WebsocketGateway,
         private _logger: Logger
-    ) {}
+    ) {
+        this._logger = new Logger('SonosController');
+    }
 
     @Get('zones')
     getZones() {
@@ -90,14 +92,14 @@ export class SonosController {
     async sonos(@Body() sonosEvent: SonosEvent) {
         switch (sonosEvent.type) {
             case SonosEventType.VOLUME_CHANGE:
-                this._logger.log('[ SonosController ] Event: VOLUME_CHANGE');
+                this._logger.log('Event: VOLUME_CHANGE');
                 break;
             case SonosEventType.TRANSPORT_STATE:
-                this._logger.log('[ SonosController ] Event: TRANSPORT_STATE');
+                this._logger.log('Event: TRANSPORT_STATE');
                 break;
             default:
-                this._logger.log('[ SonosController ] Event: Uncaught yet');
+                this._logger.log('Event: Uncaught yet');
         }
-        this._nestWebsocketGateway.emitSonosEvent(sonosEvent);
+        this._websocketGateway.emitSonosEvent(sonosEvent);
     }
 }

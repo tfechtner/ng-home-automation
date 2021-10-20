@@ -17,6 +17,7 @@ export class RingService {
         private _nestConfigService: NestConfigService,
         private _logger: Logger
     ) {
+        this._logger = new Logger('RingService');
 
         this._ringApi = new RingApi({
             refreshToken: this._nestConfigService.ringRefreshToken,
@@ -26,13 +27,13 @@ export class RingService {
 
         this._ringApi.getLocations().then((locations) => {
             this._ringLocation = locations[0];
-            this._logger.log(`[ RingService ] ${locations.length} locations found`);
+            this._logger.log(`${locations.length} locations found`);
             this._initLocationConnected();
         });
 
         this._ringApi.getCameras().then((cameras) => {
             this._ringCamera = cameras[0];
-            this._logger.log(`[ RingService ] ${cameras.length} cameras found`);
+            this._logger.log(`${cameras.length} cameras found`);
             this._initCameraEvents();
         });
     }
@@ -49,34 +50,34 @@ export class RingService {
 
         this._ringLocation.onConnected.subscribe((connected) => {
             const state = connected ? 'Connected' : 'Connecting';
-            this._logger.log(`[ RingService ] ${state} to location ${this._ringLocation.name} - ${this._ringLocation.id}`);
+            this._logger.log(`${state} to location ${this._ringLocation.name} - ${this._ringLocation.id}`);
         });
     }
 
     private _initCameraEvents() {
         this._ringCamera.getHealth().then((health) => {
-            this._logger.log(`[ RingService ] Camera Health: ${health.battery_percentage}`);
+            this._logger.log(`Camera Health: ${health.battery_percentage}`);
         });
 
         this._ringCamera.subscribeToDingEvents().then((sub) => {
-            this._logger.log(`[ RingService ] Subscribed Ding`);
+            this._logger.log(`Subscribed Ding`);
         });
 
         this._ringCamera.subscribeToMotionEvents().then((sub) => {
-            this._logger.log(`[ RingService ] Subscribed Motion`);
+            this._logger.log(`Subscribed Motion`);
         });
 
         this._ringCamera.onNewDing.subscribe((ding: ActiveDing) => {
-            this._logger.log(`[ RingService ] Ding Detected: ${ding.kind}`);
+            this._logger.log(`Ding Detected: ${ding.kind}`);
         });
         this._ringCamera.onMotionDetected.subscribe((motionDetected: boolean) => {
-            this._logger.log(`[ RingService ] Motion Detected: ${motionDetected}`);
+            this._logger.log(`Motion Detected: ${motionDetected}`);
         });
         this._ringCamera.onMotionStarted.subscribe(() => {
-            this._logger.log(`[ RingService ] Motion Started`);
+            this._logger.log(`[ RingService] Motion Started`);
         });
         this._ringCamera.onDoorbellPressed.subscribe((ding: ActiveDing) => {
-            this._logger.log(`[ RingService ] Doorbell Pressed: ${ding.kind}`);
+            this._logger.log(`[ RingService] Doorbell Pressed: ${ding.kind}`);
         });
     }
 }
