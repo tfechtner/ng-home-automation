@@ -3,7 +3,6 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AxiosError, AxiosRequestConfig } from 'axios';
-import { environment } from '../../frontend/src/environments/environment';
 import * as packageJson from '../package.json';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -114,7 +113,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     }
 
     onApplicationBootstrap() {
-        if (environment.production) {
+        if (process.env.NODE_ENV === 'production') {
             this._logger.log('Application Bootstrap');
             this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
         }
@@ -122,7 +121,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
     onApplicationShutdown(signal?: string) {
         this._logger.log('Application Shutdown', signal);
-        if (environment.production) {
+        if (process.env.NODE_ENV === 'production') {
             this._telegramService.sendMessage('Backend stopped.').subscribe();
         }
     }
