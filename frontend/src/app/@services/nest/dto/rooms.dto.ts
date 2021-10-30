@@ -1,4 +1,4 @@
 import { GetRoomDto } from './room.dto';
 
-export interface GetRoomsDto extends Array<GetRoomDto> {
+export interface GetFibaroRoomsDto extends Array<GetRoomDto> {
 }

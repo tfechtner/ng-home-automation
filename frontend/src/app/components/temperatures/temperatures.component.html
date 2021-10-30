@@ -1,1 +1,18 @@
-<p>temperatures works!</p>
+<nb-card class="theme-card">
+    <nb-card-header>
+        Temperature
+    </nb-card-header>
+    <nb-card-body>
+        <div class="thermostats" *ngIf="thermostats$ | async as thermostats">
+            <ng-container *ngFor="let thermostat of thermostats">
+                <div class="thermostats__item">
+                    <nb-icon [icon]="'thermometer'" [status]="getTempStatus(thermostat.device.properties.value)"></nb-icon>
+                    <div class="thermostats__item--temp">{{ thermostat.device.properties.value }}{{ thermostat.device.properties.unit }}</div>
+                    <div class="thermostats__item--name">{{ thermostat.roomName }}</div>
+                </div>
+            </ng-container>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+

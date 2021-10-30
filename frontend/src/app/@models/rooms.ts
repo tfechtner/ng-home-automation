@@ -1,12 +1,12 @@
 import { Room } from './room';
-import { GetRoomsDto } from '@services/nest/dto/rooms.dto';
+import { GetFibaroRoomsDto } from '@services/nest/dto/rooms.dto';
 import { isNullOrUndefined } from '@utils/functions';
 
 export class Rooms {
 
     rooms: Room[];
 
-    constructor(initObject?: GetRoomsDto) {
+    constructor(initObject?: GetFibaroRoomsDto) {
         this.rooms = [];
 
         if (!isNullOrUndefined(initObject)) {

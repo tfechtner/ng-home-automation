@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { DeviceTypes } from '@backend/devices/models/device';
+import { IFibaroDevice } from '@backend/fibaro/interfaces/fibaroDevice.interface';
+import { IFibaroRoom } from '@backend/fibaro/interfaces/fibaroRoom.interface';
+import { IFibaroRooms } from '@backend/fibaro/interfaces/fibaroRooms.interface';
+import { SettingDto } from '@backend/settings/dto/setting.dto';
 import { SettingHouseModeEnum } from '@backend/settings/enums/settingHouseModes.enum';
 import { Observable } from 'rxjs';
-import { SettingDto } from '@backend/settings/dto/setting.dto';
-
 import { CONFIG } from '../../config/main';
-import { IFibaroDevices } from '@backend/fibaro/interfaces/fibaroDevices.interface';
-import { IFibaroDevice } from '@backend/fibaro/interfaces/fibaroDevice.interface';
-import { IFibaroRooms } from '@backend/fibaro/interfaces/fibaroRooms.interface';
-import { IFibaroRoom } from '@backend/fibaro/interfaces/fibaroRoom.interface';
 
 @Injectable()
 export class NestService {
@@ -20,6 +19,10 @@ export class NestService {
 
     public getApiState(): Observable<any> {
         return this.http.get(this.apiUrl + '/state');
+    }
+
+    public getDevices(): Observable<DeviceTypes[]> {
+        return this.http.get<DeviceTypes[]>(this.apiUrl + '/devices');
     }
 
     public getRooms(): Observable<any> {
@@ -67,8 +70,8 @@ export class NestService {
 
     // Fibaro
 
-    public getFibaroDevices(): Observable<IFibaroDevices> {
-        return this.http.get<IFibaroDevices>(this.apiUrl + '/fibaro/devices');
+    public getFibaroDevices(): Observable<IFibaroDevice[]> {
+        return this.http.get<IFibaroDevice[]>(this.apiUrl + '/fibaro/devices');
     }
 
     public getFibaroDevice(id: number): Observable<IFibaroDevice> {

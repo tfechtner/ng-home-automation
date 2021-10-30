@@ -1,0 +1,25 @@
+
+.thermostats {
+    display: flex;
+    flex-direction: row;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex-grow: 1;
+        flex-basis: 0;
+
+        nb-icon {
+            margin-bottom: 5px;
+        }
+
+        &--temp {
+            margin-bottom: 5px;
+        }
+
+        &--name {
+            font-weight: bold;
+        }
+    }
+}

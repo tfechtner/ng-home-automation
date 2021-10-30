@@ -1,6 +1,6 @@
 {
     "name": "nest-home-frontend",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -9,7 +9,7 @@
     "scripts": {
         "ng": "ng",
         "conventional-changelog": "conventional-changelog",
-        "start:dev": "ng serve",
+        "start:dev": "ng serve --port 4100",
         "build": "ng build",
         "build:prod": "ng build --prod --configuration production",
         "test": "ng test",

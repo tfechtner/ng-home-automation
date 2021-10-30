@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { NestWebsocketService } from '@services/websocket/nest-websocket.service';
+import { DeviceActions } from './@state/device/fibaro.actions';
 import { SettingsActions } from './@state/settings/settings.actions';
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this._store.dispatch(new SettingsActions.GetSettings());
+        this._store.dispatch(new DeviceActions.GetDevices());
         // this._nestService.getRooms().subscribe((rooms) => console.log(rooms));
 
         setTimeout(() => {

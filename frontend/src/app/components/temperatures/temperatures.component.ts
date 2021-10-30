@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { DeviceTypes } from '@backend/devices/models/device';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { DeviceState } from '../../@state/device/device.state';
 
 @Component({
     selector: 'ngx-temperatures',
@@ -7,20 +11,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TemperaturesComponent implements OnInit {
 
-    // private devices = DEVICES_MAP;
-    // private thermostats = [];
+    @Select(DeviceState.thermostats)
+    public thermostats$: Observable<DeviceTypes[]>;
 
     constructor() {
-        // this.thermostats = [
-        //     this.devices.get(DEVICE_KEYS.MAIN_BEDROOM_THERMOSTAT),
-        //     this.devices.get(DEVICE_KEYS.DRESSING_ROOM_THERMOSTAT),
-        //     this.devices.get(DEVICE_KEYS.STUDY_THERMOSTAT),
-        //     this.devices.get(DEVICE_KEYS.BOOT_ROOM_THERMOSTAT)
-        // ];
+
     }
 
     ngOnInit() {
 
     }
+
+    public getTempStatus(value: string): string {
+        const temp = +value;
+        if (temp > 21) {
+            return 'danger';
+        } else if (temp >= 18 && temp <= 21) {
+            return 'warning';
+        } else {
+            return 'info';
+        }
+    }
+
+    // TODO: And mould component!
 
 }

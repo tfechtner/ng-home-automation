@@ -51,6 +51,10 @@ export class NestWebsocketService {
             console.log('sonosEvent', event);
         });
 
+        this.socket.on('fibaroEvent', event => {
+            console.log('fibaroEvent', event);
+        });
+
         return () => this.socket.disconnect();
     }
 

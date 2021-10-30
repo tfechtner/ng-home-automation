@@ -4,10 +4,10 @@ import { SettingsState } from './settings/settings.state';
 import { SonosState } from './sonos/sonos.state';
 import { NetworkState } from './network/network.state';
 import { RoomsState } from './rooms/rooms.state';
-import { FibaroState } from './fibaro/fibaro.state';
+import { DeviceState } from './device/device.state';
 
 export const appState = [
-    FibaroState,
+    DeviceState,
     NetworkState,
     RoomsState,
     SettingsState,
