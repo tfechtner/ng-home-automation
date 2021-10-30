@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DEVICE_KEYS, DEVICES_MAP } from '../config/main';
-import { IDevice } from '../devices/models/device';
+import { DeviceTypes, IDeviceBaseDto } from '../devices/models/device';
 import { FibaroEventType } from '../fibaro/dto/fibaroEvent.dto';
 import { SettingHouseModeEnum } from '../settings/enums/settingHouseModes.enum';
 import { SettingsService } from '../settings/settings.service';
@@ -36,6 +36,7 @@ export class EventsService {
     }
 
     private _eventTriggers(event: EventEntity) {
+        this._logger.log('Event triggered by device ID ' + event.deviceID);
 
         switch (event.deviceID) {
             case DEVICES_MAP.get(DEVICE_KEYS.MAIN_BEDROOM_SENSOR).fibaroId :
@@ -106,8 +107,8 @@ export class EventsService {
 
     private _findDeviceKey(fibaroId: number): DEVICE_KEYS {
         let foundKey = null;
-        DEVICES_MAP.forEach((device: IDevice, key: DEVICE_KEYS) => {
-            if (device.fibaroId === fibaroId) {
+        DEVICES_MAP.forEach((device: DeviceTypes, key: DEVICE_KEYS) => {
+            if (device['fibaroId'] === fibaroId) {
                 foundKey = key;
             }
         });

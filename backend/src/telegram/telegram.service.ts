@@ -27,11 +27,11 @@ export class TelegramService {
 
         return this._httpService.get(this.requestUrl + 'sendMessage', config).pipe(
             catchError((axiosError: AxiosError) => {
-                this._logger.log('Error:', axiosError.response.data.error_code + ' - ' + axiosError.response.data?.description);
-                return [];
+                this._logger.error('Error sending message ' + axiosError.response.data.error_code + ' - ' + axiosError.response.data?.description);
+                return []; // TODO: This is wrong
             }),
             map((axiosResponse: AxiosResponse) => {
-                this._logger.log('Message', !!axiosResponse.data['ok'] ? 'sent successfully' : 'failed');
+                this._logger.log('Message ' + !!axiosResponse.data['ok'] ? 'sent successfully' : 'failed');
             })
         );
     }

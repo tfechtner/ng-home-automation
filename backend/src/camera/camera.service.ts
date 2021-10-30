@@ -13,7 +13,9 @@ export class CameraService {
         private _logger: Logger
     ) {
         this._logger = new Logger('CameraService');
-        
+    }
+
+    public init() {
         this._hallCamera = new Hikvision({
             host	: '192.168.0.181',
             port 	: '80',

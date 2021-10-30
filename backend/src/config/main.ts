@@ -1,4 +1,4 @@
-import { IDevice } from '../devices/models/device';
+import { DeviceTypes, IDeviceBaseDto } from '../devices/models/device';
 
 const ROOMS = [
     {
@@ -70,7 +70,18 @@ export enum ROOMS_ENUM {
     GARDEN = 'GARDEN'
 }
 
-export const DEVICES_MAP = new Map<string, IDevice>([
+export const ROOM_NAMES = {
+    MAIN_BEDROOM: 'Main Bedroom',
+    DRESSING_ROOM: 'Dressing Room',
+    STUDY: 'Study',
+    KITCHEN: 'Kitchen',
+    BOOT_ROOM: 'Boot Room',
+    UTILITY: 'Utility',
+    SIDE_PATH: 'Side Path',
+    GARDEN: 'Garden'
+};
+
+export const DEVICES_MAP = new Map<string, any>([
     [
         DEVICE_KEYS.MAIN_BEDROOM_LIGHTS, {
         type: DEVICE_TYPES_ENUM.LIGHT_DIMMER,
@@ -255,9 +266,19 @@ export const DEVICES_MAP = new Map<string, IDevice>([
     }]
 ]);
 
+export function getDeviceByProperty(property: string, value: any): any {
+    DEVICES_MAP.forEach((device: any) => {
+        if (device[property] === value) {
+            return device;
+        }
+    });
+    return null;
+}
+
 const config = {
     DEVICES_MAP,
-    ROOMS
+    ROOMS,
+    getDeviceByProperty
 };
 
 export const CONFIG = config;

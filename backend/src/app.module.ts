@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AxiosError, AxiosRequestConfig } from 'axios';
+import { environment } from '../../frontend/src/environments/environment';
 import * as packageJson from '../package.json';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,7 +13,6 @@ import { DevicesService } from './devices/devices.service';
 import { EventEntity } from './events/event.entity';
 import { EventsController } from './events/events.controller';
 import { EventsService } from './events/events.service';
-import { FibaroController } from './fibaro/fibaro.controller';
 import { FibaroService } from './fibaro/fibaro.service';
 import { RingService } from './ring/ring.service';
 import { RoomsController } from './rooms/rooms.controller';
@@ -64,7 +64,6 @@ const envFilePath = process.env.NODE_ENV === 'production' ? './backend/.env' : '
         AppController,
         RoomsController,
         SonosController,
-        FibaroController,
         EventsController,
         DevicesController,
         SettingsController,
@@ -94,7 +93,6 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
         private _nestConfigService: NestConfigService,
         private _httpService: HttpService,
         private _telegramService: TelegramService,
-        private _ringService: RingService,
         private _cameraService: CameraService,
         private _logger: Logger
     ) {
@@ -106,25 +104,26 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
-                // this._logger.log('[Debug] Axios Request URL: ', config.url);
+                // this._logger.log('[Debug] Axios Request URL: ' + JSON.stringify(config));
                 return config;
             },
             (axiosError: AxiosError) => {
+                // this._logger.error('[Debug] Axios : ' + JSON.stringify(axiosError));
                 return Promise.reject(axiosError);
             });
     }
 
     onApplicationBootstrap() {
-        // if (environment.production) {
-        this._logger.log('Application Bootstrap');
-        // this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
-        // }
+        if (environment.production) {
+            this._logger.log('Application Bootstrap');
+            this._telegramService.sendMessage(`Backend started v${packageJson['version']}`).subscribe();
+        }
     }
 
     onApplicationShutdown(signal?: string) {
         this._logger.log('Application Shutdown', signal);
-        // if (environment.production) {
-        // this._telegramService.sendMessage('Backend stopped.').subscribe();
-        // }
+        if (environment.production) {
+            this._telegramService.sendMessage('Backend stopped.').subscribe();
+        }
     }
 }

@@ -18,7 +18,9 @@ export class RingService {
         private _logger: Logger
     ) {
         this._logger = new Logger('RingService');
+    }
 
+    public init() {
         this._ringApi = new RingApi({
             refreshToken: this._nestConfigService.ringRefreshToken,
             cameraDingsPollingSeconds: 5,
@@ -50,7 +52,7 @@ export class RingService {
 
         this._ringLocation.onConnected.subscribe((connected) => {
             const state = connected ? 'Connected' : 'Connecting';
-            this._logger.log(`${state} to location ${this._ringLocation.name} - ${this._ringLocation.id}`);
+            this._logger.log(`${state} to location ${this._ringLocation.name}`);
         });
     }
 
@@ -71,7 +73,9 @@ export class RingService {
             this._logger.log(`Ding Detected: ${ding.kind}`);
         });
         this._ringCamera.onMotionDetected.subscribe((motionDetected: boolean) => {
-            this._logger.log(`Motion Detected: ${motionDetected}`);
+            if (motionDetected) {
+                this._logger.log(`Motion Detected: ${motionDetected}`);
+            }
         });
         this._ringCamera.onMotionStarted.subscribe(() => {
             this._logger.log(`[ RingService] Motion Started`);

@@ -1,11 +1,9 @@
 import { HttpService, Injectable } from '@nestjs/common';
-import { AxiosRequestConfig } from 'axios';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { NestConfigService } from '../services/nest-config.service';
-import { IFibaroDevice } from './interfaces';
-import { IFibaroDevices } from './interfaces/fibaroDevices.interface';
+import { fibaroDtoDefaults, IFibaroDevice, IFibaroDto } from './interfaces';
 import { IFibaroRoom } from './interfaces/fibaroRoom.interface';
 import { IFibaroRooms } from './interfaces/fibaroRooms.interface';
 
@@ -28,19 +26,17 @@ export class FibaroService {
             };
     }
 
-    public getDevices(): Observable<IFibaroDevices> {
+    public getDevices(): Observable<IFibaroDto[]> {
         return this._httpService.get(this._fibaroApi + 'devices', this._axiosRequestConfig).pipe(
-            map(axiosResponse => {
-                return axiosResponse.data;
+            map((axiosResponse: AxiosResponse<IFibaroDevice[]>) => {
+                return axiosResponse.data.map(fibaroDevice => this._mapFibaroDevice(fibaroDevice));
             })
         );
     }
 
-    public getDevice(id: number): Observable<IFibaroDevice> {
+    public getDevice(id: number): Observable<IFibaroDto> {
         return this._httpService.get(this._fibaroApi + `devices/${id}`, this._axiosRequestConfig).pipe(
-            map(axiosResponse => {
-                return axiosResponse.data;
-            })
+            map((axiosResponse: AxiosResponse<IFibaroDevice>) => this._mapFibaroDevice(axiosResponse.data))
         );
     }
 
@@ -58,5 +54,22 @@ export class FibaroService {
                 return axiosResponse.data;
             })
         );
+    }
+
+    private _mapFibaroDevice(data: IFibaroDevice): IFibaroDto {
+        return this._assignProperties({ ...fibaroDtoDefaults }, data);
+    }
+
+    private _assignProperties(obj: object, data: object): any {
+        Object.keys(obj).forEach(prop => {
+            if (prop in obj) {
+                if (typeof obj[prop] === 'object' && !Array.isArray(obj[prop]) && obj[prop] !== null) {
+                    obj[prop] = this._assignProperties(obj[prop], data[prop]);
+                } else {
+                    obj[prop] = data[prop];
+                }
+            }
+        });
+        return { ...obj };
     }
 }

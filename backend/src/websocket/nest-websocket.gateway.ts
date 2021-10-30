@@ -34,10 +34,10 @@ export class WebsocketGateway implements OnGatewayInit, OnGatewayConnection, OnG
     }
 
     emitSonosEvent(event: SonosEvent) {
-        this.server.emit('Emit Sonos event', event);
+        this.server.emit('sonosEvent', event);
     }
 
     emitFibaroEvent(event: FibaroEvent) {
-        this.server.emit('Emit Fibaro event', event);
+        this.server.emit('fibaroEvent', event);
     }
 }

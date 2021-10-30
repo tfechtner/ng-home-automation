@@ -1,31 +1,19 @@
-import { DEVICE_TYPES_ENUM, ROOMS_ENUM } from '../../config/main';
-import { isNullOrUndefined } from '../../utils/functions';
+import { DEVICE_KEYS, DEVICE_TYPES_ENUM, ROOMS_ENUM } from '../../config/main';
+import { IFibaroDto } from '../../fibaro/interfaces';
+import { SonosCoordinator } from '../../sonos/dto/sonosCoordinator.dto';
 
-export interface IDevice {
+export interface IDeviceBaseDto<T> {
+    key: DEVICE_KEYS;
     type: DEVICE_TYPES_ENUM;
     name: string;
     room: ROOMS_ENUM;
-    fibaroId: number;
+    roomName: string;
+    fibaroId?: number;
+    sonosUuid?: string;
+    device?: T;
 }
 
-export const deviceDefaults: IDevice = {
-    type: null,
-    name: null,
-    room: null,
-    fibaroId: null
-};
+export interface IFibaroDeviceDto extends IDeviceBaseDto<IFibaroDto> {}
+export interface ISonosDeviceDto extends IDeviceBaseDto<SonosCoordinator> {}
 
-export class Device implements IDevice {
-    type;
-    name;
-    room;
-    fibaroId;
-
-    constructor(initRoom?: IDevice) {
-        Object.assign(this, deviceDefaults);
-
-        if (!isNullOrUndefined(initRoom)) {
-            Object.assign(this, initRoom);
-        }
-    }
-}
+export type DeviceTypes = IFibaroDeviceDto | ISonosDeviceDto;

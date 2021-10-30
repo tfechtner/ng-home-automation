@@ -1,6 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import { DEVICE_KEYS } from '../config/main';
 import { DevicesService } from './devices.service';
-import { Device } from './models/device';
+import { DeviceTypes } from './models/device';
 
 @Controller('devices')
 export class DevicesController {
@@ -14,8 +16,9 @@ export class DevicesController {
         return this._devicesService.getDevices();
     }
 
-    @Get(':id')
-    getDevice(@Param('id') id: string): Device {
-        return this._devicesService.getDevice(id);
+    @Get(':key')
+    getDevice(@Param('key') key: DEVICE_KEYS): Observable<DeviceTypes> {
+        return this._devicesService.getDevice(key);
     }
+
 }
