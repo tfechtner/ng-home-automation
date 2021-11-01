@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { forkJoin, of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CONFIG, DEVICE_KEYS, ROOM_NAMES } from '../config/main';
+import { CONFIG, DEVICE_KEYS, DEVICE_TYPE_NAMES, ROOM_NAMES } from '../config/main';
 import { FibaroService } from '../fibaro/fibaro.service';
 import { DeviceTypes } from './models/device';
 
@@ -35,7 +35,8 @@ export class DevicesService {
         device = {
             ...device,
             key,
-            roomName: ROOM_NAMES[device.room]
+            roomName: ROOM_NAMES[device.room],
+            typeName: DEVICE_TYPE_NAMES[device.type]
         };
 
         if (!!device.fibaroId) {

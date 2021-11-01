@@ -5,11 +5,13 @@ import { SonosCoordinator } from '../../sonos/dto/sonosCoordinator.dto';
 export interface IDeviceBaseDto<T> {
     key: DEVICE_KEYS;
     type: DEVICE_TYPES_ENUM;
+    typeName?: string;
     name: string;
     room: ROOMS_ENUM;
     roomName: string;
     fibaroId?: number;
     sonosUuid?: string;
+    hasBattery?: boolean;
     device?: T;
 }
 

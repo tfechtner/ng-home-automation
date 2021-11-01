@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as packageJson from '../../../../../package.json';
+import packageJson from '../../../../../package.json';
 
 @Component({
     selector: 'ngx-footer',
@@ -15,5 +15,5 @@ import * as packageJson from '../../../../../package.json';
     `
 })
 export class FooterComponent {
-    public version = packageJson['version'];
+    public version = packageJson.version;
 }

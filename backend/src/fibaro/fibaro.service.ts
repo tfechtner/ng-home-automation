@@ -57,7 +57,14 @@ export class FibaroService {
     }
 
     private _mapFibaroDevice(data: IFibaroDevice): IFibaroDto {
-        return this._assignProperties({ ...fibaroDtoDefaults }, data);
+        const device = this._assignProperties({ ...fibaroDtoDefaults }, data);
+        return {
+            ...device,
+            properties: {
+                ...device.properties,
+                batteryLevel: +device.properties.batteryLevel
+            }
+        };
     }
 
     private _assignProperties(obj: object, data: object): any {

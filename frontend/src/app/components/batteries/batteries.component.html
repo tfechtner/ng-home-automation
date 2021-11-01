@@ -1,0 +1,19 @@
+<nb-card class="theme-card">
+    <nb-card-header>
+        Batteries
+    </nb-card-header>
+    <nb-card-body>
+        <div class="batteries" *ngIf="batteries$ | async as batteries">
+            <ng-container *ngFor="let battery of batteries">
+                <div class="batteries__item">
+                    <nb-icon [icon]="'battery'" [status]="getBatteryStatus(battery.device.properties.batteryLevel)"></nb-icon>
+                    <div class="batteries__item--level">{{ battery.device.properties.batteryLevel }}&percnt;</div>
+                    <div class="batteries__item--type">{{ battery.typeName }}</div>
+                    <div class="batteries__item--room">{{ battery.roomName }}</div>
+                </div>
+            </ng-container>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+

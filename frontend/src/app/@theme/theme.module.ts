@@ -14,13 +14,11 @@ import {
     NbThemeModule
 } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbSecurityModule } from '@nebular/security';
 
 import {
     FooterComponent,
     HeaderComponent,
-    SearchInputComponent,
-    TinyMCEComponent
+    SearchInputComponent
 } from './components';
 import { CapitalizePipe, PluralPipe, RoundPipe, TimingPipe, NumberWithCommasPipe } from './pipes';
 import {
@@ -41,7 +39,6 @@ const NB_MODULES = [
     NbSearchModule,
     NbSidebarModule,
     NbContextMenuModule,
-    NbSecurityModule,
     NbButtonModule,
     NbSelectModule,
     NbIconModule,
@@ -51,7 +48,6 @@ const COMPONENTS = [
     HeaderComponent,
     FooterComponent,
     SearchInputComponent,
-    TinyMCEComponent,
     OneColumnLayoutComponent,
     ThreeColumnsLayoutComponent,
     TwoColumnsLayoutComponent

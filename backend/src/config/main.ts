@@ -59,6 +59,21 @@ export enum DEVICE_TYPES_ENUM {
     CAMERA = 'CAMERA'
 }
 
+export const DEVICE_TYPE_NAMES = {
+    LIGHT_SWITCH: 'Light Switch',
+    LIGHT_DIMMER: 'Light Dimmer',
+    LIGHT_RGBW: 'Colour Light',
+    SENSOR_DOOR: 'Door Sensor',
+    SENSOR_MOTION: 'Motion Sensor',
+    SENSOR_THERMOSTAT: 'Thermostat',
+    SENSOR_MOULD: 'Mould Sensor',
+    SENSOR_HUMIDITY: 'Humidity Sensor',
+    SENSOR_DEW_POINT: 'Dew Point Sensor',
+    SENSOR_HEAT_DETECTOR: 'Heat Detection Sensor',
+    SPEAKER: 'Speaker',
+    CAMERA: 'Camera'
+};
+
 export enum ROOMS_ENUM {
     MAIN_BEDROOM = 'MAIN_BEDROOM',
     DRESSING_ROOM = 'DRESSING_ROOM',
@@ -94,7 +109,8 @@ export const DEVICES_MAP = new Map<string, any>([
         type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
         name: 'Main Bedroom Motion Sensor',
         room: ROOMS_ENUM.MAIN_BEDROOM,
-        fibaroId: 109
+        fibaroId: 109,
+        hasBattery: true
     }],
     [
         DEVICE_KEYS.MAIN_BEDROOM_THERMOSTAT, {
@@ -122,7 +138,8 @@ export const DEVICES_MAP = new Map<string, any>([
         type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
         name: 'Dressing Room Motion Sensor',
         room: ROOMS_ENUM.DRESSING_ROOM,
-        fibaroId: 115
+        fibaroId: 115,
+        hasBattery: true
     }],
     [
         DEVICE_KEYS.DRESSING_ROOM_THERMOSTAT, {
@@ -150,7 +167,8 @@ export const DEVICES_MAP = new Map<string, any>([
         type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
         name: 'Study Motion Sensor',
         room: ROOMS_ENUM.STUDY,
-        fibaroId: 121
+        fibaroId: 121,
+        hasBattery: true
     }],
     [
         DEVICE_KEYS.STUDY_THERMOSTAT, {
@@ -160,67 +178,12 @@ export const DEVICES_MAP = new Map<string, any>([
         fibaroId: 122
     }],
     [
-        DEVICE_KEYS.GARAGE_BOOT_ROOM_DOOR_SENSOR, {
-        type: DEVICE_TYPES_ENUM.SENSOR_DOOR,
-        name: 'Boot Room Door Sensor',
-        room: ROOMS_ENUM.BOOT_ROOM,
-        fibaroId: 92
-    }],
-    [
-        DEVICE_KEYS.BOOT_ROOM_SENSOR, {
-        type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
-        name: 'Boot Room Motion Sensor',
-        room: ROOMS_ENUM.BOOT_ROOM,
-        fibaroId: 26
-    }],
-    [
-        DEVICE_KEYS.BOOT_ROOM_THERMOSTAT, {
-        type: DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT,
-        name: 'Boot Room Temperature Sensor',
-        room: ROOMS_ENUM.BOOT_ROOM,
-        fibaroId: 27
-    }],
-    [
-        DEVICE_KEYS.UTILITY_MOULD_SENSOR, {
-        type: DEVICE_TYPES_ENUM.SENSOR_MOULD,
-        name: 'Utility Mould Sensor',
-        room: ROOMS_ENUM.UTILITY,
-        fibaroId: 143
-    }],
-    [
-        DEVICE_KEYS.UTILITY_THERMOSTAT, {
-        type: DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT,
-        name: 'Utility Temperature Sensor',
-        room: ROOMS_ENUM.UTILITY,
-        fibaroId: 144
-    }],
-    [
-        DEVICE_KEYS.UTILITY_HUMIDITY, {
-        type: DEVICE_TYPES_ENUM.SENSOR_HUMIDITY,
-        name: 'Utility Humidity Sensor',
-        room: ROOMS_ENUM.UTILITY,
-        fibaroId: 145
-    }],
-    [
-        DEVICE_KEYS.UTILITY_DEW_POINT, {
-        type: DEVICE_TYPES_ENUM.SENSOR_DEW_POINT,
-        name: 'Utility Dew Point Sensor',
-        room: ROOMS_ENUM.UTILITY,
-        fibaroId: 146
-    }],
-    [
-        DEVICE_KEYS.UTILITY_HEAT_DETECTOR, {
-        type: DEVICE_TYPES_ENUM.SENSOR_HEAT_DETECTOR,
-        name: 'Utility Heat Detector Sensor',
-        room: ROOMS_ENUM.UTILITY,
-        fibaroId: 147
-    }],
-    [
         DEVICE_KEYS.KITCHEN_MOULD_SENSOR, {
         type: DEVICE_TYPES_ENUM.SENSOR_MOULD,
         name: 'Kitchen Mould Sensor',
         room: ROOMS_ENUM.KITCHEN,
-        fibaroId: 154
+        fibaroId: 154,
+        hasBattery: true
     }],
     [
         DEVICE_KEYS.KITCHEN_THERMOSTAT, {
@@ -249,6 +212,65 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Kitchen Heat Detector Sensor',
         room: ROOMS_ENUM.KITCHEN,
         fibaroId: 158
+    }],
+    [
+        DEVICE_KEYS.GARAGE_BOOT_ROOM_DOOR_SENSOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_DOOR,
+        name: 'Boot Room Door Sensor',
+        room: ROOMS_ENUM.BOOT_ROOM,
+        fibaroId: 92,
+        hasBattery: true
+    }],
+    [
+        DEVICE_KEYS.BOOT_ROOM_SENSOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
+        name: 'Boot Room Motion Sensor',
+        room: ROOMS_ENUM.BOOT_ROOM,
+        fibaroId: 26,
+        hasBattery: true
+    }],
+    [
+        DEVICE_KEYS.BOOT_ROOM_THERMOSTAT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT,
+        name: 'Boot Room Temperature Sensor',
+        room: ROOMS_ENUM.BOOT_ROOM,
+        fibaroId: 27
+    }],
+    [
+        DEVICE_KEYS.UTILITY_MOULD_SENSOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_MOULD,
+        name: 'Utility Mould Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 143,
+        hasBattery: true
+    }],
+    [
+        DEVICE_KEYS.UTILITY_THERMOSTAT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT,
+        name: 'Utility Temperature Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 144
+    }],
+    [
+        DEVICE_KEYS.UTILITY_HUMIDITY, {
+        type: DEVICE_TYPES_ENUM.SENSOR_HUMIDITY,
+        name: 'Utility Humidity Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 145
+    }],
+    [
+        DEVICE_KEYS.UTILITY_DEW_POINT, {
+        type: DEVICE_TYPES_ENUM.SENSOR_DEW_POINT,
+        name: 'Utility Dew Point Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 146
+    }],
+    [
+        DEVICE_KEYS.UTILITY_HEAT_DETECTOR, {
+        type: DEVICE_TYPES_ENUM.SENSOR_HEAT_DETECTOR,
+        name: 'Utility Heat Detector Sensor',
+        room: ROOMS_ENUM.UTILITY,
+        fibaroId: 147
     }],
     [
         DEVICE_KEYS.SIDE_PATH_SENSOR, {

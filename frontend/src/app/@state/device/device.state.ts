@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { DEVICE_TYPES_ENUM } from '@backend/config/main';
-import { DeviceTypes } from '@backend/devices/models/device';
-import { IFibaroDevice } from '@backend/fibaro/interfaces';
+import { DeviceTypes, IFibaroDeviceDto } from '@backend/devices/models/device';
+import { IFibaroDevice, IFibaroDto } from '@backend/fibaro/interfaces';
 import { IFibaroRooms } from '@backend/fibaro/interfaces/fibaroRooms.interface';
 import { Device } from '@models/device/device';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
@@ -40,6 +40,11 @@ export class DeviceState {
     @Selector()
     public static thermostats(state: IDeviceStateModel): DeviceTypes[] {
         return state.devices.filter(device => device.type === DEVICE_TYPES_ENUM.SENSOR_THERMOSTAT);
+    }
+
+    @Selector()
+    public static batteries(state: IDeviceStateModel): DeviceTypes[] {
+        return state.devices.filter((device: IFibaroDeviceDto) => device.hasBattery);
     }
 
     constructor(

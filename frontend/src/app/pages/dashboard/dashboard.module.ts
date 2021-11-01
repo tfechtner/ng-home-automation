@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbRadioModule, NbSelectModule, NbTabsetModule, NbUserModule } from '@nebular/theme';
-import { NgxEchartsModule } from 'ngx-echarts';
 import { ThemeModule } from '../../@theme/theme.module';
+import { BatteriesComponent } from '../../components/batteries/batteries.component';
 import { TemperaturesComponent } from '../../components/temperatures/temperatures.component';
 import { DashboardComponent } from './dashboard.component';
 import { PlayerComponent } from './rooms/player/player.component';
@@ -21,16 +21,15 @@ import { RoomsComponent } from './rooms/rooms.component';
         NbRadioModule,
         NbSelectModule,
         NbListModule,
-        NbIconModule,
-        NbButtonModule,
-        NgxEchartsModule
+        NbIconModule
     ],
     declarations: [
         DashboardComponent,
         RoomSelectorComponent,
         RoomsComponent,
         PlayerComponent,
-        TemperaturesComponent
+        TemperaturesComponent,
+        BatteriesComponent
     ]
 })
 export class DashboardModule {

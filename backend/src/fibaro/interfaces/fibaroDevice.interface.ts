@@ -3,6 +3,7 @@ import { FibaroDeviceTypeEnum } from './fibaroDeviceTypeEnum';
 export interface IFibaroDeviceProperties {
     unit: string;
     value: string;
+    batteryLevel?: string;
 }
 
 export interface IFibaroDeviceActions {
@@ -41,6 +42,7 @@ export interface IFibaroDto {
     properties: {
         unit: string;
         value: string;
+        batteryLevel: number;
     };
 }
 
@@ -49,6 +51,7 @@ export const fibaroDtoDefaults = {
     roomID: null,
     properties: {
         unit: null,
-        value: null
+        value: null,
+        batteryLevel: undefined
     }
 };
