@@ -1,12 +1,12 @@
-import { SonosCoordinatorState } from './sonosCoordinatorState.dto';
+import { ISonosCoordinatorStateDto } from './sonosCoordinatorState.dto';
 
-export class SonosCoordinator {
-    readonly uuid: string;
-    readonly state: SonosCoordinatorState;
-    readonly roomName: string;
-    readonly coordinator: string;
-    readonly groupState: {
-        readonly volume: number;
-        readonly mute: boolean;
+export interface ISonosCoordinatorDto {
+    uuid: string;
+    state: ISonosCoordinatorStateDto;
+    roomName: string;
+    coordinator: string;
+    groupState: {
+        volume: number;
+        mute: boolean;
     };
 }

@@ -1,22 +1,22 @@
-import { SonosTrack } from './sonosTrack.dto';
+import { ISonosTrackDto } from './sonosTrack.dto';
 
-export class SonosCoordinatorState {
-    readonly volume: number;
-    readonly mute: boolean;
-    readonly equalizer: {
-        readonly bass: number;
-        readonly treble: number;
-        readonly loudness: boolean;
+export interface ISonosCoordinatorStateDto {
+    volume: number;
+    mute: boolean;
+    equalizer: {
+        bass: number;
+        treble: number;
+        loudness: boolean;
     };
-    readonly currentTrack: SonosTrack;
-    readonly nextTrack: SonosTrack;
-    readonly trackNo: number;
-    readonly elapsedTime: number;
-    readonly elapsedTimeFormatted: string;
-    readonly playbackState: string;
-    readonly playMode: {
-        readonly repeat: string;
-        readonly shuffle: boolean;
-        readonly crossfade: boolean;
+    currentTrack: ISonosTrackDto;
+    nextTrack: ISonosTrackDto;
+    trackNo: number;
+    elapsedTime: number;
+    elapsedTimeFormatted: string;
+    playbackState: string;
+    playMode: {
+        repeat: string;
+        shuffle: boolean;
+        crossfade: boolean;
     };
 }

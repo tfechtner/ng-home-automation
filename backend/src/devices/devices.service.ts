@@ -3,6 +3,7 @@ import { forkJoin, of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CONFIG, DEVICE_KEYS, DEVICE_TYPE_NAMES, ROOM_NAMES } from '../config/main';
 import { FibaroService } from '../fibaro/fibaro.service';
+import { SonosService } from '../sonos/sonos.service';
 import { DeviceTypes } from './models/device';
 
 export const devicesDefaults = new Map<string, DeviceTypes>();
@@ -12,7 +13,8 @@ export class DevicesService {
     private _devices: Map<string, DeviceTypes>;
 
     constructor(
-        private _fibaroService: FibaroService
+        private _fibaroService: FibaroService,
+        private _sonosService: SonosService
     ) {
         this._devices = devicesDefaults;
 
@@ -44,6 +46,13 @@ export class DevicesService {
                 map(fibaroDevice => ({
                     ...device,
                     device: fibaroDevice
+                }))
+            );
+        } else if (!!device.sonosRoomName) {
+            return this._sonosService.getRoomState(device.sonosRoomName).pipe(
+                map(sonosDevice => ({
+                    ...device,
+                    device: sonosDevice
                 }))
             );
         } else {

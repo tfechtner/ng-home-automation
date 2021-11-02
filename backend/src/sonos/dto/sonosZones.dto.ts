@@ -1,9 +1,9 @@
-import { SonosCoordinator } from './sonosCoordinator.dto';
+import { ISonosCoordinatorDto } from './sonosCoordinator.dto';
 
-export class SonosZone {
-    readonly uuid: string;
-    readonly coordinator: SonosCoordinator;
-    readonly members: SonosCoordinator[];
+export interface ISonosZone {
+    uuid: string;
+    coordinator: ISonosCoordinatorDto;
+    members: ISonosCoordinatorDto[];
 }
 
-export class SonosZones extends Array<SonosZone> {}
+export interface ISonosZones extends Array<ISonosZone> {}

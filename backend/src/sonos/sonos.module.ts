@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { SonosService } from './sonos.service';
 import { SonosController } from './sonos.controller';
+import { SonosService } from './sonos.service';
 
 @Module({
     controllers: [

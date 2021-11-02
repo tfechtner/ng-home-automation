@@ -1,10 +1,9 @@
+import { Logger } from '@nestjs/common';
 import * as events from 'events';
 import * as net from 'net';
-import * as request from 'request';
-import * as	xml2js from 'xml2js';
-
-import { Logger } from '@nestjs/common';
 import { Socket } from 'net';
+import * as request from 'request';
+import * as    xml2js from 'xml2js';
 
 // Interfaces
 export interface IOptions {

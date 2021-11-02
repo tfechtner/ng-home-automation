@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { DEVICE_KEYS, DEVICES_MAP } from '../config/main';
-import { DeviceTypes, IDeviceBaseDto } from '../devices/models/device';
+import { DeviceTypes } from '../devices/models/device';
 import { FibaroEventType } from '../fibaro/dto/fibaroEvent.dto';
 import { SettingHouseModeEnum } from '../settings/enums/settingHouseModes.enum';
 import { SettingsService } from '../settings/settings.service';
