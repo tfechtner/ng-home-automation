@@ -87,7 +87,7 @@
             "ref": "origin/develop",
             "repo": "git@tfechtner-Github:tfechtner/ng-home-automation.git",
             "path": "/Users/work/Workspace/ng-home-automation",
-            "post-deploy": "source ~/.zshrc && cd frontend && npm install --legacy-peer-deps && npm run build:prod && cd .. && rm -rf ./frontend-server/www/* && cp -r ./frontend/dist/* ./frontend-server/www"
+            "post-deploy": "source ~/.zshrc && cd frontend && yarn install --frozen-lockfile --no-optional && yarn run build:prod && cd .. && rm -rf ./frontend-server/www/* && cp -r ./frontend/dist/* ./frontend-server/www"
         },
         "prod-frontend-server": {
             "host": ["work-MacMiniNest"],
