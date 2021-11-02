@@ -19,10 +19,13 @@ export enum DEVICE_KEYS {
     MAIN_BEDROOM_THERMOSTAT = 'MAIN_BEDROOM_THERMOSTAT',
     MAIN_BEDROOM_BED_LEFT_LIGHT = 'MAIN_BEDROOM_BED_LEFT_LIGHT',
     MAIN_BEDROOM_BED_RIGHT_LIGHT = 'MAIN_BEDROOM_BED_RIGHT_LIGHT',
+    MAIN_BEDROOM_SPEAKER = 'MAIN_BEDROOM_SPEAKER',
     DRESSING_ROOM_LIGHTS = 'DRESSING_ROOM_LIGHTS',
     DRESSING_ROOM_SENSOR = 'DRESSING_ROOM_SENSOR',
     DRESSING_ROOM_THERMOSTAT = 'DRESSING_ROOM_THERMOSTAT',
     DRESSING_ROOM_SHELF_LIGHTS = 'DRESSING_ROOM_SHELF_LIGHTS',
+    ENSUITE_BATHROOM_SPEAKER = 'ENSUITE_BATHROOM_SPEAKER',
+    FAMILY_BATHROOM_SPEAKER = 'FAMILY_BATHROOM_SPEAKER',
     STUDY_SENSOR = 'STUDY_SENSOR',
     STUDY_THERMOSTAT = 'STUDY_THERMOSTAT',
     KITCHEN_MOULD_SENSOR = 'KITCHEN_MOULD_SENSOR',
@@ -76,6 +79,8 @@ export const DEVICE_TYPE_NAMES = {
 export enum ROOMS_ENUM {
     MAIN_BEDROOM = 'MAIN_BEDROOM',
     DRESSING_ROOM = 'DRESSING_ROOM',
+    ENSUITE_BATHROOM = 'ENSUITE_BATHROOM_SPEAKER',
+    FAMILY_BATHROOM = 'FAMILY_BATHROOM',
     STUDY = 'STUDY',
     KITCHEN = 'KITCHEN',
     BOOT_ROOM = 'BOOT_ROOM',
@@ -87,6 +92,8 @@ export enum ROOMS_ENUM {
 export const ROOM_NAMES = {
     MAIN_BEDROOM: 'Main Bedroom',
     DRESSING_ROOM: 'Dressing Room',
+    ENSUITE_BATHROOM: 'Ensuite Bathroom',
+    FAMILY_BATHROOM: 'Family Bathroom',
     STUDY: 'Study',
     KITCHEN: 'Kitchen',
     BOOT_ROOM: 'Boot Room',
@@ -133,6 +140,13 @@ export const DEVICES_MAP = new Map<string, any>([
         fibaroId: null
     }],
     [
+        DEVICE_KEYS.MAIN_BEDROOM_SPEAKER, {
+        type: DEVICE_TYPES_ENUM.SPEAKER,
+        name: 'Main Bedroom Speaker',
+        room: ROOMS_ENUM.MAIN_BEDROOM,
+        sonosRoomName: 'Bedroom'
+    }],
+    [
         DEVICE_KEYS.DRESSING_ROOM_SENSOR, {
         type: DEVICE_TYPES_ENUM.SENSOR_MOTION,
         name: 'Dressing Room Motion Sensor',
@@ -160,6 +174,20 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Shelf Lights',
         room: ROOMS_ENUM.DRESSING_ROOM,
         fibaroId: null
+    }],
+    [
+        DEVICE_KEYS.ENSUITE_BATHROOM_SPEAKER, {
+        type: DEVICE_TYPES_ENUM.SPEAKER,
+        name: 'Ensuite Bathroom Speaker',
+        room: ROOMS_ENUM.ENSUITE_BATHROOM,
+        sonosRoomName: 'Ensuite Bathroom'
+    }],
+    [
+        DEVICE_KEYS.FAMILY_BATHROOM_SPEAKER, {
+        type: DEVICE_TYPES_ENUM.SPEAKER,
+        name: 'Family Bathroom Speaker',
+        room: ROOMS_ENUM.FAMILY_BATHROOM,
+        sonosRoomName: 'Family Bathroom'
     }],
     [
         DEVICE_KEYS.STUDY_SENSOR, {

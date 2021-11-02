@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DEVICE_TYPES_ENUM } from '@backend/config/main';
-import { DeviceTypes, IFibaroDeviceDto } from '@backend/devices/models/device';
+import { DeviceTypes, IFibaroDeviceDto, ISonosDeviceDto } from '@backend/devices/models/device';
 import { IFibaroDevice } from '@backend/fibaro/interfaces';
 import { IFibaroRooms } from '@backend/fibaro/interfaces/fibaroRooms.interface';
 import { Device } from '@models/device/device';
@@ -45,6 +45,11 @@ export class DeviceState {
     @Selector()
     public static batteries(state: IDeviceStateModel): DeviceTypes[] {
         return state.devices.filter((device: IFibaroDeviceDto) => device.hasBattery);
+    }
+
+    @Selector()
+    public static speakers(state: IDeviceStateModel): DeviceTypes[] {
+        return state.devices.filter((device: ISonosDeviceDto) => !!device.sonosRoomName);
     }
 
     constructor(

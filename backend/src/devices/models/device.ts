@@ -1,6 +1,6 @@
 import { DEVICE_KEYS, DEVICE_TYPES_ENUM, ROOMS_ENUM } from '../../config/main';
 import { IFibaroDto } from '../../fibaro/interfaces';
-import { ISonosCoordinatorDto } from '../../sonos/dto/sonosCoordinator.dto';
+import { ISonosDto } from '../../sonos/dto/sonosDevice.interface';
 
 export interface IDeviceBaseDto<T> {
     key: DEVICE_KEYS;
@@ -16,6 +16,6 @@ export interface IDeviceBaseDto<T> {
 }
 
 export interface IFibaroDeviceDto extends IDeviceBaseDto<IFibaroDto> {}
-export interface ISonosDeviceDto extends IDeviceBaseDto<ISonosCoordinatorDto> {}
+export interface ISonosDeviceDto extends IDeviceBaseDto<ISonosDto> {}
 
 export type DeviceTypes = IFibaroDeviceDto | ISonosDeviceDto;

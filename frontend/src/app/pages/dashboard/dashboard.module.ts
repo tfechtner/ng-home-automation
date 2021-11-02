@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbRadioModule, NbSelectModule, NbTabsetModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { BatteriesComponent } from '../../components/batteries/batteries.component';
+import { SpeakersComponent } from '../../components/speakers/speakers.component';
 import { TemperaturesComponent } from '../../components/temperatures/temperatures.component';
 import { DashboardComponent } from './dashboard.component';
 import { PlayerComponent } from './rooms/player/player.component';
@@ -29,7 +30,8 @@ import { RoomsComponent } from './rooms/rooms.component';
         RoomsComponent,
         PlayerComponent,
         TemperaturesComponent,
-        BatteriesComponent
+        BatteriesComponent,
+        SpeakersComponent
     ]
 })
 export class DashboardModule {

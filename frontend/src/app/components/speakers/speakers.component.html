@@ -1,0 +1,18 @@
+<nb-card class="theme-card">
+    <nb-card-header>
+        Speakers
+    </nb-card-header>
+    <nb-card-body>
+        <div class="speakers" *ngIf="speakers$ | async as speakers">
+            <ng-container *ngFor="let speaker of speakers">
+                <div class="speakers__item">
+                    <nb-icon [icon]="'speaker'"></nb-icon>
+                    <div class="speakers__item--level">{{ speaker.device.volume }}</div>
+                    <div class="speakers__item--room">{{ speaker.roomName }}</div>
+                </div>
+            </ng-container>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+

@@ -1,8 +1,8 @@
-import { ISonosCoordinatorStateDto } from './sonosCoordinatorState.dto';
+import { ISonosCoordinatorState } from './sonosCoordinatorState.dto';
 
-export interface ISonosCoordinatorDto {
+export interface ISonosCoordinator {
     uuid: string;
-    state: ISonosCoordinatorStateDto;
+    state: ISonosCoordinatorState;
     roomName: string;
     coordinator: string;
     groupState: {

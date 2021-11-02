@@ -1,8 +1,10 @@
 import { HttpService, Injectable } from '@nestjs/common';
+import { AxiosResponse } from 'axios';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { NestConfigService } from '../services/nest-config.service';
+import { ISonosCoordinatorState } from './dto/sonosCoordinatorState.dto';
+import { ISonosDto } from './dto/sonosDevice.interface';
 
 @Injectable()
 export class SonosService {
@@ -24,11 +26,9 @@ export class SonosService {
         );
     }
 
-    public getRoomState(room: string): Observable<any> {
+    public getRoomState(room: string): Observable<ISonosDto> {
         return this.httpService.get(this._sonosApi + `${room}/state`).pipe(
-            map(axiosResponse => {
-                return axiosResponse.data;
-            })
+            map((axiosResponse: AxiosResponse<ISonosCoordinatorState>) => this._mapSonosDevice(room, axiosResponse.data))
         );
     }
 
@@ -95,5 +95,13 @@ export class SonosService {
                 return axiosResponse.data;
             })
         );
+    }
+
+    private _mapSonosDevice(room: string, data: ISonosCoordinatorState): ISonosDto {
+        return {
+            roomName: room,
+            volume: data.volume,
+            playbackState: data.playbackState
+        };
     }
 }

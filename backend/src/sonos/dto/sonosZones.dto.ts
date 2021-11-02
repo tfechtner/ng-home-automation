@@ -1,9 +1,9 @@
-import { ISonosCoordinatorDto } from './sonosCoordinator.dto';
+import { ISonosCoordinator } from './sonosCoordinator.dto';
 
 export interface ISonosZone {
     uuid: string;
-    coordinator: ISonosCoordinatorDto;
-    members: ISonosCoordinatorDto[];
+    coordinator: ISonosCoordinator;
+    members: ISonosCoordinator[];
 }
 
 export interface ISonosZones extends Array<ISonosZone> {}

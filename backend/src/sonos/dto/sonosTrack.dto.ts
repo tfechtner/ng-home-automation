@@ -1,4 +1,4 @@
-export interface ISonosTrackDto {
+export interface ISonosTrack {
     artist: string;
     title: string;
     album?: string;

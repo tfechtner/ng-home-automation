@@ -1,6 +1,6 @@
-import { ISonosTrackDto } from './sonosTrack.dto';
+import { ISonosTrack } from './sonosTrack.dto';
 
-export interface ISonosCoordinatorStateDto {
+export interface ISonosCoordinatorState {
     volume: number;
     mute: boolean;
     equalizer: {
@@ -8,8 +8,8 @@ export interface ISonosCoordinatorStateDto {
         treble: number;
         loudness: boolean;
     };
-    currentTrack: ISonosTrackDto;
-    nextTrack: ISonosTrackDto;
+    currentTrack: ISonosTrack;
+    nextTrack: ISonosTrack;
     trackNo: number;
     elapsedTime: number;
     elapsedTimeFormatted: string;
