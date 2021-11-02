@@ -22,7 +22,7 @@
                             "src/assets",
                             "src/favicon.ico",
                             "src/favicon.png",
-                            "src/manifest.json"
+                            "src/manifest.webmanifest"
                         ],
                         "styles": [
                             "node_modules/bootstrap/dist/css/bootstrap.css",
@@ -34,7 +34,9 @@
                             "node_modules/nebular-icons/scss/nebular-icons.scss",
                             "src/app/@theme/styles/styles.scss"
                         ],
-                        "scripts": []
+                        "scripts": [],
+                        "serviceWorker": true,
+                        "ngswConfigPath": "ngsw-config.json"
                     },
                     "configurations": {
                         "production": {
