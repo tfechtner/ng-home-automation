@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { SettingHouseModeEnum } from '@backend/settings/enums/settingHouseModes.enum';
 import { SettingKeysEnum } from '@backend/settings/enums/settingKeys.enum';
-import { NbThemeService } from '@nebular/theme';
 import { Store } from '@ngxs/store';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -34,8 +33,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
     constructor(
-        private _store: Store,
-        private _themeService: NbThemeService
+        private _store: Store
     ) { }
 
     ngOnInit() {
