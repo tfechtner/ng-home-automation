@@ -17,7 +17,7 @@ export class UpdateComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.isServiceWorkerEnabled = this._checkForUpdateService.isServiceWorkerEnabled()
+        this.isServiceWorkerEnabled = this._checkForUpdateService.isServiceWorkerEnabled();
     }
 
     onClickReload() {
