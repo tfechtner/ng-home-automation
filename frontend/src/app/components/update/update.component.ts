@@ -13,7 +13,7 @@ export class UpdateComponent implements OnInit {
     public isServiceWorkerEnabled: boolean = null;
 
     constructor(
-        private _checkForUpdateService: CheckForUpdateService,
+        private _checkForUpdateService: CheckForUpdateService
     ) {}
 
     ngOnInit(): void {
