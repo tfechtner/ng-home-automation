@@ -1,8 +1,8 @@
 {
   "name": "Nest Home",
   "short_name": "Nest Home",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#ff0000",
+  "background_color": "#edf1f7",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
