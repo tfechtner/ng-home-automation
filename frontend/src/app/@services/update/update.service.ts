@@ -2,7 +2,6 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
 import { NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
-import { Store } from '@ngxs/store';
 import { ReplaySubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -12,7 +11,7 @@ export class CheckForUpdateService implements OnDestroy {
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
     constructor(
-        private _store: Store,
+        // private _store: Store,
         private _swUpdate: SwUpdate,
         private _toastrService: NbToastrService,
         @Inject(DOCUMENT) private _document: Document

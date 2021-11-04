@@ -4,7 +4,7 @@ import { SettingKeysEnum } from '@backend/settings/enums/settingKeys.enum';
 import { NbThemeService } from '@nebular/theme';
 import { Store } from '@ngxs/store';
 import { ReplaySubject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { SettingsActions } from '../../@state/settings/settings.actions';
 import { SettingsState } from '../../@state/settings/settings.state';
 

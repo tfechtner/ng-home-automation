@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
-import { Store } from '@ngxs/store';
 import { ReplaySubject } from 'rxjs';
 import { map, takeUntil } from 'rxjs/operators';
 
@@ -35,7 +34,7 @@ export class ThemeComponent implements OnInit, OnDestroy {
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
 
     constructor(
-        private _store: Store,
+        // private _store: Store,
         private _themeService: NbThemeService
     ) { }
 
