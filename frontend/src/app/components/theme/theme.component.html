@@ -1,0 +1,10 @@
+<nb-card class="theme-card">
+    <nb-card-header>
+        Theme
+    </nb-card-header>
+    <nb-card-body>
+        <button *ngFor="let theme of themes" nbButton (click)="changeTheme(theme.value)" [status]="currentTheme === theme.value ? 'primary' : ''">
+            {{ theme.name }}
+        </button>
+    </nb-card-body>
+</nb-card>

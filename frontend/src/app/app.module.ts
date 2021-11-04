@@ -6,6 +6,7 @@ import { NbMenuModule, NbSidebarModule, NbToastrModule } from '@nebular/theme';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsModule } from '@ngxs/store';
 import { NestService } from '@services/nest/nest.service';
+import { CheckForUpdateService } from '@services/update/update.service';
 import { NestWebsocketService } from '@services/websocket/nest-websocket.service';
 import { CoreModule } from './@core/core.module';
 import { appState, appStateOptions } from './@state';
@@ -32,15 +33,16 @@ import { environment } from '../environments/environment';
         NgxsModule.forRoot(appState, appStateOptions),
         NgxsReduxDevtoolsPluginModule.forRoot(),
         ServiceWorkerModule.register('ngsw-worker.js', {
-          enabled: environment.production,
-          // Register the ServiceWorker as soon as the app is stable
-          // or after 30 seconds (whichever comes first).
-          registrationStrategy: 'registerWhenStable:30000'
+            enabled: environment.production,
+            // Register the ServiceWorker as soon as the app is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
         })
     ],
     providers: [
         NestService,
-        NestWebsocketService
+        NestWebsocketService,
+        CheckForUpdateService
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA

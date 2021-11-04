@@ -15,25 +15,6 @@ import { SettingsState } from '../../@state/settings/settings.state';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-    public themes = [
-        {
-            value: 'default',
-            name: 'Light'
-        },
-        {
-            value: 'dark',
-            name: 'Dark'
-        },
-        {
-            value: 'cosmic',
-            name: 'Cosmic'
-        },
-        {
-            value: 'corporate',
-            name: 'Corporate'
-        }
-    ];
-
     public houseModes = [
         {
             value: SettingHouseModeEnum.HOME,
@@ -48,13 +29,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
             name: 'Night Time'
         }
     ];
-
-    public currentTheme = 'default';
     public currentHouseMode = '';
 
     private _destroyed$: ReplaySubject<boolean> = new ReplaySubject(1);
-
-    // private alive = true;
 
     constructor(
         private _store: Store,
@@ -62,27 +39,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.currentTheme = this._themeService.currentTheme;
-
-        this._themeService.onThemeChange()
-            .pipe(
-                map(({name}) => name),
-                takeUntil(this._destroyed$)
-            ).subscribe(themeName => this.currentTheme = themeName);
-
         this._store.select(SettingsState.setting(SettingKeysEnum.HOUSE_MODE))
             .pipe(takeUntil(this._destroyed$))
             .subscribe(houseMode => this.currentHouseMode = houseMode);
     }
 
     ngOnDestroy() {
-        // this.alive = false;
         this._destroyed$.next(true);
         this._destroyed$.complete();
-    }
-
-    changeTheme(themeValue: string) {
-        this._themeService.changeTheme(themeValue);
     }
 
     changeHouseMode(houseMode: SettingHouseModeEnum) {

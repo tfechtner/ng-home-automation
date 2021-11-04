@@ -12,5 +12,11 @@ export const MENU_ITEMS: NbMenuItem[] = [
         icon: 'activity-outline',
         link: '/events',
         home: true
+    },
+    {
+        title: 'Settings',
+        icon: 'settings-2-outline',
+        link: '/settings',
+        home: true
     }
 ];

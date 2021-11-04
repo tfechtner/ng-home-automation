@@ -1,10 +1,10 @@
-import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { EventsComponent } from './events/events.component';
-
-import { PagesComponent } from './pages.component';
+import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { EventsComponent } from './events/events.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { PagesComponent } from './pages.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [{
     path: '',
@@ -17,6 +17,10 @@ const routes: Routes = [{
         {
             path: 'events',
             component: EventsComponent
+        },
+        {
+            path: 'settings',
+            component: SettingsComponent
         },
         {
             path: '',

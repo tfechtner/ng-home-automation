@@ -34,6 +34,7 @@
                             "node_modules/nebular-icons/scss/nebular-icons.scss",
                             "src/app/@theme/styles/styles.scss"
                         ],
+                        "sourceMap": true,
                         "scripts": [],
                         "serviceWorker": true,
                         "ngswConfigPath": "ngsw-config.json"

@@ -8,6 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 import { DashboardModule } from './dashboard/dashboard.module';
 import { EventsModule } from './events/events.module';
+import { SettingsModule } from './settings/settings.module';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { EventsModule } from './events/events.module';
         ThemeModule,
         DashboardModule,
         EventsModule,
+        SettingsModule,
         NbCardModule,
         NbMenuModule
     ],
