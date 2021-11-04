@@ -1,0 +1,11 @@
+<nb-card class="theme-card">
+    <nb-card-header>
+        Version Update
+    </nb-card-header>
+    <nb-card-body>
+        <button nbButton (click)="onClickReload()" [status]="'primary'">
+            Reload
+        </button>
+        &nbsp;v{{ version }} Service worker {{ isServiceWorkerEnabled ? 'enabled' : 'disabled' }}
+    </nb-card-body>
+</nb-card>
