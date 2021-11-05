@@ -93,6 +93,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
         private _httpService: HttpService,
         private _telegramService: TelegramService,
         private _cameraService: CameraService,
+        private _ringService: RingService,
         private _logger: Logger
     ) {
         this._logger = new Logger('AppModule');
@@ -100,6 +101,8 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
     onModuleInit() {
         this._logger.log(`Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
+
+        this._ringService.init();
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {

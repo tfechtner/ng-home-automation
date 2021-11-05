@@ -3,6 +3,7 @@ import { forkJoin, of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { CONFIG, DEVICE_KEYS, DEVICE_TYPE_NAMES, ROOM_NAMES } from '../config/main';
 import { FibaroService } from '../fibaro/fibaro.service';
+import { RingService } from '../ring/ring.service';
 import { SonosService } from '../sonos/sonos.service';
 import { DeviceTypes } from './models/device';
 
@@ -14,6 +15,7 @@ export class DevicesService {
 
     constructor(
         private _fibaroService: FibaroService,
+        private _ringService: RingService,
         private _sonosService: SonosService
     ) {
         this._devices = devicesDefaults;
@@ -45,7 +47,8 @@ export class DevicesService {
             return this._fibaroService.getDevice(device.fibaroId).pipe(
                 map(fibaroDevice => ({
                     ...device,
-                    device: fibaroDevice
+                    device: fibaroDevice,
+                    battery: device.hasOwnProperty('battery') ? fibaroDevice.properties.batteryLevel : undefined
                 }))
             );
         } else if (!!device.sonosRoomName) {
@@ -53,6 +56,14 @@ export class DevicesService {
                 map(sonosDevice => ({
                     ...device,
                     device: sonosDevice
+                }))
+            );
+        } else if (!!device.ringId) {
+            return this._ringService.getDeviceHealth().pipe(
+                map(ringHealth => ({
+                    ...device,
+                    device: ringHealth,
+                    battery: ringHealth.battery
                 }))
             );
         } else {

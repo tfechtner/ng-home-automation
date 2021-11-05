@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { NestConfigService } from '../services/nest-config.service';
 import { ISonosCoordinatorState } from './dto/sonosCoordinatorState.dto';
-import { ISonosDto } from './dto/sonosDevice.interface';
+import { sonosDtoDefaults, ISonosDto } from './dto/sonosDevice.interface';
 
 @Injectable()
 export class SonosService {
@@ -99,6 +99,7 @@ export class SonosService {
 
     private _mapSonosDevice(room: string, data: ISonosCoordinatorState): ISonosDto {
         return {
+            ...sonosDtoDefaults,
             roomName: room,
             volume: data.volume,
             playbackState: data.playbackState

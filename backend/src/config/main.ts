@@ -42,6 +42,7 @@ export enum DEVICE_KEYS {
     UTILITY_HUMIDITY = 'UTILITY_HUMIDITY',
     UTILITY_DEW_POINT = 'UTILITY_DEW_POINT',
     UTILITY_HEAT_DETECTOR = 'UTILITY_HEAT_DETECTOR',
+    DOORBELL = 'DOORBELL',
     SIDE_PATH_SENSOR = 'SIDE_PATH_SENSOR',
     PATIO_SENSOR = 'PATIO_SENSOR'
 }
@@ -58,7 +59,8 @@ export enum DEVICE_TYPES_ENUM {
     SENSOR_DEW_POINT = 'SENSOR_DEW_POINT',
     SENSOR_HEAT_DETECTOR = 'SENSOR_HEAT_DETECTOR',
     SPEAKER = 'SPEAKER',
-    CAMERA = 'CAMERA'
+    CAMERA = 'CAMERA',
+    DOORBELL = 'DOORBELL'
 }
 
 export const DEVICE_TYPE_NAMES = {
@@ -73,20 +75,22 @@ export const DEVICE_TYPE_NAMES = {
     SENSOR_DEW_POINT: 'Dew Point Sensor',
     SENSOR_HEAT_DETECTOR: 'Heat Detection Sensor',
     SPEAKER: 'Speaker',
-    CAMERA: 'Camera'
+    CAMERA: 'Camera',
+    DOORBELL: 'Doorbell'
 };
 
 export enum ROOMS_ENUM {
     MAIN_BEDROOM = 'MAIN_BEDROOM',
     DRESSING_ROOM = 'DRESSING_ROOM',
-    ENSUITE_BATHROOM = 'ENSUITE_BATHROOM_SPEAKER',
+    ENSUITE_BATHROOM = 'ENSUITE_BATHROOM',
     FAMILY_BATHROOM = 'FAMILY_BATHROOM',
     STUDY = 'STUDY',
     KITCHEN = 'KITCHEN',
     BOOT_ROOM = 'BOOT_ROOM',
     UTILITY = 'UTILITY',
     SIDE_PATH = 'SIDE_PATH',
-    GARDEN = 'GARDEN'
+    GARDEN = 'GARDEN',
+    FRONT_GARDEN = 'FRONT_GARDEN'
 }
 
 export const ROOM_NAMES = {
@@ -99,7 +103,8 @@ export const ROOM_NAMES = {
     BOOT_ROOM: 'Boot Room',
     UTILITY: 'Utility',
     SIDE_PATH: 'Side Path',
-    GARDEN: 'Garden'
+    GARDEN: 'Garden',
+    FRONT_GARDEN: 'Front Garden'
 };
 
 export const DEVICES_MAP = new Map<string, any>([
@@ -116,7 +121,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Main Bedroom Motion Sensor',
         room: ROOMS_ENUM.MAIN_BEDROOM,
         fibaroId: 109,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.MAIN_BEDROOM_THERMOSTAT, {
@@ -152,7 +157,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Dressing Room Motion Sensor',
         room: ROOMS_ENUM.DRESSING_ROOM,
         fibaroId: 115,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.DRESSING_ROOM_THERMOSTAT, {
@@ -195,7 +200,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Study Motion Sensor',
         room: ROOMS_ENUM.STUDY,
         fibaroId: 121,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.STUDY_THERMOSTAT, {
@@ -210,7 +215,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Kitchen Mould Sensor',
         room: ROOMS_ENUM.KITCHEN,
         fibaroId: 154,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.KITCHEN_THERMOSTAT, {
@@ -253,7 +258,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Boot Room Door Sensor',
         room: ROOMS_ENUM.BOOT_ROOM,
         fibaroId: 92,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.BOOT_ROOM_SENSOR, {
@@ -261,7 +266,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Boot Room Motion Sensor',
         room: ROOMS_ENUM.BOOT_ROOM,
         fibaroId: 26,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.BOOT_ROOM_THERMOSTAT, {
@@ -276,7 +281,7 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Utility Mould Sensor',
         room: ROOMS_ENUM.UTILITY,
         fibaroId: 143,
-        hasBattery: true
+        battery: null
     }],
     [
         DEVICE_KEYS.UTILITY_THERMOSTAT, {
@@ -319,6 +324,14 @@ export const DEVICES_MAP = new Map<string, any>([
         name: 'Patio Motion Sensor',
         room: ROOMS_ENUM.GARDEN,
         fibaroId: 132
+    }],
+    [
+        DEVICE_KEYS.DOORBELL, {
+        type: DEVICE_TYPES_ENUM.DOORBELL,
+        name: 'Doorbell',
+        room: ROOMS_ENUM.FRONT_GARDEN,
+        ringId: 81053880,
+        battery: null
     }]
 ]);
 

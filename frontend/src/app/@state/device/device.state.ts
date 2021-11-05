@@ -44,7 +44,7 @@ export class DeviceState {
 
     @Selector()
     public static batteries(state: IDeviceStateModel): DeviceTypes[] {
-        return state.devices.filter((device: IFibaroDeviceDto) => device.hasBattery);
+        return state.devices.filter((device: DeviceTypes) => !!device.battery);
     }
 
     @Selector()

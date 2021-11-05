@@ -2,8 +2,9 @@ import { HttpService, Injectable, Logger } from '@nestjs/common';
 import { Location, RingApi } from 'ring-client-api';
 import { RingCamera } from 'ring-client-api/lib/api/ring-camera';
 import { ActiveDing } from 'ring-client-api/lib/api/ring-types';
-
+import { from, Observable } from 'rxjs';
 import { NestConfigService } from '../services/nest-config.service';
+import { ringHealthDtoDefaults, IRing, IRingDto, IRingHealth, IRingHealthDto } from './dto/ringDevice.interface';
 
 @Injectable()
 export class RingService {
@@ -40,6 +41,18 @@ export class RingService {
         });
     }
 
+    public getDevice(): IRingDto {
+        return this._mapRingDevice(this._ringCamera.data as IRing);
+    }
+
+    public getDeviceHealth(): Observable<IRingHealthDto> {
+        return from(
+            this._ringCamera.getHealth()
+                .then(health => this._mapRingDeviceHealth(health))
+                .catch(() => this._mapRingDeviceHealth({} as IRingHealth))
+        );
+    }
+
     private _initLocationConnected() {
         // this._ringLocation.createConnection().then(
         //     (res) => this._logger.log(res.connected),
@@ -57,6 +70,7 @@ export class RingService {
     }
 
     private _initCameraEvents() {
+
         this._ringCamera.getHealth().then((health) => {
             this._logger.log(`Camera Health: ${health.battery_percentage}`);
         });
@@ -72,16 +86,33 @@ export class RingService {
         this._ringCamera.onNewDing.subscribe((ding: ActiveDing) => {
             this._logger.log(`Ding Detected: ${ding.kind}`);
         });
+
         this._ringCamera.onMotionDetected.subscribe((motionDetected: boolean) => {
             if (motionDetected) {
                 this._logger.log(`Motion Detected: ${motionDetected}`);
             }
         });
+
         this._ringCamera.onMotionStarted.subscribe(() => {
             this._logger.log(`[ RingService] Motion Started`);
         });
+
         this._ringCamera.onDoorbellPressed.subscribe((ding: ActiveDing) => {
             this._logger.log(`[ RingService] Doorbell Pressed: ${ding.kind}`);
         });
+    }
+
+    private _mapRingDevice(data: IRing): IRingDto {
+        return {
+            ...ringHealthDtoDefaults,
+            battery: parseInt(data.battery_life.toString(), 10)
+        };
+    }
+
+    private _mapRingDeviceHealth(data: IRingHealth): IRingHealthDto {
+        return {
+            ...ringHealthDtoDefaults,
+            battery: +data.battery_percentage
+        };
     }
 }
