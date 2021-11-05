@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DEVICE_TYPES_ENUM } from '@backend/config/main';
-import { DeviceTypes, IFibaroDeviceDto, ISonosDeviceDto } from '@backend/devices/models/device';
+import { DeviceTypes, ISonosDeviceDto } from '@backend/devices/models/device';
 import { IFibaroDevice } from '@backend/fibaro/interfaces';
 import { IFibaroRooms } from '@backend/fibaro/interfaces/fibaroRooms.interface';
 import { Device } from '@models/device/device';
