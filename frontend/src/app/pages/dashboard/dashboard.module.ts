@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbListModule, NbRadioModule, NbSelectModule, NbTabsetModule, NbUserModule } from '@nebular/theme';
 import { ThemeModule } from '../../@theme/theme.module';
 import { BatteriesComponent } from '../../components/batteries/batteries.component';
+import { CamerasComponent } from '../../components/cameras/cameras.component';
 import { SpeakersComponent } from '../../components/speakers/speakers.component';
 import { TemperaturesComponent } from '../../components/temperatures/temperatures.component';
 import { DashboardComponent } from './dashboard.component';
@@ -31,6 +32,7 @@ import { RoomsComponent } from './rooms/rooms.component';
         PlayerComponent,
         TemperaturesComponent,
         BatteriesComponent,
+        CamerasComponent,
         SpeakersComponent
     ]
 })

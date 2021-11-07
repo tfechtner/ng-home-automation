@@ -44,7 +44,10 @@ export enum DEVICE_KEYS {
     UTILITY_HEAT_DETECTOR = 'UTILITY_HEAT_DETECTOR',
     DOORBELL = 'DOORBELL',
     SIDE_PATH_SENSOR = 'SIDE_PATH_SENSOR',
-    PATIO_SENSOR = 'PATIO_SENSOR'
+    PATIO_SENSOR = 'PATIO_SENSOR',
+    FRONT_CAMERA = 'FRONT_CAMERA',
+    HALL_CAMERA = 'HALL_CAMERA',
+    PATIO_CAMERA = 'PATIO_CAMERA'
 }
 
 export enum DEVICE_TYPES_ENUM {
@@ -85,6 +88,7 @@ export enum ROOMS_ENUM {
     ENSUITE_BATHROOM = 'ENSUITE_BATHROOM',
     FAMILY_BATHROOM = 'FAMILY_BATHROOM',
     STUDY = 'STUDY',
+    HALL = 'HALL',
     KITCHEN = 'KITCHEN',
     BOOT_ROOM = 'BOOT_ROOM',
     UTILITY = 'UTILITY',
@@ -99,6 +103,7 @@ export const ROOM_NAMES = {
     ENSUITE_BATHROOM: 'Ensuite Bathroom',
     FAMILY_BATHROOM: 'Family Bathroom',
     STUDY: 'Study',
+    HALL: 'Hall',
     KITCHEN: 'Kitchen',
     BOOT_ROOM: 'Boot Room',
     UTILITY: 'Utility',
@@ -332,6 +337,24 @@ export const DEVICES_MAP = new Map<string, any>([
         room: ROOMS_ENUM.FRONT_GARDEN,
         ringId: 81053880,
         battery: null
+    }],
+    [
+        DEVICE_KEYS.FRONT_CAMERA, {
+        type: DEVICE_TYPES_ENUM.CAMERA,
+        name: 'Front Camera',
+        room: ROOMS_ENUM.FRONT_GARDEN
+    }],
+    [
+        DEVICE_KEYS.HALL_CAMERA, {
+        type: DEVICE_TYPES_ENUM.CAMERA,
+        name: 'Hall Camera',
+        room: ROOMS_ENUM.HALL
+    }],
+    [
+        DEVICE_KEYS.PATIO_CAMERA, {
+        type: DEVICE_TYPES_ENUM.CAMERA,
+        name: 'Patio Camera',
+        room: ROOMS_ENUM.GARDEN
     }]
 ]);
 

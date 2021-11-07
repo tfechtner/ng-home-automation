@@ -102,6 +102,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
     onModuleInit() {
         this._logger.log(`Backend started v${packageJson['version']} on http://${this._nestConfigService.host}:${this._nestConfigService.port}/`);
 
+        this._cameraService.init();
         this._ringService.init();
 
         this._httpService.axiosRef.interceptors.request.use(

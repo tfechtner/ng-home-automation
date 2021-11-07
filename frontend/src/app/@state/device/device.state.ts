@@ -52,6 +52,11 @@ export class DeviceState {
         return state.devices.filter((device: ISonosDeviceDto) => !!device.sonosRoomName);
     }
 
+    @Selector()
+    public static cameras(state: IDeviceStateModel): DeviceTypes[] {
+        return state.devices.filter(device => device.type === DEVICE_TYPES_ENUM.CAMERA);
+    }
+
     constructor(
         private _nestService: NestService
     ) {}

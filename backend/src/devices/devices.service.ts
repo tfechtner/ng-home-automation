@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { forkJoin, of, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CONFIG, DEVICE_KEYS, DEVICE_TYPE_NAMES, ROOM_NAMES } from '../config/main';
+import { CameraService } from '../camera/camera.service';
+import { CONFIG, DEVICE_KEYS, DEVICE_TYPE_NAMES, DEVICE_TYPES_ENUM, ROOM_NAMES } from '../config/main';
 import { FibaroService } from '../fibaro/fibaro.service';
 import { RingService } from '../ring/ring.service';
 import { SonosService } from '../sonos/sonos.service';
@@ -14,6 +15,7 @@ export class DevicesService {
     private _devices: Map<string, DeviceTypes>;
 
     constructor(
+        private _cameraService: CameraService,
         private _fibaroService: FibaroService,
         private _ringService: RingService,
         private _sonosService: SonosService
@@ -66,6 +68,12 @@ export class DevicesService {
                     battery: ringHealth.battery
                 }))
             );
+        } else if (device.type === DEVICE_TYPES_ENUM.CAMERA) {
+            const camera = this._cameraService.getDevice(device.key);
+            return of({
+                ...device,
+                device: camera
+            });
         } else {
             return of(device);
         }

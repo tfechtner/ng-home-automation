@@ -1,3 +1,4 @@
+import { ICameraDto } from '../../camera/dto/cameraDevice.interface';
 import { DEVICE_KEYS, DEVICE_TYPES_ENUM, ROOMS_ENUM } from '../../config/main';
 import { IFibaroDto } from '../../fibaro/interfaces';
 import { IRingHealthDto } from '../../ring/dto/ringDevice.interface';
@@ -19,8 +20,9 @@ export interface IDeviceBaseDto<T> {
     battery?: number;
 }
 
+export interface ICameraDeviceDto extends IDeviceBaseDto<ICameraDto> {}
 export interface IFibaroDeviceDto extends IDeviceBaseDto<IFibaroDto> {}
 export interface ISonosDeviceDto extends IDeviceBaseDto<ISonosDto> {}
 export interface IRingDeviceDto extends IDeviceBaseDto<IRingHealthDto> {}
 
-export type DeviceTypes = IFibaroDeviceDto | ISonosDeviceDto | IRingDeviceDto;
+export type DeviceTypes = ICameraDeviceDto | IFibaroDeviceDto | ISonosDeviceDto | IRingDeviceDto;

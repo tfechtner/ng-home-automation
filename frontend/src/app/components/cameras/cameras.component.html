@@ -1,0 +1,18 @@
+<nb-card>
+    <nb-card-header>
+        Cameras
+    </nb-card-header>
+    <nb-card-body>
+        <div class="cameras" *ngIf="cameras$ | async as cameras">
+            <ng-container *ngFor="let camera of cameras">
+                <div class="cameras__item">
+                    <nb-icon [icon]="'video'"></nb-icon>
+                    <div class="cameras__item--level">{{ camera.device.localAddress }}</div>
+                    <div class="cameras__item--room">{{ camera.roomName }}</div>
+                </div>
+            </ng-container>
+        </div>
+    </nb-card-body>
+</nb-card>
+
+

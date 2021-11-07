@@ -8,10 +8,6 @@ export interface IRingDto {
     battery: number;
 }
 
-export interface IRingDto {
-    battery: number;
-}
-
 export interface IRingHealthDto {
     battery: number;
 }

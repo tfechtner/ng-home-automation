@@ -25,7 +25,7 @@ export class Hikvision extends events.EventEmitter {
     private triggerActive = false;
 
     constructor(
-        options: IOptions,
+        public options: IOptions,
         private _logger: Logger
     ) {
         super();
