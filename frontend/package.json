@@ -1,6 +1,6 @@
 {
     "name": "nest-home-frontend",
-    "version": "0.6.0",
+    "version": "0.8.0",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -15,7 +15,7 @@
         "lint:fix": "ng lint ngx-nest-home --fix",
         "lint:styles": "stylelint ./src/**/*.scss",
         "lint:ci": "yarn run lint && yarn run lint:styles",
-        "precommit": "npm version minor --no-git-tag-version false",
+        "precommit": "npm version minor --no-git-tag-version false && git add package.json",
         "prepush": "npm run lint",
         "postinstall": "ngcc",
         "deploy": "pm2 deploy ../ecosystem.json prod-frontend"
