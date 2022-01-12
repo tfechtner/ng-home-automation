@@ -104,6 +104,7 @@ export class AppModule implements OnModuleInit, OnApplicationBootstrap, OnApplic
 
         this._cameraService.init();
         this._ringService.init();
+        this._telegramService.initWebhook();
 
         this._httpService.axiosRef.interceptors.request.use(
             (config: AxiosRequestConfig) => {
