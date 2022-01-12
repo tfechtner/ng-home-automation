@@ -1,7 +1,2 @@
 .idea
-node_modules
-dist
 logs
-frontend-server/www
-promtail/.env
-
