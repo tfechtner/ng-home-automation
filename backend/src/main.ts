@@ -9,9 +9,9 @@ async function bootstrap() {
     console.log(process.cwd());
     const app = await NestFactory.create(AppModule, {
         httpsOptions: {
-            key: fs.readFileSync('certs/privkey.pem'),
-            cert: fs.readFileSync('certs/cert.pem'),
-            ca: fs.readFileSync('certs/syno-ca-cert.pem')
+            key: fs.readFileSync('certs/server.key'),
+            cert: fs.readFileSync('certs/server.crt'),
+            ca: fs.readFileSync('certs/rootCA.pem')
         },
         logger: WinstonModule.createLogger({
             transports: [

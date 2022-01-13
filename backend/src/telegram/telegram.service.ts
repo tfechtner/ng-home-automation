@@ -32,9 +32,9 @@ export class TelegramService {
         const options = {
             webHook: {
                 port: 8443,
-                key: `certs/privkey.pem`, // Path to file with PEM private key
-                cert: `certs/cert.pem`, // Path to file with PEM certificate
-                ca: `certs/syno-ca-cert.pem`
+                key: `certs/server.key`,
+                cert: `certs/server.crt`,
+                ca: `certs/rootCA.pem`
             }
         };
 
